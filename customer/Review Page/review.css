@@ -1,0 +1,249 @@
+
+
+body{
+
+    background:linear-gradient(90deg,#050505,#222);
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.container h1{
+
+    color:white;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.review-box{
+
+    width: 1000px;
+    max-width:90%;
+    border:1px solid #444;
+    padding:40px;
+    background-color: var(--bg-black-alt);
+    box-shadow: 0px -1px 0px var(--accent-gray), 0px 1px 0px var(--accent-gray);
+    background-clip: border-box;
+    border: 1px solid var(--card-border);
+    border-radius: 25px;
+}
+
+.review-box h2{
+
+    color:white;
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.review-box p{
+
+    color:#bdbdbd;
+    font-family: 'Figtree', sans-serif;
+    text-align:center;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.rating{
+    display:flex;
+    justify-content:center;
+    flex-direction:row-reverse;
+    margin-bottom:5px;
+}
+
+.rating input{
+
+    display:none;
+}
+
+.rating label{
+    position:relative;
+    width:42px;
+    height:42px;
+    cursor:pointer;
+}
+
+.rating label img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    transition:.2s;
+}
+
+.icon-on{
+    opacity:0;
+}
+
+.icon-off{
+    opacity:1;
+}
+
+.rating label:hover .icon-on,
+.rating label:hover ~ label .icon-on{
+
+    opacity:1;
+}
+
+.rating label:hover .icon-off,
+.rating label:hover ~ label .icon-off{
+
+    opacity:0;
+}
+
+.rating input:checked ~ label .icon-on{
+
+    opacity:1;
+}
+
+.rating input:checked ~ label .icon-off{
+
+    opacity:0;
+}
+
+/* .rating label{
+
+    font-size:25px;
+    color:#555;
+    cursor:pointer;
+    transition:.3s;
+    padding:5px;
+}
+
+/* Hover */
+
+/* .rating label:hover,
+.rating label:hover ~ label{
+
+    color:#FFD700;
+    transform:scale(1.2);
+} */
+
+/* Selected */
+
+/* .rating input:checked ~ label{
+
+    color:#f8c923;
+} */ */
+
+form{
+
+    display:flex;
+    flex-direction:column;
+}
+
+h3,
+label {
+    font-family: 'Figtree', sans-serif;
+    font-weight: bold;
+}
+
+h3{
+    
+    color:white;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+label{
+
+    color:#d4d4d4;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.review-box input{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:4px;
+    outline:none;
+    margin-bottom:25px;
+    font-size:15px;
+}
+
+textarea{
+
+    width:100%;
+    height:120px;
+    padding:14px;
+    resize:none;
+    border:none;
+    border-radius:4px;
+    outline:none;
+    font-size:15px;
+}
+
+
+
+.btn-buy-now {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #373737;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin:30px auto 0;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    align-self: flex-start;
+    transition: all .2s ease;
+}
+.btn-buy-now:hover { background-color: var(--accent-light-gray); border-color: var(--accent-light-gray); color: #000; }
+
+#ratingText{
+
+    color:#FFD700;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:15px;
+    font-weight:bold;
+}
+/* Notification Popup */
+
+.notification{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#181818;
+    color:#fff;
+    padding:15px 25px;
+    border-left:5px solid #FFD700;
+    border-radius:8px;
+    box-shadow:0 5px 15px rgba(0,0,0,.4);
+    font-size:15px;
+    z-index:1000;
+    animation:slideIn .4s ease;
+}
+
+.notification.hide{
+    animation:slideOut .4s ease forwards;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(100%);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes slideOut{
+    from{
+        opacity:1;
+        transform:translateX(0);
+    }
+    to{
+        opacity:0;
+        transform:translateX(100%);
+    }
+}

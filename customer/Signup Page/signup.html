@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TCG Marketplace | Sign Up</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Figtree -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">  
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+     <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
+    <link rel="stylesheet" href="signup.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="left-section">
+
+        <h1 class="logo"><a href="/tcgzone/customer/Landing Page/index.php">tcgzone</a></h1>
+
+        <div class="form-container">
+
+            <h1>Sign up</h1>
+
+            <p class="subtext">
+                Already have an account?
+            </p>
+
+            <p class="register-link">
+                You can
+                <a href="/tcgzone/customer/Login Page/login.html">sign in here!</a>
+            </p>
+
+            <form method="POST" action="signup.php">
+
+                <!-- Email -->
+
+                <label>Email</label>
+
+                <div class="input-box">
+
+                    <img src="/tcgzone/assets/images/login_signin page/signin_email.svg" alt="Email">
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required>
+
+                </div>
+
+                <!-- Username -->
+
+                <label>Username</label>
+
+                <div class="input-box">
+
+                    <img src="/tcgzone/assets/images/login_signin page/user.svg" alt="User">
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter your Username"
+                        required>
+
+                </div>
+
+                <label>Phone Number</label>
+
+                <div class="input-box">
+
+                    <img src="/tcgzone/assets/images/login_signin page/phone.svg" alt="Phone">
+
+                    <input
+                        type="text"
+                        maxlength="11"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        placeholder="09XX-XXX-XXXX"
+                        id="phone"
+                        name="phone"
+                        required>
+
+                </div>
+
+                <!-- Password -->
+
+                <label>Password</label>
+
+                <div class="input-box">
+
+                    <img src="/tcgzone/assets/images/login_signin page/signin_password.svg" alt="Password">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your Password"
+                        required>
+
+                    <i class="fa-regular fa-eye" id="togglePassword"></i>
+
+                </div>
+
+                <!-- Confirm Password -->
+
+                <label>Confirm Password</label>
+
+                <div class="input-box">
+
+                    <img src="/tcgzone/assets/images/login_signin page/signin_password.svg" alt="Password">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your Password"
+                        required>
+
+                    <i class="fa-regular fa-eye" id="toggleConfirmPassword"></i>
+
+                </div>
+
+                <button type="submit">
+
+                    Register
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-section">
+
+        <img src="/tcgzone/assets/images/login_signin page/SIGNINimg.png" alt="Background">
+
+        <!-- <div class="overlay-text">
+
+            <h1>Join tcgzone</h1>
+
+        </div> -->
+
+    </div>
+
+</div>
+
+<script src="signup.js"></script>
+
+</body>
+
+</html>

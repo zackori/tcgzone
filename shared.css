@@ -1,0 +1,655 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url(/tcgzone/assets/fonts/poppins/Poppins-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Figtree';
+    src: url(/tcgzone/assets/fonts/figtree/Figtree-Regular.ttf) format('truetype');
+}
+
+:root {
+    --bg-black: #0a0a0a;
+    --bg-black-alt: #121212;
+    --text-light: #f2f2f2;
+    --text-muted: #b3b3b3;
+    --accent-teal: #5fd6cf;
+    --accent-light-gray: #BDBDBD;
+    --accent-amber: #e8b23b;
+    --accent-gray: #464646;
+    --card-bg: #373737;
+    --card-border: #101010;
+    --font-display: 'Poppins', sans-serif;
+}
+
+* {
+    font-family: 'Poppins';
+    margin: 0px;
+    padding: 0px;
+}
+
+/*NAVIGATION BAR*/
+
+
+.navbar {
+    display: flex;
+    flex-direction: column; /* 👈 Forces Top Row and Bottom Row to stack vertically */
+    background-color: black;
+    padding: 10px 0px;
+    color: white;
+    overflow-x: hidden; /* Prevents horizontal scrollbars from appearing */
+}
+
+/* 2. Style the top row to spread elements evenly across the screen */
+.nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spreads out logo, search, and profile tools */
+    width: 100%;
+    padding: 10px 5% 20px 5%;  /* Added extra bottom padding to create breathing room above line */
+    position: relative;     
+    flex-wrap: nowrap;
+    gap:15px;       /* 👈 CRITICAL: The gradient line now anchors here */
+}
+
+
+/* 3. Your exact gradient line, now locked strictly to the bottom of the top row */
+.nav-top::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 3px;
+    border-radius: 70%;
+    background: linear-gradient(
+        to right, 
+        black 0%,     
+        #464646 40%,             
+        #464646 60%,             
+        black 100%    
+    );
+}
+
+.logo {
+    margin-right: 120px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 580px;
+    width: 50%;
+    padding: 5px 14px;
+    border-radius: 28px;
+    background-color: white;
+}
+
+.search img {
+    height: 20px;
+    width: 20px;
+}
+
+.search input {
+    width: 100%;
+    height: 10px;
+    font-size: 16px;
+    padding: 8px;
+    background-color: #333;
+    background: transparent;
+    border: none;
+    color: black;
+    border-radius: 4px;
+    margin-left: 10px;
+    outline: none;
+    flex: 1;
+}
+
+
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+    padding-top: 0px;
+    padding-right: 50px;
+}
+
+.nav-links a {
+    color: white;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+img:hover {
+    color: #464646;
+} 
+
+.btn-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color:  white;       
+    border-radius: 50%;           
+    transition: all 0.3s ease;
+}
+
+.btn-logo2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color:  white;       
+    border-radius: 50%;           
+    transition: all 0.3s ease;
+}
+
+.btn-logo li {
+    height: 1000px;
+}
+
+.nav-icon {
+    width: 22px;
+    height: 22px;
+    transition: filter 0.3s ease;
+    color: black;
+}
+
+.btn-logo:hover, .btn-logo2:hover {
+    background-color: #464646;     
+}
+
+/*ACCOUNT TAB*/
+/* ---------------- ACCOUNT TAB ---------------- */
+/* Meant to be appended into shared.css — relies on the @font-face,
+   *, and body rules already defined there. Opens as a full-screen
+    overlay when the navbar Account icon (data-nav="account") is
+    clicked; behavior lives in shared.js. Same palette as the rest of
+   the site: #464646, #5fd6cf (teal links), #b3b3b3 (muted text). */
+
+.profile-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(70,70,70, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    
+}
+
+.profile-panel {
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0a0a0a;
+    border-radius: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    
+}
+
+.profile-header {
+    justify-content: space-between;
+    display: flex;
+    padding: 2rem 2.5rem 1.5rem;
+    color: #f2f2f2;
+    
+}
+
+.profile-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+    font-family: 'Figtree', sans-serif;
+}
+
+.profile-header p {
+    color: #b3b3b3;
+    font-size: .95rem;
+    font-weight: 400;
+    font-family: 'Figtree', sans-serif;
+}
+
+.right-profile button {
+    background-color: rgb(255, 0, 0);
+    transition: all 0.2 ease;
+}
+
+.right-profile button:hover {
+    background-color: rgb(175, 0, 0);
+}
+
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    padding: 2.5rem;
+    overflow-y: auto;
+    
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    
+}
+
+.form-row:last-of-type {
+    border-bottom: none;
+}
+
+.form-row label {
+    color: #333;
+    font-size: .9rem;
+    font-weight: bolder;
+    font-family: 'Figtree', sans-serif;
+}
+
+.static-value {
+    color: #555;
+    font-size: .95rem;
+    font-family: 'Figtree', sans-serif;
+}
+
+.text-input {
+    font-size: .95rem;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: .6rem .9rem;
+    width: 100%;
+    max-width: 320px;
+    outline: none;
+    transition: border-color .2s ease;
+    font-family: 'Figtree', sans-serif;
+}
+
+.text-input:focus {
+    border-color: #5fd6cf;
+}
+
+.editable-field {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex-wrap: wrap;
+}
+
+.hidden-input {
+    display: none;
+}
+
+.editable-field.editing .static-value {
+    display: none;
+}
+
+.editable-field.editing .hidden-input {
+    display: inline-block;
+}
+
+.editable-field.editing .change-link {
+    display: none;
+}
+
+.change-link {
+    color: #5fd6cf;
+    font-size: .9rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Figtree', sans-serif;
+
+}
+
+.change-link:hover {
+    text-decoration: underline;
+}
+
+/* Cancel only appears while its field is being edited, letting the
+   user back out of a "Change" click (misclick or change of mind)
+   without it affecting Save. */
+.cancel-link {
+    display: none;
+    color: #b3b3b3;
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.editable-field.editing .cancel-link {
+    display: inline;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+/* Shipping Address: four sub-inputs grouped under one Change/Cancel
+   toggle. Hidden by default like any other .editable-field content;
+   shown as a 2-column grid while .editing is active. */
+.address-fields {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+    width: 100%;
+    max-width: 480px;
+}
+
+.editable-field.editing .address-fields {
+    display: grid;
+}
+
+.address-input {
+    max-width: none;
+}
+
+.gender-row {
+    align-items: start;
+    padding-top: 1.25rem;
+}
+
+.gender-options {
+    display: flex;
+    gap: 1.75rem;
+    padding-top: .1rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .9rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: #000;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.btn-save {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: .95rem;
+    letter-spacing: .3px;
+    padding: .7rem 2.75rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.btn-save:hover {
+    background-color: #464646;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: .4rem;
+    }
+    .profile-card {
+        padding: 1.75rem;
+    }
+}
+
+
+.nav-bottom {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+    padding: 15px 20px 5px 20px; 
+}
+
+
+.sub-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px; 
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sub-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.sub-links a:hover, .sub-links span:hover {
+    color: #464646; 
+}
+
+.category {
+    font-family: 'Figtree', sans-serif;
+    font-style: italic;
+}
+
+.sub-links span {
+    font-family: 'Figtree', sans-serif;
+    color: #b3b3b3;
+}
+
+
+/* When the screen is smaller than a tablet (768px) */
+@media (max-width: 768px) {
+    .nav-top {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 12px;
+    }
+
+    .logo {
+        order: 1;
+        margin-right: 0;
+    }
+
+    .nav-links {
+        order: 2;
+        padding-right: 0;
+    }
+
+    .search {
+        order: 3;
+        flex-basis: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .nav-top::after {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+/*FOOTER*/
+/* ---------------- FOOTER ---------------- */
+/* Meant to be appended into shared.css — relies on the @font-face,
+   *, and body rules already defined there. Do not redeclare those
+   here. Colors are the same palette already used across the site:
+   #BDBDBD, #373737, #2D2D2D, #464646 */
+
+.site-footer {
+    background-color: #111111;
+    color: #BDBDBD;
+    font-family: 'Figtree', sans-serif;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.75rem 2rem;
+}
+
+.footer-col {
+    flex: 1;
+}
+
+/* Brand column */
+.footer-brand {
+    flex: 1.9;
+}
+
+.footer-logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: .6rem;
+}
+
+.footer-logo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-tagline {
+    font-family: 'Figtree', sans-serif;
+    color: var(--text-muted);
+    font-size: .95rem;
+}
+
+/* Link columns */
+.footer-heading {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: .6rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    margin-left: -31px;
+}
+
+.footer-links li {
+    margin-bottom: .25rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-family: 'Figtree', sans-serif;
+    text-decoration: none;
+    font-size: .95rem;
+    transition: color .2s ease;
+}
+
+.footer-links a:hover {
+    color: #464646
+}
+
+.footer-links,
+.footer-socials {
+    border-left: 2px solid #464646;
+    padding-left: 1.5rem;
+}
+
+/* Socials column */
+.social-icons {
+    display: flex;
+    gap: .6rem;
+}
+
+.social-icon {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #464646;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #BDBDBD;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: .85rem;
+    transition: border-color .2s ease, color .2s ease;
+}
+
+.social-icon:hover {
+    border-color: #BDBDBD;
+    color: #fff;
+}
+
+/* Placeholder Instagram glyph (square) so all three icons read as
+   distinct social buttons without needing real icon assets yet. */
+.icon-square {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #BDBDBD;
+    border-radius: 4px;
+}
+
+/* Bottom bar */
+.footer-bottom {
+    background-color: #373737;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+.footer-bottom p{
+    padding-top: 20px;
+    font-family: 'Figtree', sans-serif;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+    .footer-main {
+        flex-wrap: wrap;
+        gap: 2rem 1.5rem;
+    }
+
+    .footer-brand {
+        flex: 1 0 100%;
+    }
+
+    .footer-links,
+    .footer-socials {
+        flex: 1 0 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links,
+    .footer-socials {
+        flex: 1 0 100%;
+    }
+}
