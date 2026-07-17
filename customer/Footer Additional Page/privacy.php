@@ -59,64 +59,84 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div> 
         </nav>
 
+
         <main class="policy-page">
 
     <div class="policy-container">
 
-        <h1 class="policy-title">About Us</h1>
+        <h1 class="policy-title">Privacy Policy</h1>
 
         <div class="policy-content">
 
-            <h3>Who We Are</h3>
+            <h3>&bull; Information We Collect</h3>
             <p>
-                TCGZone is an online marketplace dedicated to trading card game
-                enthusiasts. We provide a secure platform where collectors,
-                players, and hobbyists can buy, sell, and explore trading cards
-                from popular games such as Pokémon, Magic: The Gathering, and
-                One Piece.
+                TCGZone collects personal information that you voluntarily
+                provide when creating an account, purchasing products,
+                selling trading cards, or contacting customer support.
+                This information may include your name, email address,
+                phone number, shipping address, and payment details.
             </p>
 
-            <h3>Our Mission</h3>
+            <h3>&bull; How We Use Your Information</h3>
             <p>
-                Our mission is to create a trusted and accessible marketplace
-                that connects trading card enthusiasts while promoting fair,
-                transparent, and secure transactions. We aim to make collecting
-                and trading cards simple, enjoyable, and reliable for everyone.
+                We use your information to process orders, manage user
+                accounts, improve our services, respond to inquiries,
+                provide customer support, and send important updates
+                regarding your transactions.
             </p>
 
-            <h3>Our Vision</h3>
+            <h3>&bull; Protection of Personal Information</h3>
             <p>
-                We envision TCGZone becoming one of the leading online trading
-                card marketplaces by building a strong community where collectors
-                and players can confidently expand their collections and share
-                their passion for trading card games.
+                TCGZone takes appropriate security measures to protect your
+                personal information against unauthorized access,
+                disclosure, alteration, or destruction. While we strive
+                to maintain a secure platform, no online system is
+                completely risk-free.
             </p>
 
-            <h3>What We Offer</h3>
+            <h3>&bull; Sharing of Information</h3>
             <p>
-                TCGZone provides a wide selection of trading cards, a convenient
-                shopping experience, secure transactions, and an easy-to-use
-                platform for both buyers and sellers. Our goal is to help users
-                find the cards they need while ensuring a safe and enjoyable
-                marketplace experience.
+                We do not sell, rent, or trade your personal information.
+                Information may only be shared with trusted service
+                providers involved in payment processing, shipping
+                services, or when required by law.
             </p>
 
-            <h3>Why Choose TCGZone?</h3>
+            <h3>&bull; Cookies</h3>
             <p>
-                • Secure and reliable transactions.<br>
-                • User-friendly shopping experience.<br>
-                • Wide variety of trading card products.<br>
-                • Transparent buying and selling process.<br>
-                • Dedicated support for our community.
+                Our website uses cookies to improve browsing experience,
+                remember user preferences, and analyze website traffic.
+                You may disable cookies through your browser settings,
+                although some website features may not function properly.
             </p>
 
-            <h3>Our Commitment</h3>
+            <h3>&bull; Your Rights</h3>
             <p>
-                We are committed to continuously improving our platform through
-                innovation, security, and excellent customer service. TCGZone
-                strives to provide a marketplace where every collector and player
-                feels confident, valued, and connected to the trading card
-                community.
+                Users have the right to review, update, or request the
+                deletion of their personal information, subject to
+                applicable laws and our operational requirements.
+            </p>
+
+            <h3>&bull; Third-Party Services</h3>
+            <p>
+                TCGZone may contain links to third-party websites or use
+                external services. We are not responsible for the privacy
+                practices or content of these third-party platforms.
+            </p>
+
+            <h3>&bull; Changes to This Policy</h3>
+            <p>
+                We reserve the right to update this Privacy Policy at any
+                time. Changes become effective immediately after being
+                posted on this page. Continued use of the website
+                indicates your acceptance of any revisions.
+            </p>
+
+            <h3>&bull; Contact Us</h3>
+            <p>
+                If you have any questions regarding this Privacy Policy
+                or how your information is handled, please contact our
+                support team through the Contact Us page.
             </p>
 
         </div>
@@ -124,7 +144,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
     </div>
 
 </main>
-
 
 
 
@@ -190,7 +209,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <p>&copy; 2026 tcgzone - All Rights Reserved</p>
         </div>
 </footer>
-    
-    
+
 </body>
 </html>

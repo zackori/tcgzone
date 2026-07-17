@@ -22,7 +22,7 @@ COUNT(*) AS totalOrders,
 
 SUM(total) AS totalSales
 
-FROM orders
+FROM orders_admin
 
 GROUP BY MONTH(order_date)
 
@@ -54,7 +54,7 @@ $query = $conn->query("
 
 SELECT product_name, stock
 
-FROM products
+FROM products_admin
 
 ORDER BY product_name
 

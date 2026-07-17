@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="col-6 col-md-4 col-lg-3">' +
           '<article class="shop-card" data-id="' + p.id + '" role="button" tabindex="0" aria-label="View details for ' + p.title + '">' +
             '<div class="shop-card-img' + artClass + '"' + imgStyle + '>' +
-              (p.stock === 'sold-out' ? '<span class="sold-out-badge">Sold Out</span>' : '') +
+              (p.stock === 'Out of Stock' ? '<span class="sold-out-badge">Out of Stock</span>' : '') +
             '</div>' +
             '<h3 class="shop-card-title">' + p.title + '</h3>' +
             '<p class="shop-card-subtitle">' + p.subtitle + '</p>' +
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
       modalImage.className = 'modal-product-image ' + (product.art || 'card-art-1');
       modalImage.style.backgroundImage = '';
     }
-    modalSoldOutBadge.classList.toggle('d-none', product.stock !== 'sold-out');
+    modalSoldOutBadge.classList.toggle('d-none', product.stock !== 'Out of Stock');
     modalTitle.textContent = product.title;
     modalSubtitle.textContent = product.subtitle;
     modalDescription.textContent = product.description || '';
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modalCategory.textContent = product.category;
     modalQtyValue.textContent = modalQty;
 
-    var soldOut = product.stock === 'sold-out';
+    var soldOut = product.stock === 'Out of Stock';
     modalAddToCartBtn.disabled = soldOut;
     modalAddToCartBtn.innerHTML = soldOut
       ? 'Sold Out'
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var CART_KEY = 'tcgCart';
 
   function addActiveProductToCart() {
-    if (!activeProduct || activeProduct.stock === 'sold-out') return;
+    if (!activeProduct || activeProduct.stock === 'Out of Stock') return;
 
     var cart = [];
     try {

@@ -337,17 +337,17 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="footer-col footer-links">
                 <h3 class="footer-heading">Quick Links</h3>
                 <ul>
-                    <li><a href="/tcgzone/customer/Shop Page/shop-page.html">Buy Card</a></li>
+                    <li><a href="/tcgzone/customer/Shop Page/shop.php">Buy Card</a></li>
                     <li><a href="/tcgzone/customer/Footer Additional Page/about_us.php">About us</a></li>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/contacts.html">Contact</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/contacts.php">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-col footer-links">
                 <h3 class="footer-heading">Policy</h3>
                 <ul>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.html">Terms &amp; Conditions</a></li>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/privacy.html">Privacy Policy</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.php">Terms &amp; Conditions</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/privacy.php">Privacy Policy</a></li>
                 </ul>
             </div>
 

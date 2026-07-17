@@ -6,7 +6,7 @@ $response=[];
 
 /* Total Orders */
 
-$sql="SELECT COUNT(*) totalOrders FROM orders";
+$sql="SELECT COUNT(*) totalOrders FROM orders_admin";
 
 $result=$conn->query($sql);
 
@@ -16,7 +16,7 @@ $response['orders']=$row['totalOrders'];
 
 /* Total Sales */
 
-$sql="SELECT SUM(total) totalSales FROM orders";
+$sql="SELECT SUM(total) totalSales FROM orders_admin";
 
 $result=$conn->query($sql);
 
@@ -26,7 +26,7 @@ $response['sales']=$row['totalSales'] ?? 0;
 
 /* Out of Stock */
 
-$sql="SELECT COUNT(*) outStock FROM products WHERE stock=0";
+$sql="SELECT COUNT(*) outStock FROM products_admin WHERE stock=0";
 
 $result=$conn->query($sql);
 

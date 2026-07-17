@@ -3,7 +3,7 @@ require '../../config/db_connect.php';
 
 header('Content-Type: application/json');
 
-$sql = "SELECT * FROM products_test";
+$sql = "SELECT * FROM products";
 $result = mysqli_query($conn, $sql);
 
 $products = [];
@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         "stock" =>
             ($row["stock_quantity"] <= 0)
-            ? "sold-out"
+            ? "Out of Stock"
             : $row["stock_quantity"],
 
         "category" => $row["category"],

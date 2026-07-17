@@ -63,68 +63,60 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <div class="policy-container">
 
-        <h1 class="policy-title">About Us</h1>
+        <h1 class="policy-title">Contact Us</h1>
 
-        <div class="policy-content">
+        <div class="policy-content-contact">
 
-            <h3>Who We Are</h3>
-            <p>
-                TCGZone is an online marketplace dedicated to trading card game
-                enthusiasts. We provide a secure platform where collectors,
-                players, and hobbyists can buy, sell, and explore trading cards
-                from popular games such as Pokémon, Magic: The Gathering, and
-                One Piece.
-            </p>
+            <div class="contact-grid">
 
-            <h3>Our Mission</h3>
-            <p>
-                Our mission is to create a trusted and accessible marketplace
-                that connects trading card enthusiasts while promoting fair,
-                transparent, and secure transactions. We aim to make collecting
-                and trading cards simple, enjoyable, and reliable for everyone.
-            </p>
+                <div class="contact-card">
+                <h2><span>📞</span> Contact Number</h2>
+                <p>Have questions or need assistance? You may reach our customer support team through the contact number below.</p>
+                <p class="highlight">+63-99654281443</p>
+            </div>
 
-            <h3>Our Vision</h3>
-            <p>
-                We envision TCGZone becoming one of the leading online trading
-                card marketplaces by building a strong community where collectors
-                and players can confidently expand their collections and share
-                their passion for trading card games.
-            </p>
+            <div class="contact-card">
+                <h2><span>📧</span> Email Address</h2>
+                <p>For general inquiries, customer support, business partnerships, or feedback, send us an email at:</p>
+                <p class="highlight">tcgzone2026@gmail.com</p>
+            </div>
 
-            <h3>What We Offer</h3>
-            <p>
-                TCGZone provides a wide selection of trading cards, a convenient
-                shopping experience, secure transactions, and an easy-to-use
-                platform for both buyers and sellers. Our goal is to help users
-                find the cards they need while ensuring a safe and enjoyable
-                marketplace experience.
-            </p>
+            <div class="contact-card">
+                <h2><span>📍</span> Office Address</h2>
+                <p>Visit our office during business hours for assistance, inquiries, or official transactions.</p>
+                <div class="address-details">
+                    <strong>TCGZone Marketplace</strong><br>
+                    <strong>2nd Floor</strong><br>
+                    <strong>Trece Martires City</strong>
+                </div>
+            </div>
 
-            <h3>Why Choose TCGZone?</h3>
-            <p>
-                • Secure and reliable transactions.<br>
-                • User-friendly shopping experience.<br>
-                • Wide variety of trading card products.<br>
-                • Transparent buying and selling process.<br>
-                • Dedicated support for our community.
-            </p>
+            <div class="contact-card">
+                <h2><span>🕒</span> Business Hours</h2>
+                <p>Our support team is available during the following business hours:</p>
+                <div class="schedule">
+                    <div class="schedule-group">
+                        <strong>Monday – Friday</strong>
+                        <span>9:00 AM – 6:00 PM</span>
+                    </div>
+                    <div class="schedule-group">
+                        <strong>Saturday</strong>
+                        <span>10:00 AM – 4:00 PM</span>
+                    </div>
+                    <div class="schedule-group">
+                        <strong>Sunday</strong>
+                        <span>Closed</span>
+                    </div>
+                </div>
+            </div>
 
-            <h3>Our Commitment</h3>
-            <p>
-                We are committed to continuously improving our platform through
-                innovation, security, and excellent customer service. TCGZone
-                strives to provide a marketplace where every collector and player
-                feels confident, valued, and connected to the trading card
-                community.
-            </p>
+            </div>
 
         </div>
 
     </div>
 
 </main>
-
 
 
 

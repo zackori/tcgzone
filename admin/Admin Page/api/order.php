@@ -22,7 +22,7 @@ SELECT
 
     o.order_date
 
-FROM orders o
+FROM orders_admin o
 
 LEFT JOIN products p
 ON o.product_id = p.id
