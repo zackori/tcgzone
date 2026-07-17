@@ -17,6 +17,10 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="landing-page.css">
     <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
     <title>TCGZONE</title>
 </head>
 <body>
@@ -63,7 +67,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="container hero-content position-relative">
                 <h1 class="hero-title">Elevate Your <span class="text-accent">Collection</span></h1>
                 <p class="hero-subtitle">Rare pulls, graded slabs, and sealed product — sourced and verified for collectors who don't play around.</p>
-                <a href="/tcgzone/customer/Shop Page/shop-page.html" class="btn btn-shop-now">Shop Now</a>
+                <a href="/tcgzone/customer/Shop Page/shop.php" class="btn btn-shop-now">Shop Now</a>
             </div>
         </header>
 
@@ -334,7 +338,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 <h3 class="footer-heading">Quick Links</h3>
                 <ul>
                     <li><a href="/tcgzone/customer/Shop Page/shop-page.html">Buy Card</a></li>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/about_us.html">About us</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/about_us.php">About us</a></li>
                     <li><a href="/tcgzone/customer/Footer Additional Page/contacts.html">Contact</a></li>
                 </ul>
             </div>
@@ -349,16 +353,30 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
             <div class="footer-col footer-socials">
                 <h3 class="footer-heading">Socials</h3>
-                <div class="social-icons">
-                    <div class="link-container">
-                        <a href="https://www.x.com/"><img src="/tcgzone/assets/logos/footer/x-logo.svg" alt="X"></a>
+                <!-- Social -->
+                <div class="footer-column">
+                    <div class="social-icons">
+
+                        <a href="https://www.facebook.com/" aria-label="Facebook">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+
+                        <a href="https://www.instagram.com/" aria-label="Instagram">
+
+                            <i class="fab fa-instagram"></i>
+
+                        </a>
+
+                        <a href="https://www.x.com/" aria-label="X">
+
+                            <i class="fab fa-x-twitter"></i>
+
+                        </a>
+
                     </div>
-                    <div class="link-container">
-                        <a href="https://www.facebook.com/"><img src="/tcgzone/assets/logos/footer/facebook-logo.svg" alt="X"></a>
-                    </div>
-                    <div class="link-container">
-                        <a href="https://www.instagram.com/" target="_blank"><img src="/tcgzone/assets/logos/footer/instagram-logo.svg" alt="X"></a>
-                    </div>
+
                 </div>
             </div>
         </div>

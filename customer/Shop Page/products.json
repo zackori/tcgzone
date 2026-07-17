@@ -1,103 +1,82 @@
 [
   {
     "id": "prod-1",
-    "title": "Lillie's Clefairy ex — 280/217",
+    "title": "Lillie's Clefairy ex \u2014 280/217",
     "subtitle": "ME: Ascended Heroes (ASC)",
+    "description": "",
     "image": "../../assets/images/landing page/image 3.png",
-    "price": 49.00,
-    "marketPrice": 57.00,
+    "price": 49.0,
+    "marketPrice": 57.0,
     "cardType": "singles",
     "rarity": "ultra-rare",
     "condition": "near-mint",
     "stock": "3",
-    "category": "Pokémon",
+    "category": "Pok\u00e9mon",
     "requirements": [
-      { "label": "Card Number / Rarity", "value": "280/217 · Ultra Rare" },
-      { "label": "Card Type", "value": "Singles" },
-      { "label": "HP", "value": "130 HP" },
-      { "label": "Weakness / Resistance", "value": "Metal ×2 / None" },
-      { "label": "Retreat Cost", "value": "1 Energy" }
+      {
+        "label": "Card Number / Rarity",
+        "value": "094/088 / Illustration Rare"
+      },
+      {
+        "label": "Card Type / HP / Stage",
+        "value": "Psychic / 70 / Basic"
+      },
+      {
+        "label": "Attack 1",
+        "value": "[P] Follow Me <br> Switch in 1 of your opponent's Benched Pokémon to the Active Spot."
+      },
+      {
+        "label": "Attack 2",
+        "value": "[PP] Flop (30)"
+      },
+      {
+        "label": "Weakness / Resistance",
+        "value": "Mx2 / "
+      },
+      {
+        "label": "Retreat Cost",
+        "value": "1 Energy"
+      }
     ]
   },
   {
     "id": "prod-2",
-    "title": "Zekrom ex — 230/197",
-    "subtitle": "ME: Voltage Burst (VLB)",
-    "image": "../../assets/images/landing page/image 2.png",
-    "price": 38.50,
-    "marketPrice": 45.00,
+    "category": "Pok\u00e9mon",
+    "title": "Rayquaza VMAX (Alternate Art Secret)",
     "cardType": "singles",
-    "rarity": "rare",
-    "condition": "mint",
-    "stock": "in-stock",
-    "category": "Pokémon",
-    "requirements": [
-      { "label": "Card Number / Rarity", "value": "230/197 · Rare" },
-      { "label": "Card Type", "value": "Singles" },
-      { "label": "HP", "value": "220 HP" },
-      { "label": "Weakness / Resistance", "value": "Fighting ×2 / None" },
-      { "label": "Retreat Cost", "value": "2 Energy" }
-    ]
-  },
-  {
-    "id": "prod-3",
-    "title": "Rayquaza VMAX — 218/203",
-    "subtitle": "ME: Live Wire (LWR)",
-    "image": "../../assets/images/landing page/image 4.png",
-    "price": 72.00,
-    "marketPrice": 89.00,
-    "cardType": "singles",
+    "subtitle": "SWSH07: Evolving Skies",
+    "description": "",
     "rarity": "secret-rare",
-    "condition": "mint",
-    "stock": "sold-out",
-    "category": "Pokémon",
+    "condition": "mint", 
+    "price": 6767.67,
+    "marketPrice": 1224.43,
+    "stock": "1",
+    "image": "../../assets/images/landing page/image 4.png", 
     "requirements": [
-      { "label": "Card Number / Rarity", "value": "218/203 · Secret Rare" },
-      { "label": "Card Type", "value": "Singles" },
-      { "label": "HP", "value": "320 HP" },
-      { "label": "Weakness / Resistance", "value": "Fairy ×2 / None" },
-      { "label": "Retreat Cost", "value": "3 Energy" }
-    ]
-  },
-  {
-    "id": "prod-4",
-    "title": "Shining Legends — Booster Box",
-    "subtitle": "Sealed Product",
-    "image": "",
-    "price": 145.00,
-    "marketPrice": 160.00,
-    "cardType": "sealed",
-    "rarity": "common",
-    "condition": "mint",
-    "stock": "in-stock",
-    "category": "Pokémon",
-    "requirements": [
-      { "label": "Contents", "value": "36 booster packs" },
-      { "label": "Card Type", "value": "Sealed Product" },
-      { "label": "Release", "value": "June 2026" },
-      { "label": "Language", "value": "English" },
-      { "label": "Condition", "value": "Factory Sealed" }
-    ]
-  },
-  {
-    "id": "prod-5",
-    "title": "Shining Legends — Booster Box",
-    "subtitle": "Sealed Product",
-    "image": "",
-    "price": 145.00,
-    "marketPrice": 160.00,
-    "cardType": "sealed",
-    "rarity": "common",
-    "condition": "mint",
-    "stock": "in-stock",
-    "category": "Pokémon",
-    "requirements": [
-      { "label": "Contents", "value": "36 booster packs" },
-      { "label": "Card Type", "value": "Sealed Product" },
-      { "label": "Release", "value": "June 2026" },
-      { "label": "Language", "value": "English" },
-      { "label": "Condition", "value": "Factory Sealed" }
+      {
+        "label": "Card Number / Rarity",
+        "value": "218/203 / Secret Rare"
+      },
+      {
+        "label": "Card Type / HP / Stage",
+        "value": "Dragon / 320 / VMAX"
+      },
+      {
+        "label": "Card Text:  Ability — Azure Pulse",
+        "value": "Once during your turn, you may discard your hand and draw 3 cards."
+      },
+      {
+        "label": "Attack 1",
+        "value": "[RL] Max Burst (20+) <br> You may discard any amount of basic Fire Energy or basic Lightning Energy from this Pokemon. This attack does 80 more damage for each card you discarded in this way."
+      },
+      {
+        "label": "Weakness / Resistance",
+        "value": "None / None "
+      },
+      {
+        "label": "Retreat Cost",
+        "value": "2 Energy"
+      }
     ]
   }
-  
 ]

@@ -82,6 +82,13 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <!-- Filter bar -->
     <div class="filter-bar" id="filter-bar">
+      <select class="form-select filter-select" id="filterCategory" aria-label="Category">
+        <option value="all" selected>Select Category</option>
+        <option value="Pokémon">Pokémon</option>
+        <option value="Magic">Magic</option>
+        <option value="One Piece">One Piece</option>
+      </select>
+
       <select class="form-select filter-select" id="filterCardType" aria-label="Card Type">
         <option value="all" selected>Select Card Type</option>
         <option value="singles">Singles</option>
@@ -210,19 +217,20 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
           <div class="col-12 col-md-5 modal-image-col">
             <div class="modal-product-image" id="modal-product-image"></div>
-            <span class="modal-sold-out-badge d-none" id="modal-sold-out-badge">Sold Out</span>
+            <span class="modal-sold-out-badge d-none" id="modal-sold-out-badge">Out of Stock</span>
           </div>
 
           <div class="col-12 col-md-7 modal-info-col">
             <h3 class="modal-product-title" id="productModalTitle"></h3>
             <p class="modal-product-subtitle" id="modal-product-subtitle"></p>
+            <p class="modal-description" id="modal-description"></p>
 
             <div class="modal-price-row">
               <span class="modal-price" id="modal-price"></span>
               <span class="modal-compare-price d-none" id="modal-compare-price"></span>
             </div>
 
-            <h4 class="modal-section-heading">Requirements</h4>
+            <h4 class="modal-section-heading">Product Details</h4>
             <ul class="modal-requirements" id="modal-requirements"></ul>
 
             <div class="modal-actions">

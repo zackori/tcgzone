@@ -9,27 +9,50 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ------------------------------------------------------
-     1) PRODUCT DATA — loaded from products.json
-     renderGrid()/filters/sort/modal don't care where PRODUCTS
-     comes from, so swapping this fetch() for a real API call
-     later (e.g. fetch('/api/products')) needs no other changes,
-     as long as the response matches the shape documented in
-     products.json.
+     1) PRODUCT DATA — merged from two sources by id:
+     - products.php: the live/authoritative source for anything
+       that changes (price, stock, category, etc.) — pulled
+       straight from the products_test table.
+     - products.json: static per-card details that don't live
+       in the database yet (e.g. description/lore text).
+     On any field both sources define, products.php always wins —
+     json is only used to fill in fields the DB doesn't have.
   ------------------------------------------------------ */
   var PRODUCTS = [];
 
+  function mergeProducts(dbProducts, staticProducts) {
+    var staticById = {};
+    staticProducts.forEach(function (p) { staticById[p.id] = p; });
+
+    return dbProducts.map(function (dbProduct) {
+      var staticMatch = staticById[dbProduct.id] || {};
+      // staticMatch first, dbProduct second — dbProduct's keys
+      // overwrite any matching keys from staticMatch, so live data
+      // always takes priority; fields only staticMatch has (like
+      // description) pass through untouched.
+      return Object.assign({}, staticMatch, dbProduct);
+    });
+  }
+
   function loadProducts() {
-    return fetch('products.json')
-      .then(function (response) {
+    return Promise.all([
+      fetch('products.php').then(function (response) {
+        if (!response.ok) throw new Error('Failed to load products.php (' + response.status + ')');
+        return response.json();
+      }),
+      fetch('products.json').then(function (response) {
         if (!response.ok) throw new Error('Failed to load products.json (' + response.status + ')');
         return response.json();
       })
-      .then(function (data) {
-        PRODUCTS = data;
+    ])
+      .then(function (results) {
+        var dbProducts = results[0];
+        var staticProducts = results[1];
+        PRODUCTS = mergeProducts(dbProducts, staticProducts);
       })
       .catch(function (err) {
         console.error('Could not load product data:', err);
-        grid.innerHTML = '<p class="text-muted text-center w-100 py-5">Couldn\'t load products. Check that products.json is reachable and valid.</p>';
+        grid.innerHTML = '<p class="text-muted text-center w-100 py-5">Couldn\'t load products. Check that products.php and products.json are both reachable.</p>';
       });
   }
 
@@ -37,13 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
      2) STATE
   ------------------------------------------------------ */
   var state = {
-    filters: { cardType: 'all', price: 'all', rarity: 'all', condition: 'all' },
+    filters: { category: 'all', cardType: 'all', price: 'all', rarity: 'all', condition: 'all' },
     sort: 'relevance',
     page: 1,
     pageSize: 16
   };
 
   var FILTER_LABELS = {
+    category: { 'Pokémon': 'Pokémon', 'Magic': 'Magic', 'One Piece': 'One Piece' },
     cardType: { singles: 'Singles', sealed: 'Sealed Product', accessories: 'Accessories' },
     rarity: { common: 'Common', uncommon: 'Uncommon', rare: 'Rare', 'ultra-rare': 'Ultra Rare', 'secret-rare': 'Secret Rare' },
     condition: { mint: 'Mint', 'near-mint': 'Near Mint', 'lightly-played': 'Lightly Played', damaged: 'Damaged' },
@@ -62,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var pageNextBtn       = document.getElementById('pageNext');
   var paginationRow     = document.getElementById('pagination-row');
 
+  var filterCategory   = document.getElementById('filterCategory');
   var filterCardType   = document.getElementById('filterCardType');
   var filterPrice      = document.getElementById('filterPrice');
   var filterRarity     = document.getElementById('filterRarity');
@@ -80,7 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function getFilteredSortedProducts() {
     var result = PRODUCTS.filter(function (p) {
-      return (state.filters.cardType === 'all' || p.cardType === state.filters.cardType) &&
+      var categoryMatch = state.filters.category === 'all' ||
+        (p.category || '').toLowerCase() === state.filters.category.toLowerCase();
+
+      return categoryMatch &&
+             (state.filters.cardType === 'all' || p.cardType === state.filters.cardType) &&
              priceInRange(p.price, state.filters.price) &&
              (state.filters.rarity === 'all' || p.rarity === state.filters.rarity) &&
              (state.filters.condition === 'all' || p.condition === state.filters.condition);
@@ -203,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function resetFilterGroup(group) {
     state.filters[group] = 'all';
-    var selectMap = { cardType: filterCardType, price: filterPrice, rarity: filterRarity, condition: filterCondition };
+    var selectMap = { category: filterCategory, cardType: filterCardType, price: filterPrice, rarity: filterRarity, condition: filterCondition };
     if (selectMap[group]) selectMap[group].value = 'all';
     state.page = 1;
     renderChips();
@@ -213,6 +242,12 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ------------------------------------------------------
      8) FILTER / SORT / CLEAR EVENT WIRING
   ------------------------------------------------------ */
+  filterCategory.addEventListener('change', function () {
+    state.filters.category = filterCategory.value;
+    state.page = 1;
+    renderChips();
+    renderGrid();
+  });
   filterCardType.addEventListener('change', function () {
     state.filters.cardType = filterCardType.value;
     state.page = 1;
@@ -243,9 +278,10 @@ document.addEventListener('DOMContentLoaded', function () {
     renderGrid();
   });
   clearFiltersBtn.addEventListener('click', function () {
-    state.filters = { cardType: 'all', price: 'all', rarity: 'all', condition: 'all' };
+    state.filters = { category: 'all', cardType: 'all', price: 'all', rarity: 'all', condition: 'all' };
     state.sort = 'relevance';
     state.page = 1;
+    filterCategory.value = 'all';
     filterCardType.value = 'all';
     filterPrice.value = 'all';
     filterRarity.value = 'all';
@@ -266,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modalSoldOutBadge = document.getElementById('modal-sold-out-badge');
   var modalTitle        = document.getElementById('productModalTitle');
   var modalSubtitle     = document.getElementById('modal-product-subtitle');
+  var modalDescription  = document.getElementById('modal-description');
   var modalPrice        = document.getElementById('modal-price');
   var modalComparePrice = document.getElementById('modal-compare-price');
   var modalRequirements = document.getElementById('modal-requirements');
@@ -292,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modalSoldOutBadge.classList.toggle('d-none', product.stock !== 'sold-out');
     modalTitle.textContent = product.title;
     modalSubtitle.textContent = product.subtitle;
+    modalDescription.textContent = product.description || '';
     modalPrice.textContent = '$' + product.price.toFixed(2);
 
     if (product.marketPrice > product.price) {
@@ -302,8 +340,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     modalRequirements.innerHTML = product.requirements.map(function (r) {
-      return '<li><span>' + r.label + '</span><span>' + r.value + '</span></li>';
-    }).join('');
+    return `
+        <li class="requirement-item">
+            <span class="requirement-label">${r.label}: <span class="requirement-value">${r.value}</span></span>
+            
+        </li>
+    `;
+}).join('');
 
     modalCategory.textContent = product.category;
     modalQtyValue.textContent = modalQty;

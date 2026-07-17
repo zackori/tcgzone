@@ -567,10 +567,36 @@ img:hover {
     text-decoration: none;
     font-size: .95rem;
     transition: color .2s ease;
+    position: relative;
 }
 
 .footer-links a:hover {
     color: #464646
+}
+
+.footer-links a::after{
+
+
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-5px;
+
+    width:0;
+
+    height:2px;
+
+    background:#464646;
+
+    transition:.35s;
+
+}
+.footer-links a:hover::after{
+
+    width:100%;
+
 }
 
 .footer-links,
@@ -579,41 +605,68 @@ img:hover {
     padding-left: 1.5rem;
 }
 
-/* Socials column */
-.social-icons {
-    display: flex;
-    gap: .6rem;
+
+.footer-socials a{
+
+    color:#b3b3b3;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    position:relative;
+
+    transition:.35s;
+
 }
 
-.social-icon {
-    width: 34px;
-    height: 34px;
-    border: 1px solid #464646;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #BDBDBD;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: .85rem;
-    transition: border-color .2s ease, color .2s ease;
+
+.social-icons{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-top:20px;
+
 }
 
-.social-icon:hover {
-    border-color: #BDBDBD;
-    color: #fff;
+.social-icons a{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.15);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:26px;
+
+    transition:.35s;
+
 }
 
-/* Placeholder Instagram glyph (square) so all three icons read as
-   distinct social buttons without needing real icon assets yet. */
-.icon-square {
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid #BDBDBD;
-    border-radius: 4px;
+.social-icons a:hover{
+
+    background:#b6b6b6;
+
+    border-color:#b3b3b3;
+
+    color:white;
+
+    transform:translateY(-6px);
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
 }
+
 
 /* Bottom bar */
 .footer-bottom {
