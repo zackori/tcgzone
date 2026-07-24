@@ -1,0 +1,1731 @@
+[
+    {
+        "id": "prod-1",
+        "title": "Lillie's Clefairy ex — 280/217",
+        "subtitle": "ME: Ascended Heroes (ASC)",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 3.png",
+        "price": 49,
+        "marketPrice": 57,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "near-mint",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "094/088 / Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Psychic / 70 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[P] Follow Me <br> Switch in 1 of your opponent's Benched Pokémon to the Active Spot."
+            },
+            {
+                "label": "Attack 2",
+                "value": "[PP] Flop (30)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Mx2 / "
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ]
+    },
+    {
+        "id": "prod-2",
+        "category": "Pokémon",
+        "title": "Rayquaza VMAX (Alternate Art Secret)",
+        "cardType": "Cards",
+        "subtitle": "SWSH07: Evolving Skies",
+        "description": "",
+        "rarity": "secret-rare",
+        "condition": "mint",
+        "price": 6767.67,
+        "marketPrice": 1224.43,
+        "stock": "1",
+        "image": "/tcgzone/assets/images/landing page/image 4.png",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "218/203 / Secret Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Dragon / 320 / VMAX"
+            },
+            {
+                "label": "Card Text:  Ability — Azure Pulse",
+                "value": "Once during your turn, you may discard your hand and draw 3 cards."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[RL] Max Burst (20+) <br> You may discard any amount of basic Fire Energy or basic Lightning Energy from this Pokemon. This attack does 80 more damage for each card you discarded in this way."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "None / None "
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "2 Energy"
+            }
+        ]
+    },
+    {
+        "id": "prod-31",
+        "title": "Zekrom ex",
+        "subtitle": "Black Bolt",
+        "description": "A powerful Black White Rare Zekrom ex with devastating late-game potential.",
+        "image": "/tcgzone/assets/images/landing page/image 2.png",
+        "price": 380,
+        "marketPrice": 543,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "near-mint",
+        "stock": "5",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "172/086 / Black White Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Lightning / 230 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[CC] Slash (50)"
+            },
+            {
+                "label": "Attack 2",
+                "value": "[LLC] Voltage Burst (130+) <br> This attack does 50 more damage for each Prize card your opponent has taken. This Pokémon also does 30 damage to itself."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Fx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "2 Energy"
+            }
+        ],
+        "product_cost": 330.43
+    },
+    {
+        "id": "prod-9",
+        "title": "Mega Charizard X ex",
+        "subtitle": "Phantasmal Flames",
+        "description": "A Special Illustration Rare Mega Charizard ex featuring explosive Fire-type attacks.",
+        "image": "/tcgzone/assets/images/landing page/image 6.png",
+        "price": 1299.99,
+        "marketPrice": 850.31,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "mint",
+        "stock": "2",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "125/094 / Special Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Fire / 360 / Stage 2"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[RR] Inferno X (90x) <br> Discard any amount of Fire Energy from among your Pokemon, and this attack does 90 damage for each card you discarded in this way."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Wx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "2 Energy"
+            }
+        ],
+        "product_cost": 1039.99
+    },
+    {
+        "id": "prod-35",
+        "title": "Umbreon ex",
+        "subtitle": "Prismatic Evolutions",
+        "description": "Elegant Umbreon ex artwork paired with a unique prize-taking attack.",
+        "image": "/tcgzone/assets/images/landing page/image 7.png",
+        "price": 1099.01,
+        "marketPrice": 1503.91,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "near-mint",
+        "stock": "1",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "161/131 / Special Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Darkness / 280 / Stage 1"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[DCC] Moon Mirage (160) <br> Your opponent's Active Pokemon is now Confused."
+            },
+            {
+                "label": "Attack 2",
+                "value": "[LPD] Onyx <br> Discard all Energy from this Pokemon, and take a Prize card."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Gx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "2 Energy"
+            }
+        ],
+        "product_cost": 879.21
+    },
+    {
+        "id": "prod-39",
+        "title": "Pikachu ex",
+        "subtitle": "Ascended Heroes",
+        "description": "A vibrant Pikachu ex Special Illustration Rare that's perfect for collectors.",
+        "image": "/tcgzone/assets/images/landing page/image 8.png",
+        "price": 1599.99,
+        "marketPrice": 1231.86,
+        "cardType": "Cards",
+        "rarity": "rare",
+        "condition": "lightly-played",
+        "stock": "7",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "276/217 / Special Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Lightning / 200 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[LLC] Thunderbolt (120)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Fx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 1279.99
+    },
+    {
+        "id": "prod-13",
+        "title": "Gengar VMAX",
+        "subtitle": "Fusion Strike",
+        "description": "Gengar VMAX delivers massive damage against Pokémon V and GX decks.",
+        "image": "/tcgzone/assets/images/landing page/image 9.png",
+        "price": 63.72,
+        "marketPrice": 34.3,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "mint",
+        "stock": "14",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "157/264 / Ultra Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Darkness / 320 / VMAX"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[DD] Fear and Panic (60x) <br> This attack does 60 damage for each of your opponent's Pokémon V and Pokémon-GX in play."
+            },
+            {
+                "label": "Attack 2",
+                "value": "[DDD] G-Max Swallow up (250) <br> During your next turn, this Pokémon can't attack."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Fx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "3 Energy"
+            }
+        ],
+        "product_cost": 57.93
+    },
+    {
+        "id": "prod-6",
+        "title": "Mega Lopunny & Jigglypuff GX (Secret)",
+        "subtitle": "Cosmic Eclipse",
+        "description": "A stunning Rainbow Rare TAG TEAM GX card from Cosmic Eclipse.",
+        "image": "/tcgzone/assets/images/landing page/image 10.png",
+        "price": 79.39,
+        "marketPrice": 67.98,
+        "cardType": "Cards",
+        "rarity": "secret-rare",
+        "condition": "lightly-played",
+        "stock": "4",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "261/236 / Rainbow Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Colorless / 240 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[3] Jumping Balloon (60+) <br> This attack does 60 more damage for each of your opponent's Pokémon-GX and Pokémon-EX in play."
+            },
+            {
+                "label": "Attack 2",
+                "value": "[1+] Puffy Smashers GX <br> Your opponent's Active Pokémon is now Asleep. If this Pokémon has at least 4 extra Energy attached to it (in addition to this attack's cost), this attack does 200 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) (You can't use more than 1 GX attack in a game.)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Fx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 72.17
+    },
+    {
+        "id": "prod-10",
+        "title": "Mega Greninja ex",
+        "subtitle": "Chaos Rising",
+        "description": "Mega Greninja ex combines precision damage with powerful Water-type attacks.",
+        "image": "/tcgzone/assets/images/landing page/image 11.png",
+        "price": 353.76,
+        "marketPrice": 246.83,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "lightly-played",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "116/086 / Special Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Water / 350 / Stage 2"
+            },
+            {
+                "label": "Card Text:  Ability — Mortal Shuriken",
+                "value": "Once during your turn, if this Pokémon is in the Active Spot, you may discard a Basic Water Energy card from your hand in order to use this Ability. Place 6 damage counters on 1 of your opponent's Pokémon."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[WW] Ninja Spinner (120+) <br> You may put a Water Energy attached to this Pokémon into your hand and have this attack do 80 more damage."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Lx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 307.62
+    },
+    {
+        "id": "prod-14",
+        "title": "Mew ex",
+        "subtitle": "Paldean Fates",
+        "description": "Beautiful Mew ex artwork featuring the versatile Genome Hacking attack.",
+        "image": "/tcgzone/assets/images/landing page/image 12.png",
+        "price": 1015,
+        "marketPrice": 1064.41,
+        "cardType": "Cards",
+        "rarity": "ultra-rare",
+        "condition": "mint",
+        "stock": "1",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "232/091 / Special Illustration Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Psychic / 180 / Basic"
+            },
+            {
+                "label": "Card Text:  Ability — Restart",
+                "value": "Once during your turn, you may draw cards until you have 3 cards in your hand."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[3] Genome Hacking <br> Choose 1 of your opponent's Active Pokémon's attacks and use it as this attack."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Dx2 / F-30"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "0 Energy"
+            }
+        ],
+        "product_cost": 812
+    },
+    {
+        "id": "prod-15",
+        "title": "Mimikyu (Secret)",
+        "subtitle": "Cosmic Eclipse",
+        "description": "A Secret Rare Mimikyu with mischievous attacks and collectible appeal.",
+        "image": "/tcgzone/assets/images/landing page/mimikyu-secret.jpg",
+        "price": 63.03,
+        "marketPrice": 60.73,
+        "cardType": "Cards",
+        "rarity": "secret-rare",
+        "condition": "damaged",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "245/236 / Secret Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Psychic / 70 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[1] Impersonate <br> Discard a Supporter card from your hand and use the effect of that card as the effect of this attack."
+            },
+            {
+                "label": "Attack 2",
+                "value": "[P] Mischievous Hands <br> Put 2 damage counters on 2 of your opponent's Pokémon."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "None / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 57.3
+    },
+    {
+        "id": "prod-25",
+        "title": "Snorlax",
+        "subtitle": "Scarlet & Violet 151",
+        "description": "A sturdy Snorlax from Scarlet & Violet 151 that packs a heavy hit.",
+        "image": "/tcgzone/assets/images/landing page/snorlax-un.jpg",
+        "price": 1.95,
+        "marketPrice": 0.25,
+        "cardType": "Cards",
+        "rarity": "uncommon",
+        "condition": "damaged",
+        "stock": "15",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "143/165 / Uncommon"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Colorless / 150 / Basic"
+            },
+            {
+                "label": "Card Text:  Ability — Voraciousness",
+                "value": "Once during your turn, you may put up to 2 Leaftovers cards from your discard pile into your hand."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[3] Thudding Press (130) <br> This Pokemon also does 30 damage to itself."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Fx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "4 Energy"
+            }
+        ],
+        "product_cost": 1.77
+    },
+    {
+        "id": "prod-24",
+        "title": "Psyduck",
+        "subtitle": "Ascended Heroes",
+        "description": "An affordable Psyduck common card that's great for casual collectors.",
+        "image": "/tcgzone/assets/images/landing page/psyduck-com.jpg",
+        "price": 3,
+        "marketPrice": 0.3,
+        "cardType": "Cards",
+        "rarity": "common",
+        "condition": "lightly-played",
+        "stock": "20",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "039/217 / Common"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Water / 70 / Basic"
+            },
+            {
+                "label": "Card Text:  Ability — Damp",
+                "value": "Pokemon in play (both yours and your opponent's) lose any Ability that requires the Pokemon using it to Knock Out itself."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[CC] Ram (20)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "Lx2 / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 2.73
+    },
+    {
+        "id": "prod-36",
+        "title": "Kabuto",
+        "subtitle": "Fossil",
+        "description": "Classic Fossil-era Kabuto with its iconic defensive Pokémon Power.",
+        "image": "/tcgzone/assets/images/landing page/kabuto-com.jpg",
+        "price": 34.32,
+        "marketPrice": 22.58,
+        "cardType": "Cards",
+        "rarity": "common",
+        "condition": "damaged",
+        "stock": "14",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "50/62 / Common"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Fighting / 30 / Stage 1"
+            },
+            {
+                "label": "Card Text:  Ability — Kabuto Armor",
+                "value": "Whenever an attack (even your own) does damage to Kabuto (after applying Weakness and Resistance), that attack only does half the damage to Kabuto (rounded down to the nearest 10). (Any other effects of attacks still happen.) This power stops working while Kabuto is Asleep, Confused, or Paralyzed."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[1] Scratch (10)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "G / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 31.2
+    },
+    {
+        "id": "prod-5",
+        "title": "Gengar",
+        "subtitle": "Fossil",
+        "description": "Vintage Fossil Gengar featuring the classic Curse Pokémon Power.",
+        "image": "/tcgzone/assets/images/landing page/gengar-rare.jpg",
+        "price": 26.68,
+        "marketPrice": 15.6,
+        "cardType": "Cards",
+        "rarity": "rare",
+        "condition": "mint",
+        "stock": "2",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "20/62 / Rare"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Psychic / 80 / Stage 2"
+            },
+            {
+                "label": "Card Text:  Ability — Curse",
+                "value": "Once during your turn (before your attack), you may move 1 damage counter from 1 of your opponent's Pokémon to another (even if it would Knock Out the other Pokémon) This power can't be used if Gengar is Asleep, Confused, or Paralyzed."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[PPP] Dark Mind (30) <br> If your opponent has any Benched Pokémon, choose 1 of them and this attack does 10 damage to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "None / F-30"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 24.25
+    },
+    {
+        "id": "prod-32",
+        "title": "Magikarp",
+        "subtitle": "Base Set",
+        "description": "An iconic Base Set Magikarp every vintage Pokémon fan will recognize.",
+        "image": "/tcgzone/assets/images/landing page/magikarp-un.jpg",
+        "price": 49.99,
+        "marketPrice": 23.81,
+        "cardType": "Cards",
+        "rarity": "uncommon",
+        "condition": "damaged",
+        "stock": "5",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "035/102 / Uncommon"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Water / 30 / Basic"
+            },
+            {
+                "label": "Attack 1",
+                "value": "[1] Tackle (10)"
+            },
+            {
+                "label": "Attack 2",
+                "value": "[W] Flail (10x) <br> Does 10 damage times the number of damage counters on Magikarp."
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "L / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 45.45
+    },
+    {
+        "id": "prod-21",
+        "title": "Ditto",
+        "subtitle": "Skyridge",
+        "description": "Classic Skyridge Ditto capable of copying an opponent's attacks.",
+        "image": "/tcgzone/assets/images/landing page/ditto.jpg",
+        "price": 110,
+        "marketPrice": 78.66,
+        "cardType": "Cards",
+        "rarity": "common",
+        "condition": "near-mint",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Number / Rarity",
+                "value": "051/144 / Common"
+            },
+            {
+                "label": "Card Type / HP / Stage",
+                "value": "Colorless / 50 / Basic"
+            },
+            {
+                "label": "Card Text:  Ability — Prismatic Body",
+                "value": "Each basic Energy card attached to Ditto provides every type of Energy but provides only 1 Energy at a time."
+            },
+            {
+                "label": "Attack 1",
+                "value": "[1] Copy <br> Choose 1 of the Defending Pokémon's attacks. Copy copies that attack. This attack does nothing if Ditto doesn't have the Energy necessary to use that attack. (You must still do anything else required in order to use that attack.)"
+            },
+            {
+                "label": "Weakness / Resistance",
+                "value": "F / None"
+            },
+            {
+                "label": "Retreat Cost",
+                "value": "1 Energy"
+            }
+        ],
+        "product_cost": 95.65
+    },
+    {
+        "id": "prod-17",
+        "title": "151 Booster Pack",
+        "subtitle": "Scarlet & Violet 151",
+        "description": "Team up with Bulbasaur, Charmander, and Squirtle, and witness a brand-new dawn in Kanto! With this new day comes a new chance to track down old friends, make new partners, and capture every last one of the original 151. Discover the extraordinary Venusaur ex, Charizard ex, and Blastoise ex in special cards with captivating illustrations, and explore the cities and countryside of a reinvigorated land—you might even find the elusive Mew ex in your travels. New adventures will unfold and new horizons will be revealed in the Scarlet & Violet—151 expansion!\n\nEach pack contains 10 cards.",
+        "image": "/tcgzone/assets/images/landing page/151-boost.jpg",
+        "price": 50,
+        "marketPrice": 29.34,
+        "cardType": "sealed",
+        "rarity": "",
+        "condition": "",
+        "stock": "10",
+        "category": "Pokémon",
+        "requirements": [],
+        "product_cost": 45.45
+    },
+    {
+        "id": "prod-28",
+        "title": "Black Bolt Booster Pack",
+        "subtitle": "Black Bolt",
+        "description": "Scarlet & Violet—Black Bolt\n\nReunite with the Pokémon of Unova and rise to the top as a Trainer in a land of unity and legends! Evolve first partner Snivy all the way to Serperior ex, and discover the inspiring power of ideals with the region's Legendary and Mythical Pokémon, including Zekrom ex and Meloetta ex. As you fill out your Pokédex, keep an eye out for special illustrations of each Pokémon and parallel cards with Poké Ball patterns in the Pokémon TCG: Scarlet & Violet—Black Bolt expansion!\n\nEach Scarlet & Violet— Black Bolt booster pack contains 10 random cards.",
+        "image": "/tcgzone/assets/images/landing page/black-bolt-boost.jpg",
+        "price": 19.99,
+        "marketPrice": 15.58,
+        "cardType": "sealed",
+        "rarity": "",
+        "condition": "",
+        "stock": "18",
+        "category": "Pokémon",
+        "requirements": [],
+        "product_cost": 18.17
+    },
+    {
+        "id": "prod-22",
+        "title": "White Flare Booster Pack",
+        "subtitle": "White Flare",
+        "description": "Scarlet & Violet—White Flare\n\nReunite with the Pokémon of Unova and rise to the top as a Trainer in a land of unity and legends! Evolve first partners Tepig and Oshawott all the way to Emboar and Samurott, and discover the undeniable power of truth with the region's Legendary and Mythical Pokémon, including Reshiram ex and Keldeo ex. As you fill out your Pokédex, keep an eye out for special illustrations of each Pokémon and parallel cards with Poké Ball patterns in the Pokémon TCG: Scarlet & Violet—White Flare expansion!\n\nEach Scarlet & Violet— White Flare booster pack contains 10 random cards.v",
+        "image": "/tcgzone/assets/images/landing page/white-flare-boost.jpg",
+        "price": 17.99,
+        "marketPrice": 15.63,
+        "cardType": "sealed",
+        "rarity": "",
+        "condition": "",
+        "stock": "13",
+        "category": "Pokémon",
+        "requirements": [],
+        "product_cost": 16.35
+    },
+    {
+        "id": "prod-40",
+        "title": "Roronoa Zoro",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "Lead your crew with Zoro's aggressive power-boosting Leader ability.",
+        "image": "/tcgzone/assets/images/landing page/zoro1.jpg",
+        "price": 249,
+        "marketPrice": 279,
+        "cardType": "Leader",
+        "rarity": "L",
+        "condition": "near-mint",
+        "stock": "5",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-001"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "—"
+            },
+            {
+                "label": "Power",
+                "value": "5000"
+            },
+            {
+                "label": "Counter+",
+                "value": "—"
+            },
+            {
+                "label": "Attribute",
+                "value": "Slash"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Supernovas / Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[DON!! x1] [Your Turn] All of your Characters gain +1000 power."
+            }
+        ],
+        "product_cost": 216.52
+    },
+    {
+        "id": "prod-3",
+        "title": "Monkey.D.Luffy",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "A resilient Luffy Character card from the original Romance Dawn set.",
+        "image": "/tcgzone/assets/images/landing page/luffy-secret.jpg",
+        "price": 179,
+        "marketPrice": 205,
+        "cardType": "Character",
+        "rarity": "SR",
+        "condition": "damaged",
+        "stock": "6",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-024"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "2"
+            },
+            {
+                "label": "Power",
+                "value": "3000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Strike"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Supernovas / Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[DON!! x2] This Character cannot be K.O.'d in battle by Strike attribute Characters. [Activate: Main] [Once Per Turn] Give this Character up to 2 rested DON!! cards."
+            }
+        ],
+        "product_cost": 155.65
+    },
+    {
+        "id": "prod-18",
+        "title": "Portgas.D.Ace",
+        "subtitle": "The Time of Battle (OP16)",
+        "description": "Ace supports Whitebeard Pirate decks while searching key cards.",
+        "image": "/tcgzone/assets/images/landing page/ace1.jpg",
+        "price": 395,
+        "marketPrice": 430,
+        "cardType": "Character",
+        "rarity": "SR",
+        "condition": "mint",
+        "stock": "2",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP16-118"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "3"
+            },
+            {
+                "label": "Power",
+                "value": "6000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Special"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Whitebeard Pirates"
+            },
+            {
+                "label": "Effect",
+                "value": "The counter of all of your Character cards with 8000 power in your hand becomes +2000. [On Play]/[On K.O.] Look at the top 5 cards of your deck. Reveal up to 1 Monkey.D.Luffy or up to 1 card with a type including Whitebeard Pirates, add it to your hand, then place the rest on the bottom of your deck in any order."
+            }
+        ],
+        "product_cost": 343.48
+    },
+    {
+        "id": "prod-38",
+        "title": "Nami",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "Nami helps maintain card advantage by searching your deck.",
+        "image": "/tcgzone/assets/images/landing page/nami1.jpg",
+        "price": 89,
+        "marketPrice": 99,
+        "cardType": "Character",
+        "rarity": "R",
+        "condition": "mint",
+        "stock": "10",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-016"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "1"
+            },
+            {
+                "label": "Power",
+                "value": "2000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Special"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[On Play] Look at the top 5 cards of your deck. Reveal up to 1 Straw Hat Crew card other than Nami and add it to your hand. Place the rest on the bottom in any order."
+            }
+        ],
+        "product_cost": 80.91
+    },
+    {
+        "id": "prod-16",
+        "title": "Otama",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "Otama weakens opposing Characters with a simple but effective ability.",
+        "image": "/tcgzone/assets/images/landing page/otama1.jpg",
+        "price": 39,
+        "marketPrice": 45,
+        "cardType": "Character",
+        "rarity": "UC",
+        "condition": "near-mint",
+        "stock": "12",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-006"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "1"
+            },
+            {
+                "label": "Power",
+                "value": "—"
+            },
+            {
+                "label": "Counter+",
+                "value": "2000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Special"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Land of Wano"
+            },
+            {
+                "label": "Effect",
+                "value": "[On Play] Up to 1 of your opponent's Characters gets -2000 power during this turn."
+            }
+        ],
+        "product_cost": 35.45
+    },
+    {
+        "id": "prod-34",
+        "title": "Monkey.D.Luffy",
+        "subtitle": "Paramount War (OP-02)",
+        "description": "A defensive Luffy Blocker that summons allies onto the field.",
+        "image": "/tcgzone/assets/images/landing page/luffy2.jpg",
+        "price": 119,
+        "marketPrice": 138,
+        "cardType": "Character",
+        "rarity": "R",
+        "condition": "lightly-played",
+        "stock": "5",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP02-041"
+            },
+            {
+                "label": "Color",
+                "value": "Green"
+            },
+            {
+                "label": "Cost",
+                "value": "7"
+            },
+            {
+                "label": "Power",
+                "value": "7000"
+            },
+            {
+                "label": "Counter+",
+                "value": "—"
+            },
+            {
+                "label": "Attribute",
+                "value": "Strike"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "FILM / Supernovas / Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[Blocker] [On Play] Play up to 1 FILM or Straw Hat Crew Character with a cost of 4 or less from your hand."
+            }
+        ],
+        "product_cost": 103.48
+    },
+    {
+        "id": "prod-37",
+        "title": "Nami",
+        "subtitle": "Paramount War (OP-02)",
+        "description": "A strong SR Nami that searches FILM cards while attacking.",
+        "image": "/tcgzone/assets/images/landing page/nami2.jpg",
+        "price": 289,
+        "marketPrice": 325,
+        "cardType": "Character",
+        "rarity": "SR",
+        "condition": "near-mint",
+        "stock": "3",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP02-036"
+            },
+            {
+                "label": "Color",
+                "value": "Green"
+            },
+            {
+                "label": "Cost",
+                "value": "3"
+            },
+            {
+                "label": "Power",
+                "value": "5000"
+            },
+            {
+                "label": "Counter+",
+                "value": "—"
+            },
+            {
+                "label": "Attribute",
+                "value": "Special"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "FILM / Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[On Play]/[When Attacking] Rest 1 DON!!: Look at the top 3 cards of your deck; reveal up to 1 FILM card other than Nami and add it to your hand."
+            }
+        ],
+        "product_cost": 251.3
+    },
+    {
+        "id": "prod-7",
+        "title": "Trafalgar Law",
+        "subtitle": "Premium Booster PRB-02",
+        "description": "Trafalgar Law disrupts opponents by restricting their DON!! resources.",
+        "image": "/tcgzone/assets/images/landing page/traf1.jpg",
+        "price": 459,
+        "marketPrice": 499,
+        "cardType": "Character",
+        "rarity": "SR",
+        "condition": "damaged",
+        "stock": "2",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "PRB02-005"
+            },
+            {
+                "label": "Color",
+                "value": "Green"
+            },
+            {
+                "label": "Cost",
+                "value": "4"
+            },
+            {
+                "label": "Power",
+                "value": "5000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Strike"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Straw Hat Crew / Supernovas"
+            },
+            {
+                "label": "Effect",
+                "value": "[Your Turn] [On Play] If your Leader is multicolored and your opponent has 7 or less DON!! cards on their field, your opponent rests 1 active DON!! card at the start of their next Main Phase."
+            }
+        ],
+        "product_cost": 399.13
+    },
+    {
+        "id": "prod-23",
+        "title": "Sanji",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "Sanji gains extra power when backed by DON!! cards.",
+        "image": "/tcgzone/assets/images/landing page/sanji1.jpg",
+        "price": 65,
+        "marketPrice": 79,
+        "cardType": "Character",
+        "rarity": "UC",
+        "condition": "mint",
+        "stock": "8",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-013"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "2"
+            },
+            {
+                "label": "Power",
+                "value": "3000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Strike"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[DON!! x2] This Character gains +2000 power."
+            }
+        ],
+        "product_cost": 59.09
+    },
+    {
+        "id": "prod-19",
+        "title": "Nico Robin",
+        "subtitle": "Romance Dawn (OP-01)",
+        "description": "Nico Robin weakens enemy Characters every time she attacks.",
+        "image": "/tcgzone/assets/images/landing page/nico1.jpg",
+        "price": 35,
+        "marketPrice": 40,
+        "cardType": "Character",
+        "rarity": "C",
+        "condition": "mint",
+        "stock": "15",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Number",
+                "value": "OP01-017"
+            },
+            {
+                "label": "Color",
+                "value": "Red"
+            },
+            {
+                "label": "Cost",
+                "value": "3"
+            },
+            {
+                "label": "Power",
+                "value": "4000"
+            },
+            {
+                "label": "Counter+",
+                "value": "1000"
+            },
+            {
+                "label": "Attribute",
+                "value": "Strike"
+            },
+            {
+                "label": "Subtype(s)",
+                "value": "Straw Hat Crew"
+            },
+            {
+                "label": "Effect",
+                "value": "[DON!! x1] When this Character attacks, give up to 1 of your opponent's Characters -3000 power during this turn."
+            }
+        ],
+        "product_cost": 31.82
+    },
+    {
+        "id": "prod-26",
+        "title": "Black Lotus",
+        "subtitle": "Limited Edition Alpha",
+        "description": "One of the most legendary and valuable Magic cards ever printed.",
+        "image": "/tcgzone/assets/images/landing page/blacklotus.jpg",
+        "price": 2500000,
+        "marketPrice": 3000000,
+        "cardType": "Artifact",
+        "rarity": "R",
+        "condition": "near-mint",
+        "stock": "1",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "{T}, Sacrifice Black Lotus: Add three mana of any one color."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Artifact"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{0}"
+            }
+        ],
+        "product_cost": 1785714.29
+    },
+    {
+        "id": "prod-12",
+        "title": "Sheoldred, the Apocalypse",
+        "subtitle": "Dominaria United",
+        "description": "Sheoldred punishes opponents for drawing cards while rewarding you.",
+        "image": "/tcgzone/assets/images/landing page/sheoldred.jpg",
+        "price": 4599,
+        "marketPrice": 4899,
+        "cardType": "Legendary Creature",
+        "rarity": "M",
+        "condition": "damaged",
+        "stock": "2",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "Deathtouch. Whenever you draw a card, you gain 2 life. Whenever an opponent draws a card, they lose 2 life."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Legendary Creature — Phyrexian Praetor"
+            },
+            {
+                "label": "P / T",
+                "value": "4 / 5"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{2}{B}{B}"
+            }
+        ],
+        "product_cost": 3679.2
+    },
+    {
+        "id": "prod-4",
+        "title": "Ragavan, Nimble Pilferer",
+        "subtitle": "Modern Horizons 2",
+        "description": "Ragavan generates Treasure and steals value with every successful hit.",
+        "image": "/tcgzone/assets/images/landing page/ragavan.jpg",
+        "price": 2299,
+        "marketPrice": 2499,
+        "cardType": "Legendary Creature",
+        "rarity": "M",
+        "condition": "mint",
+        "stock": "3",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "Whenever Ragavan deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Dash {1}{R}."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Legendary Creature — Monkey Pirate"
+            },
+            {
+                "label": "P / T",
+                "value": "2 / 1"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{R}"
+            }
+        ],
+        "product_cost": 1839.2
+    },
+    {
+        "id": "prod-30",
+        "title": "The One Ring",
+        "subtitle": "The Lord of the Rings: Tales of Middle-earth",
+        "description": "An iconic Legendary Artifact that fuels card draw and protection.",
+        "image": "/tcgzone/assets/images/landing page/ring.jpg",
+        "price": 4199,
+        "marketPrice": 4499,
+        "cardType": "Legendary Artifact",
+        "rarity": "M",
+        "condition": "mint",
+        "stock": "2",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "When The One Ring enters, if you cast it, you gain protection from everything until your next turn. {T}: Put a burden counter on The One Ring, then draw a card for each burden counter on it."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Legendary Artifact"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{4}"
+            }
+        ],
+        "product_cost": 3359.2
+    },
+    {
+        "id": "prod-20",
+        "title": "Doubling Season",
+        "subtitle": "Wilds of Eldraine: Enchanting Tales",
+        "description": "Double your tokens and counters with this Commander staple.",
+        "image": "/tcgzone/assets/images/landing page/doubling.jpg",
+        "price": 3699,
+        "marketPrice": 3899,
+        "cardType": "Enchantment",
+        "rarity": "M",
+        "condition": "near-mint",
+        "stock": "2",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "If an effect would create one or more tokens under your control, it creates twice that many instead. If an effect would put counters on a permanent you control, it puts twice that many instead."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Enchantment"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{4}{G}"
+            }
+        ],
+        "product_cost": 2959.2
+    },
+    {
+        "id": "prod-8",
+        "title": "Sol Ring",
+        "subtitle": "Commander Masters",
+        "description": "The classic mana rock found in countless Commander decks.",
+        "image": "/tcgzone/assets/images/landing page/sol.jpg",
+        "price": 95,
+        "marketPrice": 110,
+        "cardType": "Artifact",
+        "rarity": "U",
+        "condition": "lightly-played",
+        "stock": "10",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "{T}: Add {C}{C}."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Artifact"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{1}"
+            }
+        ],
+        "product_cost": 86.36
+    },
+    {
+        "id": "prod-29",
+        "title": "Lightning Bolt",
+        "subtitle": "Magic 2010",
+        "description": "The iconic red burn spell that deals 3 damage to any target.",
+        "image": "/tcgzone/assets/images/landing page/bolt.jpg",
+        "price": 120,
+        "marketPrice": 140,
+        "cardType": "Instant",
+        "rarity": "C",
+        "condition": "near-mint",
+        "stock": "12",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "Lightning Bolt deals 3 damage to any target."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Instant"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{R}"
+            }
+        ],
+        "product_cost": 104.35
+    },
+    {
+        "id": "prod-11",
+        "title": "Birds of Paradise",
+        "subtitle": "Ravnica Remastered",
+        "description": "A timeless mana dork that produces any color of mana.",
+        "image": "/tcgzone/assets/images/landing page/birds.jpg",
+        "price": 799,
+        "marketPrice": 849,
+        "cardType": "Creature",
+        "rarity": "R",
+        "condition": "damaged",
+        "stock": "4",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "Flying. {T}: Add one mana of any color."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Creature — Bird"
+            },
+            {
+                "label": "P / T",
+                "value": "0 / 1"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{G}"
+            }
+        ],
+        "product_cost": 665.83
+    },
+    {
+        "id": "prod-27",
+        "title": "Serra Angel",
+        "subtitle": "Foundations",
+        "description": "A classic flying Angel with vigilance for reliable offense and defense.",
+        "image": "/tcgzone/assets/images/landing page/serra.jpg",
+        "price": 59,
+        "marketPrice": 70,
+        "cardType": "Creature",
+        "rarity": "U",
+        "condition": "mint",
+        "stock": "8",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "Flying, vigilance."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Creature — Angel"
+            },
+            {
+                "label": "P / T",
+                "value": "4 / 4"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{3}{W}{W}"
+            }
+        ],
+        "product_cost": 53.64
+    },
+    {
+        "id": "prod-33",
+        "title": "Omniscience",
+        "subtitle": "Core Set 2021",
+        "description": "Cast spells for free with one of Magic's most powerful enchantments.",
+        "image": "/tcgzone/assets/images/landing page/omni.jpg",
+        "price": 1699,
+        "marketPrice": 1799,
+        "cardType": "Enchantment",
+        "rarity": "M",
+        "condition": "mint",
+        "stock": "2",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Effect",
+                "value": "You may cast spells from your hand without paying their mana costs."
+            },
+            {
+                "label": "Card Type / Subtype",
+                "value": "Enchantment"
+            },
+            {
+                "label": "P / T",
+                "value": "—"
+            },
+            {
+                "label": "Casting Cost",
+                "value": "{7}{U}{U}{U}"
+            }
+        ],
+        "product_cost": 1359.2
+    },
+    {
+        "id": "prod-41",
+        "title": "Mega Zygarde ex Premium Collection",
+        "subtitle": "",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 18.png",
+        "price": 4023,
+        "marketPrice": 3880.3,
+        "cardType": "Collections",
+        "rarity": "",
+        "condition": "",
+        "stock": "8",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "Mega Zygarde ex Nullifies the Opposition! Boasting greater power than ever before, the Legendary Zygarde surprises the world by becoming a Mega Evolution Pokémon ex! Its strong attacks can decimate your opponent’s strategy by overwhelming their Pokémon with damage. In this collection, you get a ready-to-play foil promo card featuring Mega Zygarde ex, along with an oversize lenticular card and a tech sticker for display. You’ll also find a stack of booster packs from different Pokémon TCG expansions. The Pokémon TCG: Mega Zygarde ex Premium Collection includes: • 1 foil promo card featuring Mega Zygarde ex • 1 oversize lenticular promo card featuring Mega Zygarde ex • 1 tech sticker featuring Mega Zygarde ex • 8 Pokémon TCG booster packs"
+            }
+        ],
+        "product_cost": 3890.2
+    },
+    {
+        "id": "prod-42",
+        "title": "Greninja ex Special Illustration Collection",
+        "subtitle": "SV: Shrouded Fable",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 19.png",
+        "price": 15039.15,
+        "marketPrice": 11650,
+        "cardType": "Collections",
+        "rarity": "",
+        "condition": "",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "Strike, Slash, and Take Command with Strong Pokémon ex!Adorn your collection with artistic flair in this special collection from the Pokémon TCG: Scarlet & Violet—Shrouded Fable expansion! Inside is a special illustration rare–style promo card featuring one of two Pokémon ex, plus foil cards of their Evolution chain. And with the included Pokémon TCG booster packs, you’re sure to find even more awesome Pokémon for your next battle!The Pokémon TCG: Scarlet & Violet—Shrouded Fable Kingdra ex/Greninja ex Special Illustration Collection includes:• 1 full-art foil promo card featuring Kingdra ex or Greninja ex• 2 foil cards featuring either Horsea and Seadra, or Froakie and Frogadier• 5 Pokémon TCG: Scarlet & Violet—Shrouded Fable booster packs• A code card for Pokémon TCG Live"
+            }
+        ],
+        "product_cost": 12300.6
+    },
+    {
+        "id": "prod-43",
+        "title": "2-Pack Blister Pack [Team Rocket's Articuno, Zapdos & Tyranitar]",
+        "subtitle": "",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 20.png",
+        "price": 2500.25,
+        "marketPrice": 2300.5,
+        "cardType": "Collections",
+        "rarity": "",
+        "condition": "",
+        "stock": "10",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "Give Your Collection a Boost!Expand your collection with three foil Pokémon TCG cards featuring Team Rocket's Articuno, Team Rocket's Zapdos, and Team Rocket's Tyranitar, plus a metallic coin and two Pokémon TCG booster packs!"
+            }
+        ],
+        "product_cost": 2350.75
+    },
+    {
+        "id": "prod-44",
+        "title": "Espeon GX Premium Collection",
+        "subtitle": "SM - Guardians Rising",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 21.png",
+        "price": 75650.8,
+        "marketPrice": 74000.23,
+        "cardType": "Collections",
+        "rarity": "",
+        "condition": "",
+        "stock": "1",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "Discover the Premium Collection of Espeon GX. This collection contains an oversized card of Espeon GX, an alternate art Promo of Espeon GX, collector's pin and coin, and 6 booster packs."
+            }
+        ],
+        "product_cost": 74200.5
+    },
+    {
+        "id": "prod-45",
+        "title": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
+        "subtitle": "SV: Paldean Fates",
+        "description": "",
+        "image": "/tcgzone/assets/images/landing page/image 22.png",
+        "price": 67850.3,
+        "marketPrice": 65000.7,
+        "cardType": "Collections",
+        "rarity": "",
+        "condition": "",
+        "stock": "3",
+        "category": "Pokémon",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "Past & Future Collide with Great Tusk ex & Iron Treads ex!Take a journey into the Great Crater of Paldea and discover Paradox Pokémon that defy the flow of time! Add the brute force of Great Tusk and Iron Treads to your own decks with this collection featuring both of them as Shiny Pokémon ex. You also get two more cards featuring Great Tusk and Iron Treads, plus an oversize foil card featuring Great Tusk ex and 11 booster packs from the special Scarlet & Violet-Paldean Fates expansion.The Pokémon TCG: Great Tusk ex & Iron Treads ex Premium Collection includes:• 2 foil cards featuring Shiny Great Tusk ex and Shiny Iron Treads ex• 2 cards featuring Great Tusk and Iron Treads• 1 oversize foil card featuring Shiny Great Tusk ex• 11 Pokémon TCG: Scarlet & Violet-Paldean Fates booster packs• A code card for Pokémon TCG Live"
+            }
+        ],
+        "product_cost": 62000.8
+    },
+    {
+        "id": "prod-47",
+        "title": "Boa Hancock (SP) - Extra Booster: Anime 25th Collection (EB-02)",
+        "subtitle": "",
+        "description": "",
+        "image": "",
+        "price": 300000,
+        "marketPrice": 0,
+        "cardType": "Cards",
+        "rarity": "",
+        "condition": "",
+        "stock": "1",
+        "category": "One Piece",
+        "requirements": [
+            {
+                "label": "Card Text",
+                "value": "[Your Turn] [Once Per Turn] This effect can be activated when a Character is removed from the field by your effect. If you have 5 or less cards in your hand, draw 1 card."
+            },
+            {
+                "label": "Rarity",
+                "value": "L"
+            }
+        ]
+    },
+    {
+        "id": "prod-48",
+        "title": "Shirahoshi (OP05-082) (Alternate Art) - Premium Booster -The Best- (PRB-01)",
+        "subtitle": "Premium Booster -The Best-",
+        "description": "",
+        "image": "/tcgzone/assets/images/sell/sell_6a623f2261c830.84823451_593472_in_1000x1000.jpg",
+        "price": 490,
+        "marketPrice": 450,
+        "cardType": "Character",
+        "rarity": "R",
+        "condition": "Mint",
+        "stock": "3",
+        "category": "One Piece",
+        "requirements": []
+    },
+    {
+        "id": "prod-49",
+        "title": "Gengar",
+        "subtitle": "Fossil",
+        "description": "0",
+        "image": "/tcgzone/assets/images/sell/sell_6a6341ea84f905.73835144_gengar-rare.jpg",
+        "price": 15,
+        "marketPrice": 15,
+        "cardType": "Cards",
+        "rarity": "Rare",
+        "condition": "Near Mint",
+        "stock": "2",
+        "category": "Pokémon",
+        "requirements": []
+    },
+    {
+        "id": "prod-49",
+        "title": "Vaporeon V - SWSH181 - SWSH: Sword & Shield Promo Cards (SWSD)",
+        "subtitle": "SWSH: Sword & Shield Promo Cards",
+        "description": "0",
+        "image": "/tcgzone/assets/images/sell/sell_6a63439a30e772.93754316_253416_in_1000x1000.jpg",
+        "price": 19050,
+        "marketPrice": 15000,
+        "cardType": "Cards",
+        "rarity": "rare",
+        "condition": "near-mint",
+        "stock": "2",
+        "category": "Pokémon",
+        "requirements": []
+    }
+]

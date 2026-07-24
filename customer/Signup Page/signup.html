@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TCG Marketplace | Sign Up</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Poppins -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Figtree -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg"
+      href="/tcgzone/assets/logos/logo/transparent-image.png"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/tcgzone/assets/css/shared.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="modal.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- LEFT SIDE -->
+
+      <div class="left-section">
+        <h1 class="logo">
+          <a href="/tcgzone/customer/Landing Page/index.php">tcgzone</a>
+        </h1>
+
+        <div class="form-container">
+          <h1>Sign up</h1>
+
+          <p class="subtext">Already have an account?</p>
+
+          <p class="register-link">
+            You can
+            <a href="/tcgzone/customer/Login Page/login.html">sign in here!</a>
+          </p>
+
+          <div class="notification-container">
+            <div id="match-error" class="login-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Passwords do not match.
+            </div>
+
+            <div id="password-error" class="login-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Password must be at least 8 characters.
+            </div>
+
+            <div id="email-error" class="login-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              This email is already registered.
+            </div>
+
+            <div id="username-error" class="login-error">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              This username is already taken.
+            </div>
+          </div>
+          <form method="POST" action="signup.php">
+            <!-- Email -->
+
+            <label>Email</label>
+
+            <div class="input-box">
+              <img
+                src="/tcgzone/assets/images/login_signin page/signin_email.svg"
+                alt="Email"
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+              />
+              <i class="fa-solid fa-circle-exclamation input-error-icon"></i>
+            </div>
+
+            <!-- Username -->
+
+            <label>Username</label>
+
+            <div class="input-box">
+              <img
+                src="/tcgzone/assets/images/login_signin page/user.svg"
+                alt="User"
+              />
+
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter your Username"
+                required
+              />
+              <i class="fa-solid fa-circle-exclamation input-error-icon"></i>
+            </div>
+
+            <label>Phone Number</label>
+
+            <div class="input-box">
+              <img
+                src="/tcgzone/assets/images/login_signin page/phone.svg"
+                alt="Phone"
+              />
+
+              <input
+                type="text"
+                minlength="11"
+                maxlength="11"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                placeholder="09XX-XXX-XXXX"
+                id="phone"
+                name="phone"
+                required
+              />
+              <i class="fa-solid fa-circle-exclamation input-error-icon"></i>
+            </div>
+
+            <!-- Password -->
+
+            <label>Password</label>
+
+            <div class="input-box">
+              <img
+                src="/tcgzone/assets/images/login_signin page/signin_password.svg"
+                alt="Password"
+              />
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your Password"
+                required
+              />
+
+              <i
+                class="fa-regular fa-eye togglePassword"
+                id="togglePassword"
+              ></i>
+            </div>
+
+            <!-- Confirm Password -->
+
+            <label>Confirm Password</label>
+
+            <div class="input-box">
+              <img
+                src="/tcgzone/assets/images/login_signin page/signin_password.svg"
+                alt="Password"
+              />
+
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your Password"
+                required
+              />
+
+              <i
+                class="fa-regular fa-eye togglePassword"
+                id="toggleConfirmPassword"
+              ></i>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="options">
+              <label class="remember">
+                <input type="checkbox" required />
+
+                <span>
+                  I agree to the
+                  <a
+                    href="#"
+                    class="terms-link"
+                    id="openTermsModal"
+                    role="button"
+                  >
+                    terms and conditions.
+                  </a>
+                </span>
+              </label>
+            </div>
+
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+
+      <div class="right-section">
+        <img
+          src="/tcgzone/assets/images/login_signin page/SIGNINimg.png"
+          alt="Background"
+        />
+      </div>
+    </div>
+
+    <div class="terms-modal-overlay" id="termsModalOverlay" aria-hidden="true">
+      <div
+        class="terms-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="termsModalTitle"
+      >
+        <div class="terms-modal-header">
+          <h2 id="termsModalTitle">Terms &amp; Conditions</h2>
+          <!-- <button
+            type="button"
+            class="terms-modal-close"
+            id="closeTermsModal"
+            aria-label="Close terms and conditions"
+          >
+            &times;
+          </button> -->
+        </div>
+        <div class="terms-modal-content">
+          <h3>• Acceptance of Terms</h3>
+          <p>
+            By accessing, browsing, or using TCGZone, you acknowledge that you
+            have read, understood, and agreed to comply with these Terms and
+            Conditions. If you do not agree with any part of these terms, you
+            must immediately discontinue the use of this website and its
+            services.
+          </p>
+
+          <h3>• User Responsibility</h3>
+          <p>
+            Users are solely responsible for maintaining the confidentiality of
+            their account credentials. Any activity conducted under your account
+            shall be deemed your responsibility. TCGZone shall not be held
+            liable for unauthorized access resulting from your negligence.
+          </p>
+
+          <h3>• Accuracy of Information</h3>
+          <p>
+            Users must provide accurate, complete, and up-to-date information
+            during registration and throughout their use of the platform.
+            Providing false or misleading information may result in the
+            suspension or permanent termination of your account.
+          </p>
+
+          <h3>• Buying and Selling Policy</h3>
+          <p>
+            Sellers are responsible for ensuring that product listings,
+            descriptions, pricing, and images are accurate. Buyers are expected
+            to carefully review product details before completing any
+            transaction. TCGZone reserves the right to remove listings that
+            violate marketplace standards.
+          </p>
+
+          <h3>• Payments</h3>
+          <p>
+            All payments must be completed through the approved payment methods
+            provided by the platform. Orders shall only be processed upon
+            successful payment verification. Fraudulent, unauthorized, or
+            suspicious transactions may be cancelled without prior notice.
+          </p>
+
+          <h3>• Shipping and Delivery</h3>
+          <p>
+            Delivery schedules are subject to courier availability and shipping
+            conditions. TCGZone shall not be responsible for delays, losses, or
+            damages caused by third-party courier services after products have
+            been dispatched.
+          </p>
+
+          <h3>• Returns and Refunds</h3>
+          <p>
+            Refunds and returns shall only be considered for eligible
+            transactions involving incorrect, defective, or damaged items.
+            Claims must be submitted within seven (7) days of receiving the
+            product together with sufficient proof. Requests that fail to meet
+            these requirements may be denied.
+          </p>
+
+          <h3>• Prohibited Activities</h3>
+          <p>
+            Users shall not engage in fraudulent transactions, harassment,
+            identity theft, spamming, distribution of malicious software,
+            unauthorized access attempts, or any activity that disrupts the
+            operation of the platform. Violations may result in immediate
+            account suspension or permanent banning without prior notice.
+          </p>
+
+          <h3>• Intellectual Property</h3>
+          <p>
+            All content available on TCGZone, including but not limited to
+            logos, trademarks, graphics, text, images, and website design, is
+            protected by intellectual property laws. Unauthorized reproduction,
+            modification, distribution, or commercial use is strictly prohibited
+            without prior written consent.
+          </p>
+
+          <h3>• Limitation of Liability</h3>
+          <p>
+            TCGZone shall not be liable for any direct, indirect, incidental,
+            special, or consequential damages arising from the use of this
+            platform, including but not limited to financial losses, interrupted
+            transactions, data loss, or third-party actions beyond our
+            reasonable control.
+          </p>
+
+          <h3>• Account Suspension and Termination</h3>
+          <p>
+            TCGZone reserves the absolute right to suspend, restrict, or
+            permanently terminate any account found to be in violation of these
+            Terms and Conditions, without prior notice and at its sole
+            discretion.
+          </p>
+
+          <h3>• Amendments</h3>
+          <p>
+            TCGZone reserves the right to modify, update, or replace these Terms
+            and Conditions at any time. Continued use of the platform following
+            such modifications constitutes acceptance of the revised Terms and
+            Conditions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="signup.js"></script>
+  </body>
+</html>
