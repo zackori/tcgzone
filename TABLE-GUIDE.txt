@@ -1,0 +1,43 @@
+CREATION GUIDE FOR SQL TABLES
+
+CREATE DATABASE IF NOT EXISTS tcgzone;
+USE tcgzone;
+
+
+1. User Table
+
+USE tcgzone;
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `first_name` varchar(50) DEFAULT '',
+  `last_name` varchar(50) DEFAULT '',
+  `email` varchar(150) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `phone` varchar(20) DEFAULT '',
+  `dob` date DEFAULT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT 'Male',
+  `address_details` varchar(255) DEFAULT '',
+  `address_city` varchar(100) DEFAULT '',
+  `address_province` varchar(100) DEFAULT '',
+  `address_zip` varchar(10) DEFAULT '',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+2. Review Table
+
+USE tcgzone;
+
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(100) DEFAULT 'Anonymous',
+    rating TINYINT UNSIGNED NOT NULL,
+    review_text TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+

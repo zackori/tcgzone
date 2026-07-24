@@ -1,0 +1,454 @@
+/* ============================
+   GOOGLE DEFAULTS
+============================ */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================
+   BODY
+============================ */
+
+body{
+    background: #000;
+    font-family: "Figtree", sans-serif;
+}
+
+/* ============================
+   MAIN CONTAINER
+============================ */
+
+.container{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 30px;
+    gap: 40px;
+}
+
+/* ============================
+   LEFT SIDE
+============================ */
+
+.left-section{
+    flex: 1;
+
+    height: 100%;
+
+    background: #000;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 40px;
+
+    margin-top: -120px;
+}
+
+/* ============================
+   LOGO
+============================ */
+
+.logo{
+
+    font-family:"Poppins",sans-serif;
+    font-weight:900;
+    letter-spacing:0;
+    font-size: 3rem;
+    position: absolute;
+
+}
+
+/* ============================
+   FORM CONTAINER
+============================ */
+
+.form-container{
+
+    max-width: 450px;
+
+    margin: auto;
+
+    width: 100%;
+
+}
+
+/* ============================
+   RIGHT SIDE
+============================ */
+
+.right-section{
+
+    flex: 1.2;
+
+    height: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+}
+
+/* ============================
+   IMAGE
+============================ */
+
+.right-section img{
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+/* ============================
+   FORM TITLE
+============================ */
+
+.form-container{
+
+    width:100%;
+    max-width:470px;
+
+    margin-top:90px;
+
+}
+
+.subtext,
+.register-link{
+    font-family: 'Figtree', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+.register-link a{
+    color: #5fd6cf;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover{
+    text-decoration: none;
+    color: #367c78; 
+}
+
+/* ============================
+   LABELS
+============================ */
+
+label{
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    display: block;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: white;
+}
+
+/* ============================
+   INPUT BOX
+============================ */
+
+.input-box{
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 2px solid white;
+
+    padding: 10px 0;
+}
+
+.input-box img{
+
+    width: 20px;
+    margin-right: 15px;
+
+}
+
+.input-box input{
+
+    flex: 1;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-family: "Figtree", sans-serif;
+
+}
+
+.input-box input::placeholder{
+
+    color: rgba(255,255,255,.75);
+
+}
+
+.input-box i{
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+/* ============================
+   OPTIONS
+============================ */
+
+.options{
+
+    font-family: 'Figtree', sans-serif;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 25px;
+
+    font-size: 15px;
+
+        
+
+}
+
+.options a{
+
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+
+    color: white;
+
+    text-decoration: none;
+
+}
+
+.options a:hover{
+
+    text-decoration: underline;
+
+}
+
+.remember{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 0;
+
+}
+
+/* ============================
+   LOGIN BUTTON
+============================ */
+
+button{
+
+    width: 100%;
+
+    margin-top: 45px;
+
+    padding:22px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: white;
+
+    color: black;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+button:hover{
+
+    transform: translateY(-2px);
+
+    background: #ececec;
+
+}
+
+/* ============================
+   IMAGE TEXT OVERLAY
+============================ */
+
+.overlay-text{
+
+    position:absolute;
+
+    left:70px;
+
+    bottom:40px;
+
+}
+
+.overlay-text h1{
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 52px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+
+}
+
+.overlay-text p{
+
+    font-family: "Figtree", sans-serif;
+
+    font-size: 24px;
+
+    font-weight: 300;
+
+}
+
+/* ============================
+   LOGO
+============================ */
+
+.logo{
+    font-family:"Poppins",sans-serif;
+    font-size: 3rem;
+    font-weight:900;
+    letter-spacing:0;
+}
+
+
+/* ============================
+   SMALL HOVER EFFECTS
+============================ */
+
+button:hover{
+
+    background: #f2f2f2;
+
+    transform: translateY(-3px);
+
+}
+
+.input-box{
+
+    transition: .3s;
+
+}
+
+.input-box:focus-within{
+
+    border-bottom: 2px solid #ffffff;
+
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+
+@media(max-width:1200px){
+
+    .container{
+
+        flex-direction: column;
+
+        height: auto;
+
+    }
+
+    .right-section {
+        display: none;
+    }
+
+    .left-section,
+    .right-section{
+
+        width:100%;
+
+        margin-top: 0;
+
+    }
+
+    .right-section{
+
+        height:600px;
+
+    }
+
+}
+
+.login-error{
+    display: none;
+
+    background: #ff4d4f;
+    color: white;
+
+    padding: 15px 18px;
+
+    border-radius: 10px;
+
+    margin-bottom: 25px;
+
+    margin-top: 25px;
+
+    font-size: 15px;
+
+    animation: slideDown .35s ease;
+}
+
+.login-error i{
+    margin-right:8px;
+}
+
+@keyframes slideDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}

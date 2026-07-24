@@ -1,0 +1,287 @@
+:root {
+    --bg-black: #0a0a0a;
+    --bg-base: #0d0d0d;
+    --bg-glow: #232323;
+    --bg-black-alt: #121212;
+    --text-light: #f2f2f2;
+    --text-muted: #b3b3b3;
+    --accent-teal: #5fd6cf;
+    --accent-light-gray: #BDBDBD;
+    --accent-amber: #e8b23b;
+    --accent-gray: #464646;
+    --card-bg: #373737;
+    --card-border: #101010;
+    --font-display: 'Poppins', sans-serif;
+    --panel-bg: #161616;
+    --panel-border: #2b2b2b;
+    --text-muted: #9a9a9a;
+    --accent-green: #3ddc84;
+    --radius: 14px;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  background:linear-gradient(90deg,#050505,#222);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.page-bg{
+  min-height: 70vh;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 20% 0%, rgba(255,255,255,0.06), transparent 60%),
+    radial-gradient(ellipse 1200px 700px at 100% 30%, rgba(255,255,255,0.035), transparent 65%),
+    linear-gradient(180deg, #141414 0%, #0d0d0d 45%, #0a0a0a 100%);
+  background-color: var(--bg-base);
+}
+
+.panel{
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.panel h5{
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cart-table{
+  --bs-table-bg: transparent;
+  --bs-table-border-color: transparent; /* stops Bootstrap's own border color fighting ours */
+  --bs-table-striped-bg: transparent;
+  --bs-table-hover-bg: transparent;
+  color: #fff;
+  margin-bottom: 0;
+  border-collapse: collapse;
+}
+
+.cart-table thead th{
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid var(--panel-border);
+  padding: 1.25rem 1rem;
+  white-space: nowrap;
+}
+.cart-table thead th:first-child,
+.cart-table tbody td:first-child{
+  padding-left: 2rem;   /* matches the left inset in your screenshot */
+  color: white;
+}
+.cart-table thead th:last-child,
+.cart-table tbody td:last-child{
+  padding-right: 2rem;  /* matches the right inset */
+  text-align: right;
+}
+
+.cart-table tbody td{
+  border-bottom: 1px solid var(--panel-border);
+  padding: 1.5rem 1rem;   /* taller rows, matches the screenshot's spacing */
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.cart-table tbody tr:last-child td{
+  border-bottom: none;
+}
+
+.cart-item-thumb{
+  width: 56px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #333;
+  flex-shrink: 0;
+}
+
+.cart-item-name{
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.qty-control{
+  height: 2rem;
+  width: auto;
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between; /* spaces the − / number / + evenly like the left one */
+  gap: 0.5rem;
+  background: white;
+  border-radius: 999px; /* <-- was 50% — this is the fix */
+  box-sizing: border-box;
+}
+.qty-btn{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #000000;
+  color: #ffffff;
+  font-weight: 10;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.qty-btn:active{ transform: scale(0.94); }
+.qty-value{
+  min-width: 24px;
+  text-align: center;
+  display: inline-block;
+}
+.remove-item-btn{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #3a3a3a;
+  background: transparent;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+.remove-item-btn:hover{
+  border-color: #fff;
+  color: #fff;
+}
+
+.panel h5{
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+#sumSubtotal, #sumTotal{
+  font-size: 0.92rem;
+}
+
+#sumTotal{
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+#proceedToCheckoutBtn{
+  font-weight: 600;
+  padding: 0.85rem;
+  border-radius: 999px;
+}
+
+.summary-line{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.summary-line img{
+  width: 34px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #333;
+}
+.summary-line .name{
+  font-size: 0.8rem;
+  color: #fff;
+  line-height: 1.2;
+}
+.summary-line .price{
+  font-size: 0.8rem;
+  color: #fff;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+#checkoutView .form-label{
+  margin-bottom: 0.35rem;
+}
+#checkoutView .form-control,
+#checkoutView .form-select,
+#checkoutView textarea{
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+}
+#checkoutView .form-control:focus,
+#checkoutView .form-select:focus{
+  box-shadow: 0 0 0 3px rgba(61,220,132,0.35);
+}
+#checkoutView .form-control.is-invalid{
+  box-shadow: 0 0 0 2px #dc3545;
+}
+
+.billingForm label {
+  font-family: 'Figtree', sans-serif;
+  font-weight: bold;
+}
+
+.app-toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+    max-width: 380px;
+    padding: 15px 18px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    animation: slideIn .25s ease;
+}
+.app-toast.success { background: #1f9d63; }
+.app-toast.error { background: #cf4444; }
+
+.toast-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.toast-out {
+    animation: slideOut .3s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
