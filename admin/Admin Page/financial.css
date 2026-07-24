@@ -1,0 +1,135 @@
+/* ==========================================
+   Financial Page
+========================================== */
+
+.page-title{
+    color:#fff;
+    margin-bottom:25px;
+    font-size:32px;
+    font-weight:700;
+}
+
+/* =============================
+   Cards
+============================= */
+
+.financial-cards{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+
+}
+
+.finance-card{
+
+    background:#181818;
+
+    border:1px solid #2d2d2d;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    transition:.25s;
+
+}
+
+.finance-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#00c6ff;
+
+}
+
+.finance-card p{
+
+    color:#ffffff;
+
+    margin-bottom:12px;
+
+    font-size:15px;
+
+}
+
+.finance-card h2{
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+/* =============================
+   Chart Card
+============================= */
+
+.chart-card{
+
+    background:#181818;
+
+    border:1px solid #2d2d2d;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+}
+
+.chart-card h3{
+
+    color:white;
+
+    margin-bottom:20px;
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+/* canvas */
+
+.chart-card canvas{
+
+    width:100%!important;
+
+    height:340px!important;
+
+}
+
+/* =============================
+   Responsive
+============================= */
+
+@media(max-width:1200px){
+
+.financial-cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.financial-cards{
+
+grid-template-columns:1fr;
+
+}
+
+.chart-card canvas{
+
+height:260px!important;
+
+}
+
+}

@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'Figtree';
+    src: url(/tcgzone/assets/fonts/figtree/Figtree-Regular.ttf) format('truetype');
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.terms-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.terms-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.terms-modal {
+    width: min(900px, 100%);
+    max-height: 85vh;
+    overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #111111, #1c1c1c);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+}
+
+.terms-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.terms-modal-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.terms-modal-close {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.terms-modal-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.terms-modal-content {
+    padding: 24px 28px 28px;
+    overflow-y: auto;
+}
+
+.terms-modal-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: #ffffff;
+}
+
+.terms-modal-content p {
+    font-family: 'Figtree', sans-serif;
+    font-size: 1.12rem;
+    line-height: 1.8;
+    color: #cfcfcf;
+    margin-bottom: 10px;
+}
+
+.terms-modal-content p:last-child {
+    margin-bottom: 0;
+}
+
+.terms-link {
+    color: #5fd6cf;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-link:hover {
+    color: #367c78;
+}
+
+@media (max-width: 576px) {
+    .terms-modal-overlay {
+        padding: 12px;
+    }
+
+    .terms-modal-header,
+    .terms-modal-content {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
