@@ -84,14 +84,23 @@
 .search {
     display: flex;
     align-items: center;
-    flex-grow: 1;
+    flex: 0 1 580px;
     margin: 0;
     max-width: 580px;
     min-width: 12rem;
-    width: auto;
+    width: min(42vw, 580px);
     padding: 5px 14px;
     border-radius: 28px;
     background-color: white;
+}
+
+/* Keep the search field centred in the full navigation bar on desktop. */
+@media (min-width: 901px) {
+    .nav-top > .search {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .search img {
@@ -465,8 +474,8 @@ img:hover {
 }
 
 
-/* When the screen is smaller than a tablet (768px) */
-@media (max-width: 768px) {
+/* Move the search below the controls before the centred desktop layout can crowd them. */
+@media (max-width: 900px) {
     .nav-top {
         flex-wrap: wrap;
         justify-content: space-between;

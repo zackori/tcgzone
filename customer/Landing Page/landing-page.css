@@ -270,6 +270,20 @@ body {
     object-fit: cover;
 }
 
+/* On tablets and phones, show two featured cards and one collection per slider view. */
+@media (max-width: 900px) {
+    #featured-track .product-card {
+        flex-basis: calc((100% - 1.25rem) / 2);
+        width: calc((100% - 1.25rem) / 2);
+    }
+
+    #collections-track .collection-card {
+        flex-basis: 100%;
+        width: 100%;
+        margin: 0;
+    }
+}
+
 
 /*REVIEWS*/
 /* ---------------- REVIEWS ---------------- */

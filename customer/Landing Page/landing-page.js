@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var track = document.getElementById(btn.getAttribute('data-slider'));
         if (!track) return;
         var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
+        var visibleItems = parseInt(btn.getAttribute('data-slide-count'), 10) || 2;
         var firstItem = track.querySelector(':scope > *');
         var step = firstItem ? (firstItem.getBoundingClientRect().width + 20) : track.clientWidth * 0.8;
-        track.scrollBy({ left: dir * step * 2, behavior: 'smooth' });
+        track.scrollBy({ left: dir * step * visibleItems, behavior: 'smooth' });
         });
     });
 

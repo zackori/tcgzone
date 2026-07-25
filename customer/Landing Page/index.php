@@ -15,7 +15,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcgzone/bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing-page.css">
+    <link rel="stylesheet" href="landing-page.css?v=<?= filemtime(__DIR__ . '/landing-page.css') ?>">
     <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -281,7 +281,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
             <div class="slider-wrapper position-relative collections-slider">
                 <button class="slider-arrow slider-arrow-left" type="button" data-slider="collections-track"
-                    data-dir="-1" aria-label="Scroll left">
+                    data-dir="-1" data-slide-count="1" aria-label="Scroll left">
                     <img src="/tcgzone/assets/logos/upcoming packs/caret-left.svg" alt="Left">
                 </button>
 
@@ -309,7 +309,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 </div>
 
                 <button class="slider-arrow slider-arrow-right" type="button" data-slider="collections-track"
-                    data-dir="1" aria-label="Scroll right">
+                    data-dir="1" data-slide-count="1" aria-label="Scroll right">
                     <img src="/tcgzone/assets/logos/upcoming packs/caret-right.svg" alt="Right">
                 </button>
             </div>
@@ -459,7 +459,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     </footer>
     <script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
     <!-- <script src="/tcgzone/assets/js/shared/shared.js"></script> -->
-    <script src="landing-page.js"></script>
+    <script src="landing-page.js?v=<?= filemtime(__DIR__ . '/landing-page.js') ?>"></script>
 </body>
 
 </html>
