@@ -22,7 +22,9 @@ $orderStmt = mysqli_prepare(
         o.order_date,
         o.total_amount,
         o.payment_method,
-        CONCAT(u.first_name, ' ', u.last_name) AS customer_name
+        CONCAT(u.first_name, ' ', u.last_name) AS customer_name,
+        u.email AS customer_email,
+        u.phone AS customer_phone
      FROM orders o
      LEFT JOIN users u ON o.user_id = u.id
      WHERE o.order_id = ?"
@@ -77,6 +79,8 @@ echo json_encode([
     "order" => [
         "order_id" => (int) $order["order_id"],
         "customer_name" => $order["customer_name"],
+        "customer_email" => $order["customer_email"] ?? null,
+        "customer_phone" => $order["customer_phone"] ?? null,
         "status" => $order["status"],
         "payment_method" => $order["payment_method"] ?? "cod",
         "order_date" => $order["order_date"],

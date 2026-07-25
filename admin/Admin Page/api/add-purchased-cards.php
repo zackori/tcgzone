@@ -15,7 +15,9 @@ $rarities = ["", "Common", "Uncommon", "Rare", "Ultra Rare", "Secret Rare", "C",
 $conditions = ["", "Mint", "Near Mint", "Lightly Played", "Damaged"];
 $uploadDirectory = dirname(__DIR__, 3) . "/assets/images/products";
 if (!is_dir($uploadDirectory) && !mkdir($uploadDirectory, 0755, true)) {
-    http_response_code(500); echo json_encode(["success" => false, "message" => "Could not create the image directory."]); exit;
+    http_response_code(500);
+    echo json_encode(["success" => false, "message" => "Could not create the image directory."]);
+    exit;
 }
 
 $uploadedFiles = [];
@@ -62,12 +64,15 @@ try {
             $image = $_FILES[$fileKey];
             $mimeType = mime_content_type($image["tmp_name"]);
             $extensions = ["image/jpeg" => "jpg", "image/png" => "png", "image/gif" => "gif", "image/webp" => "webp"];
-            if (!isset($extensions[$mimeType])) throw new RuntimeException("Card " . ($index + 1) . " must use a JPG, PNG, GIF, or WEBP image.");
-            if ($image["size"] > 5 * 1024 * 1024) throw new RuntimeException("Card " . ($index + 1) . " image must be 5 MB or smaller.");
+            if (!isset($extensions[$mimeType]))
+                throw new RuntimeException("Card " . ($index + 1) . " must use a JPG, PNG, GIF, or WEBP image.");
+            if ($image["size"] > 5 * 1024 * 1024)
+                throw new RuntimeException("Card " . ($index + 1) . " image must be 5 MB or smaller.");
 
             $filename = "purchased_" . uniqid("", true) . "." . $extensions[$mimeType];
             $diskPath = $uploadDirectory . "/" . $filename;
-            if (!move_uploaded_file($image["tmp_name"], $diskPath)) throw new RuntimeException("Could not save the image for card " . ($index + 1) . ".");
+            if (!move_uploaded_file($image["tmp_name"], $diskPath))
+                throw new RuntimeException("Could not save the image for card " . ($index + 1) . ".");
             $uploadedFiles[] = $diskPath;
             $imagePath = "/tcgzone/assets/images/products/" . $filename;
         }
@@ -82,7 +87,8 @@ try {
             // If we uploaded a replacement image, remove the old one from disk.
             if ($hasUploadedImage && $oldImagePath) {
                 $oldDiskPath = dirname(__DIR__, 3) . str_replace("/tcgzone", "", $oldImagePath);
-                if (is_file($oldDiskPath)) unlink($oldDiskPath);
+                if (is_file($oldDiskPath))
+                    unlink($oldDiskPath);
             }
         } else {
             mysqli_stmt_bind_param($insertStmt, "ssssssdddis", $category, $cardName, $productType, $setName, $rarity, $condition, $sellingPrice, $productCost, $marketPrice, $quantity, $imagePath);
@@ -123,7 +129,9 @@ try {
     echo json_encode(["success" => true, "product_ids" => $createdIds, "procurement_order_id" => $receiptId]);
 } catch (Throwable $error) {
     mysqli_rollback($conn);
-    foreach ($uploadedFiles as $file) if (is_file($file)) unlink($file);
+    foreach ($uploadedFiles as $file)
+        if (is_file($file))
+            unlink($file);
     http_response_code(422);
     echo json_encode(["success" => false, "message" => $error->getMessage()]);
 }

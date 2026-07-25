@@ -19,19 +19,58 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $userId = $_SESSION['user_id'];
 
-$email            = $_POST['email'] ?? '';
-$phone            = $_POST['phone'] ?? '';
-$dob              = $_POST['dob'] ?? null;
-$first_name       = $_POST['first_name'] ?? '';
-$last_name        = $_POST['last_name'] ?? '';
-$address_details  = $_POST['address_details'] ?? '';
-$address_city     = $_POST['address_city'] ?? '';
+$email = $_POST['email'] ?? '';
+$phone = $_POST['phone'] ?? '';
+$dob = $_POST['dob'] ?? null;
+$first_name = $_POST['first_name'] ?? '';
+$last_name = $_POST['last_name'] ?? '';
+$address_details = $_POST['address_details'] ?? '';
+$address_city = $_POST['address_city'] ?? '';
 $address_province = $_POST['address_province'] ?? '';
-$address_zip      = $_POST['address_zip'] ?? '';
-$gender           = $_POST['gender'] ?? 'Male';
+$address_zip = $_POST['address_zip'] ?? '';
+$gender = $_POST['gender'] ?? 'Male';
+$returnTo = $_POST['return_to'] ?? '';
 
-$newPassword      = $_POST['new_password'] ?? '';
-$confirmPassword  = $_POST['confirm_password'] ?? '';
+$newPassword = $_POST['new_password'] ?? '';
+$confirmPassword = $_POST['confirm_password'] ?? '';
+
+function sanitizeReturnTo($value, $fallback = '/tcgzone/customer/Landing Page/index.php')
+{
+    if (empty($value)) {
+        return $fallback;
+    }
+
+    $trimmedValue = trim($value);
+    $parsed = parse_url($trimmedValue);
+
+    if (!empty($parsed['scheme']) || !empty($parsed['host'])) {
+        if (($parsed['host'] ?? '') !== ($_SERVER['HTTP_HOST'] ?? '')) {
+            return $fallback;
+        }
+
+        $path = $parsed['path'] ?? '/';
+        $query = $parsed['query'] ?? '';
+    } else {
+        $path = $trimmedValue;
+        $query = '';
+    }
+
+    if ($path === '' || $path[0] !== '/') {
+        $path = '/' . $path;
+    }
+
+    if (strpos($path, '/tcgzone') !== 0) {
+        return $fallback;
+    }
+
+    if ($query !== '') {
+        return $path . '?' . $query;
+    }
+
+    return $path;
+}
+
+$redirectTo = sanitizeReturnTo($returnTo);
 
 if ($dob === '') {
     $dob = null;
@@ -48,10 +87,17 @@ $stmt = $conn->prepare("
 
 $stmt->bind_param(
     "ssssssssssi",
-    $email, $phone, $dob,
-    $first_name, $last_name,
-    $address_details, $address_city, $address_province, $address_zip,
-    $gender, $userId
+    $email,
+    $phone,
+    $dob,
+    $first_name,
+    $last_name,
+    $address_details,
+    $address_city,
+    $address_province,
+    $address_zip,
+    $gender,
+    $userId
 );
 
 $stmt->execute();
@@ -61,7 +107,7 @@ if (!empty($newPassword)) {
     // Only update if passwords match and satisfy length requirements
     if ($newPassword === $confirmPassword && strlen($newPassword) >= 8) {
         $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
-        
+
         $pwdStmt = $conn->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
         $pwdStmt->bind_param("si", $passwordHash, $userId);
         $pwdStmt->execute();
@@ -73,5 +119,5 @@ if (!empty($newPassword)) {
 }
 
 
-header("Location: /tcgzone/customer/Landing Page/index.php");
+header("Location: " . $redirectTo);
 exit;

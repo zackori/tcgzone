@@ -9,10 +9,20 @@
 let ALL_ORDERS = [];
 let activeTab = "ongoing";
 let pendingCancelOrderId = null;
+let ordersPollTimer = null;
+let isLoadingOrders = false;
 
-const currency = (n) => `₱${Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const currency = (n) =>
+  `₱${Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const ORDERS_POLL_INTERVAL_MS = 3000;
 
 async function loadOrders() {
+  if (isLoadingOrders) {
+    return;
+  }
+
+  isLoadingOrders = true;
+
   try {
     const response = await fetch("get_my_orders.php");
     const result = await response.json();
@@ -26,9 +36,28 @@ async function loadOrders() {
   } catch (err) {
     console.error(err);
     ALL_ORDERS = [];
+  } finally {
+    isLoadingOrders = false;
   }
 
   renderOrders();
+}
+
+function startOrdersPolling() {
+  if (ordersPollTimer) {
+    return;
+  }
+
+  ordersPollTimer = window.setInterval(() => {
+    loadOrders();
+  }, ORDERS_POLL_INTERVAL_MS);
+}
+
+function stopOrdersPolling() {
+  if (ordersPollTimer) {
+    window.clearInterval(ordersPollTimer);
+    ordersPollTimer = null;
+  }
 }
 
 function isOngoing(order) {
@@ -64,7 +93,9 @@ function renderCancelAction(order) {
 }
 
 function renderOrderItemRows(items) {
-  return items.map((item) => `
+  return items
+    .map(
+      (item) => `
     <tr>
       <td>
         <div class="d-flex align-items-center gap-3">
@@ -75,7 +106,9 @@ function renderOrderItemRows(items) {
       <td>${item.quantity}x</td>
       <td>${currency(item.subtotal)}</td>
     </tr>
-  `).join("");
+  `,
+    )
+    .join("");
 }
 
 function renderOrderCard(order) {
@@ -114,7 +147,9 @@ function renderOrders() {
   const list = document.getElementById("ordersList");
   const noOrdersMsg = document.getElementById("noOrdersMsg");
 
-  const filtered = ALL_ORDERS.filter(activeTab === "ongoing" ? isOngoing : isCompleted);
+  const filtered = ALL_ORDERS.filter(
+    activeTab === "ongoing" ? isOngoing : isCompleted,
+  );
 
   if (filtered.length === 0) {
     list.innerHTML = "";
@@ -126,7 +161,9 @@ function renderOrders() {
   list.innerHTML = filtered.map(renderOrderCard).join("");
 
   list.querySelectorAll(".btn-cancel-order").forEach((btn) => {
-    btn.addEventListener("click", () => openCancelModal(Number(btn.dataset.orderId)));
+    btn.addEventListener("click", () =>
+      openCancelModal(Number(btn.dataset.orderId)),
+    );
   });
 }
 
@@ -159,8 +196,8 @@ async function submitCancelRequest(reason) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         order_id: pendingCancelOrderId,
-        reason
-      })
+        reason,
+      }),
     });
 
     const result = await response.json();
@@ -176,7 +213,8 @@ async function submitCancelRequest(reason) {
       }, 1200);
     } else {
       msgEl.classList.add("error");
-      msgEl.textContent = result.message || "Could not submit cancellation request.";
+      msgEl.textContent =
+        result.message || "Could not submit cancellation request.";
     }
   } catch (err) {
     console.error(err);
@@ -199,7 +237,9 @@ document.getElementById("completedTab").addEventListener("click", () => {
   renderOrders();
 });
 
-document.getElementById("cancelModalClose").addEventListener("click", closeCancelModal);
+document
+  .getElementById("cancelModalClose")
+  .addEventListener("click", closeCancelModal);
 
 document.getElementById("cancelModal").addEventListener("click", (event) => {
   if (event.target.id === "cancelModal") {
@@ -211,4 +251,15 @@ document.querySelectorAll(".cancel-reason-btn").forEach((btn) => {
   btn.addEventListener("click", () => submitCancelRequest(btn.dataset.reason));
 });
 
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    loadOrders();
+  }
+});
+
+window.addEventListener("focus", () => {
+  loadOrders();
+});
+
 loadOrders();
+startOrdersPolling();

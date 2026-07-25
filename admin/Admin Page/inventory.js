@@ -36,6 +36,29 @@ document.addEventListener("DOMContentLoaded", function () {
   function truncate(text, max) {
     return text.length > max ? text.slice(0, max) + "…" : text;
   }
+  function notifyInventoryChange() {
+    try {
+      window.localStorage.setItem(
+        "tcgzone_inventory_updated",
+        String(Date.now()),
+      );
+    } catch (error) {
+      // Ignore storage errors and fall back to the broadcast channel.
+    }
+
+    if (typeof BroadcastChannel !== "undefined") {
+      try {
+        var channel = new BroadcastChannel("tcgzone_inventory_updates");
+        channel.postMessage({
+          type: "inventory-updated",
+          timestamp: Date.now(),
+        });
+        channel.close();
+      } catch (error) {
+        // Ignore broadcast errors.
+      }
+    }
+  }
 
   function loadDetails() {
     return fetch("../../customer/Shop%20Page/products.json")
@@ -109,9 +132,13 @@ document.addEventListener("DOMContentLoaded", function () {
           status.key +
           '">' +
           status.label +
-          '</span></td><td>' +
+          "</span></td><td>" +
           (p.isArchived
-            ? '<button class="action-restore" data-action="restore" data-id="' + p.id + '" data-name="' + escapeHtml(p.cardName) + '">Restore</button>'
+            ? '<button class="action-restore" data-action="restore" data-id="' +
+              p.id +
+              '" data-name="' +
+              escapeHtml(p.cardName) +
+              '">Restore</button>'
             : '<button class="action-edit" data-action="edit" data-id="' +
               p.id +
               '">Edit</button><span class="action-sep">|</span><button class="action-delete" data-action="delete" data-id="' +
@@ -119,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
               '" data-name="' +
               escapeHtml(p.cardName) +
               '">Archive</button>') +
-          '</td></tr>'
+          "</td></tr>"
         );
       })
       .join("");
@@ -195,7 +222,9 @@ document.addEventListener("DOMContentLoaded", function () {
       : { description: "", requirements: [] };
     document.getElementById("productId").value = product ? product.id : "";
     document.getElementById("cardName").value = product ? product.cardName : "";
-    document.getElementById("cardSetName").value = product ? product.setName || "" : "";
+    document.getElementById("cardSetName").value = product
+      ? product.setName || ""
+      : "";
     document.getElementById("cardCategory").value = product
       ? product.category
       : "Pokémon";
@@ -296,15 +325,23 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch("api/inventory_api/delete_product.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: restore.dataset.id, action: "restore" }),
+        body: JSON.stringify({
+          productId: restore.dataset.id,
+          action: "restore",
+        }),
       })
-        .then(function (r) { return r.json(); })
+        .then(function (r) {
+          return r.json();
+        })
         .then(function (result) {
           if (!result.success) throw new Error(result.message);
+          notifyInventoryChange();
           loadInventory();
           showSuccess("restored", restore.dataset.name);
         })
-        .catch(function (err) { alert(err.message || "Could not restore product."); });
+        .catch(function (err) {
+          alert(err.message || "Could not restore product.");
+        });
     }
   });
   document.getElementById("cardForm").addEventListener("submit", function (e) {
@@ -375,6 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return loadDetails();
       })
       .then(function () {
+        notifyInventoryChange();
         closeModal("cardModalBackdrop");
         loadInventory();
         showSuccess(isEdit ? "updated" : "added", name);
@@ -404,6 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(function (result) {
           if (!result.success) throw new Error(result.message);
+          notifyInventoryChange();
           closeModal("deleteModalBackdrop");
           loadInventory();
           showSuccess("archived", pendingDeleteName);
@@ -416,7 +455,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("successActionWord").textContent = action;
     document.getElementById("successCardName").textContent = name;
     document.getElementById("successActionSuffix").textContent =
-      action === "archived" ? "from Inventory and the shop." : "to Inventory and the shop.";
+      action === "archived"
+        ? "from Inventory and the shop."
+        : "to Inventory and the shop.";
     document.getElementById("successModalBackdrop").classList.add("show");
   }
   document

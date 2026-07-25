@@ -19,9 +19,14 @@ $sql = "
         sr.notes,
         sr.status,
         sr.created_at,
-        u.username
+        u.username,
+        CASE 
+            WHEN sr.status = 'Approved' AND p.product_id IS NOT NULL THEN p.product_cost
+            ELSE sr.selling_price
+        END AS approved_product_cost
     FROM sell_requests sr
     LEFT JOIN users u ON sr.user_id = u.id
+    LEFT JOIN products p ON sr.product_id = p.product_id
     ORDER BY sr.created_at DESC, sr.request_id DESC
 ";
 

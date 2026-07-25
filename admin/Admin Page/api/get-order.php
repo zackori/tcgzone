@@ -10,7 +10,7 @@ SELECT
 
     o.order_id, 
 
-    CONCAT (u.first_name, ' ',u.last_name) AS customer_name,
+    u.username AS customer_name,
 
     CONCAT (o.house_no_street, ', ', o.city) AS address1,
 

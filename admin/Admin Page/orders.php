@@ -148,6 +148,14 @@ session_start();
                                 <strong id="orderDetailsCustomer">—</strong>
                             </div>
                             <div class="modal-detail-row">
+                                <span>Email</span>
+                                <strong id="orderDetailsEmail">—</strong>
+                            </div>
+                            <div class="modal-detail-row">
+                                <span>Contact Number</span>
+                                <strong id="orderDetailsContact">—</strong>
+                            </div>
+                            <div class="modal-detail-row">
                                 <span>Status</span>
                                 <strong id="orderDetailsStatus">—</strong>
                             </div>

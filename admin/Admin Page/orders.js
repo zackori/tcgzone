@@ -2,155 +2,194 @@
 // orders.js
 // =========================================
 function setupOverviewCardRedirects() {
-    const totalOrdersCard = document.getElementById("totalOrdersCard");
-    const completedOrdersCard = document.getElementById("completedOrdersCard");
-    const pendingOrdersCard = document.getElementById("pendingOrdersCard");
-    const statusFilter = document.getElementById("statusFilter");
+  const totalOrdersCard = document.getElementById("totalOrdersCard");
+  const completedOrdersCard = document.getElementById("completedOrdersCard");
+  const pendingOrdersCard = document.getElementById("pendingOrdersCard");
+  const statusFilter = document.getElementById("statusFilter");
 
-    if (totalOrdersCard) {
-        const filterAll = () => {
-            statusFilter.value = "all";
-            filterOrders();
-        };
-        totalOrdersCard.addEventListener("click", filterAll);
-        totalOrdersCard.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); filterAll (); }
-        });
-    }
+  if (totalOrdersCard) {
+    const filterAll = () => {
+      statusFilter.value = "all";
+      filterOrders();
+    };
+    totalOrdersCard.addEventListener("click", filterAll);
+    totalOrdersCard.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        filterAll();
+      }
+    });
+  }
 
-    if (completedOrdersCard) {
-        const filterCompleted = () => {
-            statusFilter.value = "Delivered";
-            filterOrders();
-        };
-        completedOrdersCard.addEventListener("click", filterCompleted);
-        completedOrdersCard.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); filterCompleted(); }
-        });
-    }
+  if (completedOrdersCard) {
+    const filterCompleted = () => {
+      statusFilter.value = "Delivered";
+      filterOrders();
+    };
+    completedOrdersCard.addEventListener("click", filterCompleted);
+    completedOrdersCard.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        filterCompleted();
+      }
+    });
+  }
 
-    if (pendingOrdersCard) {
-        const filterOngoing = () => {
-            statusFilter.value = "ongoing";
-            filterOrders();
-        };
-        pendingOrdersCard.addEventListener("click", filterOngoing);
-        pendingOrdersCard.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); filterOngoing(); }
-        });
-    }
+  if (pendingOrdersCard) {
+    const filterOngoing = () => {
+      statusFilter.value = "ongoing";
+      filterOrders();
+    };
+    pendingOrdersCard.addEventListener("click", filterOngoing);
+    pendingOrdersCard.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        filterOngoing();
+      }
+    });
+  }
 }
 
 // Call this function inside loadOrders() or at startup:
 setupOverviewCardRedirects();
-
 
 let allOrders = [];
 let allCancelRequests = [];
 let activeCancelRequest = null;
 let activeOrderDetailsId = null;
 let orderPage = 1;
+let ordersPollTimer = null;
+let isLoadingOrders = false;
 const ORDERS_PER_PAGE = 10;
+const ORDERS_POLL_INTERVAL_MS = 3000;
 
-const formatCurrency = (amount) => `₱${Number(amount).toLocaleString(undefined, {
+const formatCurrency = (amount) =>
+  `₱${Number(amount).toLocaleString(undefined, {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-})}`;
+    maximumFractionDigits: 2,
+  })}`;
 
 function getStatusClass(status) {
-    switch (status) {
-        case "Pending":
-            return "pending";
-        case "Processing":
-            return "processing";
-        case "In Transit":
-            return "transit";
-        case "Delivered":
-            return "delivered";
-        case "Cancelled":
-            return "cancelled";
-        default:
-            return "";
-    }
+  switch (status) {
+    case "Pending":
+      return "pending";
+    case "Processing":
+      return "processing";
+    case "In Transit":
+      return "transit";
+    case "Delivered":
+      return "delivered";
+    case "Cancelled":
+      return "cancelled";
+    default:
+      return "";
+  }
 }
 
 function escapeHtml(value = "") {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 async function loadOrders() {
-    try {
-        const [ordersResponse, cancelResponse] = await Promise.all([
-            fetch("api/get-order.php"),
-            fetch("api/get_cancel_requests.php")
-        ]);
+  if (isLoadingOrders) {
+    return;
+  }
 
-        allOrders = await ordersResponse.json();
+  isLoadingOrders = true;
 
-        const cancelResult = await cancelResponse.json();
-        allCancelRequests = cancelResult.success ? cancelResult.requests : [];
+  try {
+    const [ordersResponse, cancelResponse] = await Promise.all([
+      fetch("api/get-order.php"),
+      fetch("api/get_cancel_requests.php"),
+    ]);
 
-        updateCards(allOrders, allCancelRequests);
-        renderCancelRequestsList(allCancelRequests);
-        displayOrders(allOrders);
-        applyUrlStatusFilter();
+    allOrders = await ordersResponse.json();
 
-    } catch (error) {
-        console.error("Failed to load orders:", error);
-    }
+    const cancelResult = await cancelResponse.json();
+    allCancelRequests = cancelResult.success ? cancelResult.requests : [];
+
+    updateCards(allOrders, allCancelRequests);
+    renderCancelRequestsList(allCancelRequests);
+    displayOrders(allOrders);
+    applyUrlStatusFilter();
+  } catch (error) {
+    console.error("Failed to load orders:", error);
+  } finally {
+    isLoadingOrders = false;
+  }
+}
+
+function startOrdersPolling() {
+  if (ordersPollTimer) {
+    return;
+  }
+
+  ordersPollTimer = window.setInterval(() => {
+    loadOrders();
+  }, ORDERS_POLL_INTERVAL_MS);
+}
+
+function stopOrdersPolling() {
+  if (ordersPollTimer) {
+    window.clearInterval(ordersPollTimer);
+    ordersPollTimer = null;
+  }
 }
 
 function updateCards(orders, cancelRequests) {
-    document.getElementById("totalOrders").textContent = orders.length;
+  document.getElementById("totalOrders").textContent = orders.length;
 
-    const ongoing = orders.filter(order =>
-        ["Pending", "Processing", "In Transit"].includes(order.status)
-    ).length;
+  const ongoing = orders.filter((order) =>
+    ["Pending", "Processing", "In Transit"].includes(order.status),
+  ).length;
 
-    const completed = orders.filter(order =>
-        ["Delivered"].includes(order.status)
-    ).length;
+  const completed = orders.filter((order) =>
+    ["Delivered"].includes(order.status),
+  ).length;
 
-    const pendingCancelRequests = cancelRequests.filter(request =>
-        request.status === "Pending"
-    ).length;
+  const pendingCancelRequests = cancelRequests.filter(
+    (request) => request.status === "Pending",
+  ).length;
 
-    document.getElementById("ongoingOrders").textContent = ongoing;
-    document.getElementById("completedOrders").textContent = completed;
-    document.getElementById("cancelRequestCount").textContent = pendingCancelRequests;
+  document.getElementById("ongoingOrders").textContent = ongoing;
+  document.getElementById("completedOrders").textContent = completed;
+  document.getElementById("cancelRequestCount").textContent =
+    pendingCancelRequests;
 }
 
 function cancelRequestBadgeClass(status) {
-    switch (status) {
-        case "Pending":
-            return "pending";
-        case "Approved":
-            return "approved";
-        case "Rejected":
-            return "rejected";
-        default:
-            return "";
-    }
+  switch (status) {
+    case "Pending":
+      return "pending";
+    case "Approved":
+      return "approved";
+    case "Rejected":
+      return "rejected";
+    default:
+      return "";
+  }
 }
 
 function renderCancelRequestsList(requests) {
-    const grid = document.getElementById("cancelRequestsGrid");
-    const emptyMsg = document.getElementById("cancelRequestsEmptyMsg");
+  const grid = document.getElementById("cancelRequestsGrid");
+  const emptyMsg = document.getElementById("cancelRequestsEmptyMsg");
 
-    if (requests.length === 0) {
-        grid.innerHTML = "";
-        emptyMsg.classList.remove("d-none");
-        return;
-    }
+  if (requests.length === 0) {
+    grid.innerHTML = "";
+    emptyMsg.classList.remove("d-none");
+    return;
+  }
 
-    emptyMsg.classList.add("d-none");
+  emptyMsg.classList.add("d-none");
 
-    grid.innerHTML = requests.map((request) => `
+  grid.innerHTML = requests
+    .map(
+      (request) => `
         <button
             type="button"
             class="cancel-request-card"
@@ -165,130 +204,136 @@ function renderCancelRequestsList(requests) {
             <p class="cancel-request-reason">${request.reason}</p>
             <span class="cancel-request-date">${request.requested_at}</span>
         </button>
-    `).join("");
+    `,
+    )
+    .join("");
 
-    grid.querySelectorAll(".cancel-request-card").forEach((card) => {
-        card.addEventListener("click", () => {
-            const requestId = Number(card.dataset.requestId);
-            const request = allCancelRequests.find(
-                (item) => Number(item.cancel_request_id) === requestId
-            );
-            if (request) {
-                closeCancelRequestsListModal();
-                openCancelRequestModal(request);
-            }
-        });
+  grid.querySelectorAll(".cancel-request-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const requestId = Number(card.dataset.requestId);
+      const request = allCancelRequests.find(
+        (item) => Number(item.cancel_request_id) === requestId,
+      );
+      if (request) {
+        closeCancelRequestsListModal();
+        openCancelRequestModal(request);
+      }
     });
+  });
 }
 
 function openCancelRequestsListModal() {
-    renderCancelRequestsList(allCancelRequests);
-    document.getElementById("cancelRequestsListModal").classList.remove("d-none");
+  renderCancelRequestsList(allCancelRequests);
+  document.getElementById("cancelRequestsListModal").classList.remove("d-none");
 }
 
 function closeCancelRequestsListModal() {
-    document.getElementById("cancelRequestsListModal").classList.add("d-none");
+  document.getElementById("cancelRequestsListModal").classList.add("d-none");
 }
 
 function openCancelRequestModal(request) {
-    activeCancelRequest = request;
+  activeCancelRequest = request;
 
-    document.getElementById("modalOrderId").textContent = `#${request.order_id}`;
-    document.getElementById("modalReason").textContent = request.reason;
-    document.getElementById("modalRequestedAt").textContent = request.requested_at;
-    document.getElementById("modalStatus").textContent = request.status;
+  document.getElementById("modalOrderId").textContent = `#${request.order_id}`;
+  document.getElementById("modalReason").textContent = request.reason;
+  document.getElementById("modalRequestedAt").textContent =
+    request.requested_at;
+  document.getElementById("modalStatus").textContent = request.status;
 
-    const reviewActions = document.getElementById("modalReviewActions");
-    const msgEl = document.getElementById("cancelRequestModalMsg");
+  const reviewActions = document.getElementById("modalReviewActions");
+  const msgEl = document.getElementById("cancelRequestModalMsg");
 
-    msgEl.classList.add("d-none");
-    msgEl.textContent = "";
+  msgEl.classList.add("d-none");
+  msgEl.textContent = "";
 
-    if (request.status === "Pending") {
-        reviewActions.classList.remove("d-none");
-    } else {
-        reviewActions.classList.add("d-none");
-    }
+  if (request.status === "Pending") {
+    reviewActions.classList.remove("d-none");
+  } else {
+    reviewActions.classList.add("d-none");
+  }
 
-    document.getElementById("cancelRequestModal").classList.remove("d-none");
+  document.getElementById("cancelRequestModal").classList.remove("d-none");
 }
 
 function closeCancelRequestModal() {
-    activeCancelRequest = null;
-    document.getElementById("cancelRequestModal").classList.add("d-none");
+  activeCancelRequest = null;
+  document.getElementById("cancelRequestModal").classList.add("d-none");
 }
 
 async function reviewCancelRequest(action) {
-    if (!activeCancelRequest) {
-        return;
+  if (!activeCancelRequest) {
+    return;
+  }
+
+  const msgEl = document.getElementById("cancelRequestModalMsg");
+  msgEl.classList.remove("d-none", "success", "error");
+  msgEl.textContent = "Updating request...";
+
+  try {
+    const response = await fetch("api/update_cancel_request.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cancel_request_id: activeCancelRequest.cancel_request_id,
+        action,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      msgEl.classList.add("success");
+      msgEl.textContent =
+        action === "approve"
+          ? "Cancel request accepted. Order has been cancelled."
+          : "Cancel request rejected.";
+
+      document.getElementById("modalReviewActions").classList.add("d-none");
+      document.getElementById("modalStatus").textContent = result.status;
+
+      await loadOrders();
+    } else {
+      msgEl.classList.add("error");
+      msgEl.textContent = result.message || "Could not update cancel request.";
     }
-
-    const msgEl = document.getElementById("cancelRequestModalMsg");
-    msgEl.classList.remove("d-none", "success", "error");
-    msgEl.textContent = "Updating request...";
-
-    try {
-        const response = await fetch("api/update_cancel_request.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                cancel_request_id: activeCancelRequest.cancel_request_id,
-                action
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            msgEl.classList.add("success");
-            msgEl.textContent = action === "approve"
-                ? "Cancel request accepted. Order has been cancelled."
-                : "Cancel request rejected.";
-
-            document.getElementById("modalReviewActions").classList.add("d-none");
-            document.getElementById("modalStatus").textContent = result.status;
-
-            await loadOrders();
-        } else {
-            msgEl.classList.add("error");
-            msgEl.textContent = result.message || "Could not update cancel request.";
-        }
-
-    } catch (error) {
-        console.error(error);
-        msgEl.classList.add("error");
-        msgEl.textContent = "Something went wrong. Please try again.";
-    }
+  } catch (error) {
+    console.error(error);
+    msgEl.classList.add("error");
+    msgEl.textContent = "Something went wrong. Please try again.";
+  }
 }
 
 function displayOrders(orders) {
-    const tbody = document.getElementById("ordersTable");
-    tbody.innerHTML = "";
+  const tbody = document.getElementById("ordersTable");
+  tbody.innerHTML = "";
 
-    const totalPages = Math.max(1, Math.ceil(orders.length / ORDERS_PER_PAGE));
-    orderPage = Math.min(orderPage, totalPages);
-    const pageOrders = orders.slice((orderPage - 1) * ORDERS_PER_PAGE, orderPage * ORDERS_PER_PAGE);
-    document.getElementById("orderPage").textContent = orderPage;
-    document.getElementById("previousOrderPage").disabled = orderPage === 1;
-    document.getElementById("nextOrderPage").disabled = orderPage === totalPages;
+  const totalPages = Math.max(1, Math.ceil(orders.length / ORDERS_PER_PAGE));
+  orderPage = Math.min(orderPage, totalPages);
+  const pageOrders = orders.slice(
+    (orderPage - 1) * ORDERS_PER_PAGE,
+    orderPage * ORDERS_PER_PAGE,
+  );
+  document.getElementById("orderPage").textContent = orderPage;
+  document.getElementById("previousOrderPage").disabled = orderPage === 1;
+  document.getElementById("nextOrderPage").disabled = orderPage === totalPages;
 
-    if (orders.length === 0) {
-        tbody.innerHTML = `
+  if (orders.length === 0) {
+    tbody.innerHTML = `
             <tr>
                 <td colspan="8" class="text-center">
                     No orders found.
                 </td>
             </tr>
         `;
-        return;
-    }
+    return;
+  }
 
-    pageOrders.forEach(order => {
-        const badgeClass = getStatusClass(order.status);
+  pageOrders.forEach((order) => {
+    const badgeClass = getStatusClass(order.status);
 
-        tbody.innerHTML += `
+    tbody.innerHTML += `
         <tr class="order-row-clickable" data-order-id="${order.order_id}">
             <td>${order.order_id}</td>
             <td>${escapeHtml(order.customer_name || "Unknown customer")}</td>
@@ -299,91 +344,124 @@ function displayOrders(orders) {
             <td>${escapeHtml(order.order_date || "")}</td>
         </tr>
         `;
-    });
+  });
 }
 
 document.getElementById("searchOrder").addEventListener("keyup", filterOrders);
-document.getElementById("statusFilter").addEventListener("change", filterOrders);
+document
+  .getElementById("statusFilter")
+  .addEventListener("change", filterOrders);
 
 function filterOrders() {
-    orderPage = 1;
-    displayOrders(getFilteredOrders());
+  orderPage = 1;
+  displayOrders(getFilteredOrders());
 }
 
 function getFilteredOrders() {
-    const keyword = document.getElementById("searchOrder").value.toLowerCase();
-    const status = document.getElementById("statusFilter").value;
+  const keyword = document.getElementById("searchOrder").value.toLowerCase();
+  const status = document.getElementById("statusFilter").value;
 
-    return allOrders.filter(order => {
-        const matchesSearch =
-            (order.customer_name && order.customer_name.toLowerCase().includes(keyword)) ||
-            (order.address1 && order.address1.toLowerCase().includes(keyword)) ||
-            (order.address2 && order.address2.toLowerCase().includes(keyword)) ||
-            order.order_id.toString().includes(keyword);
+  return allOrders.filter((order) => {
+    const matchesSearch =
+      (order.customer_name &&
+        order.customer_name.toLowerCase().includes(keyword)) ||
+      (order.address1 && order.address1.toLowerCase().includes(keyword)) ||
+      (order.address2 && order.address2.toLowerCase().includes(keyword)) ||
+      order.order_id.toString().includes(keyword);
 
-        let matchesStatus = false;
+    let matchesStatus = false;
 
-        if (status === "all") {
-            matchesStatus = true;
-        } else if (status === "ongoing") {
-            matchesStatus = ["Pending", "Processing", "In Transit"].includes(order.status);
-        } else {
-            matchesStatus = order.status === status;
-        }
+    if (status === "all") {
+      matchesStatus = true;
+    } else if (status === "ongoing") {
+      matchesStatus = ["Pending", "Processing", "In Transit"].includes(
+        order.status,
+      );
+    } else {
+      matchesStatus = order.status === status;
+    }
 
-        return matchesSearch && matchesStatus;
-    });
-
+    return matchesSearch && matchesStatus;
+  });
 }
 
 function applyUrlStatusFilter() {
-    const urlStatus = new URLSearchParams(window.location.search).get("status");
-    const statusFilter = document.getElementById("statusFilter");
+  const urlStatus = new URLSearchParams(window.location.search).get("status");
+  const statusFilter = document.getElementById("statusFilter");
 
-    if (!statusFilter || !urlStatus) {
-        return;
-    }
+  if (!statusFilter || !urlStatus) {
+    return;
+  }
 
-    const validStatuses = ["all", "Pending", "Processing", "In Transit", "Delivered", "Cancelled"];
+  const validStatuses = [
+    "all",
+    "Pending",
+    "Processing",
+    "In Transit",
+    "Delivered",
+    "Cancelled",
+  ];
 
-    if (validStatuses.includes(urlStatus)) {
-        statusFilter.value = urlStatus;
-        filterOrders();
-    }
+  if (validStatuses.includes(urlStatus)) {
+    statusFilter.value = urlStatus;
+    filterOrders();
+  }
 }
 
-document.getElementById("cancelRequestCard").addEventListener("click", openCancelRequestsListModal);
-document.getElementById("cancelRequestCard").addEventListener("keydown", (event) => {
+document
+  .getElementById("cancelRequestCard")
+  .addEventListener("click", openCancelRequestsListModal);
+document
+  .getElementById("cancelRequestCard")
+  .addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openCancelRequestsListModal();
+      event.preventDefault();
+      openCancelRequestsListModal();
     }
-});
+  });
 
-document.getElementById("closeCancelRequestsListModal").addEventListener("click", closeCancelRequestsListModal);
-document.getElementById("cancelRequestsListModal").addEventListener("click", (event) => {
+document
+  .getElementById("closeCancelRequestsListModal")
+  .addEventListener("click", closeCancelRequestsListModal);
+document
+  .getElementById("cancelRequestsListModal")
+  .addEventListener("click", (event) => {
     if (event.target.id === "cancelRequestsListModal") {
-        closeCancelRequestsListModal();
+      closeCancelRequestsListModal();
     }
-});
+  });
 
-document.getElementById("closeCancelRequestModal").addEventListener("click", closeCancelRequestModal);
-document.getElementById("cancelRequestModal").addEventListener("click", (event) => {
+document
+  .getElementById("closeCancelRequestModal")
+  .addEventListener("click", closeCancelRequestModal);
+document
+  .getElementById("cancelRequestModal")
+  .addEventListener("click", (event) => {
     if (event.target.id === "cancelRequestModal") {
-        closeCancelRequestModal();
+      closeCancelRequestModal();
     }
-});
-document.getElementById("acceptCancelRequest").addEventListener("click", () => reviewCancelRequest("approve"));
-document.getElementById("rejectCancelRequest").addEventListener("click", () => reviewCancelRequest("reject"));
+  });
+document
+  .getElementById("acceptCancelRequest")
+  .addEventListener("click", () => reviewCancelRequest("approve"));
+document
+  .getElementById("rejectCancelRequest")
+  .addEventListener("click", () => reviewCancelRequest("reject"));
 
-document.getElementById("closeOrderDetailsModal").addEventListener("click", closeOrderDetailsModal);
-document.getElementById("orderDetailsModal").addEventListener("click", (event) => {
+document
+  .getElementById("closeOrderDetailsModal")
+  .addEventListener("click", closeOrderDetailsModal);
+document
+  .getElementById("orderDetailsModal")
+  .addEventListener("click", (event) => {
     if (event.target.id === "orderDetailsModal") {
-        closeOrderDetailsModal();
+      closeOrderDetailsModal();
     }
-});
+  });
 
-document.getElementById("updateOrderDetailsStatus").addEventListener("click", async () => {
+document
+  .getElementById("updateOrderDetailsStatus")
+  .addEventListener("click", async () => {
     if (!activeOrderDetailsId) return;
 
     const message = document.getElementById("orderDetailsMsg");
@@ -397,106 +475,131 @@ document.getElementById("updateOrderDetailsStatus").addEventListener("click", as
     button.disabled = false;
 
     if (success) {
-        await openOrderDetailsModal(activeOrderDetailsId);
-        message.className = "modal-msg success";
-        message.textContent = "Order status updated.";
+      await openOrderDetailsModal(activeOrderDetailsId);
+      message.className = "modal-msg success";
+      message.textContent = "Order status updated.";
     }
-});
+  });
 
 document.getElementById("ordersTable").addEventListener("click", (event) => {
-    const row = event.target.closest("tr.order-row-clickable");
+  const row = event.target.closest("tr.order-row-clickable");
 
-    if (!row) {
-        return;
-    }
+  if (!row) {
+    return;
+  }
 
-    const orderId = Number(row.dataset.orderId);
+  const orderId = Number(row.dataset.orderId);
 
-    if (!Number.isNaN(orderId)) {
-        openOrderDetailsModal(orderId);
-    }
+  if (!Number.isNaN(orderId)) {
+    openOrderDetailsModal(orderId);
+  }
 });
 
 document.getElementById("previousOrderPage").addEventListener("click", () => {
-    if (orderPage > 1) { orderPage -= 1; displayOrders(getFilteredOrders()); }
+  if (orderPage > 1) {
+    orderPage -= 1;
+    displayOrders(getFilteredOrders());
+  }
 });
 document.getElementById("nextOrderPage").addEventListener("click", () => {
-    orderPage += 1;
-    displayOrders(getFilteredOrders());
+  orderPage += 1;
+  displayOrders(getFilteredOrders());
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    loadOrders();
+  }
+});
+
+window.addEventListener("focus", () => {
+  loadOrders();
 });
 
 loadOrders();
+startOrdersPolling();
 
 async function openOrderDetailsModal(orderId) {
-    activeOrderDetailsId = Number(orderId);
-    const modal = document.getElementById("orderDetailsModal");
-    const titleEl = document.getElementById("orderDetailsTitle");
-    const customerEl = document.getElementById("orderDetailsCustomer");
-    const statusEl = document.getElementById("orderDetailsStatus");
-    const paymentEl = document.getElementById("orderDetailsPayment");
-    const dateEl = document.getElementById("orderDetailsDate");
-    const subtotalEl = document.getElementById("orderDetailsSubtotal");
-    const shippingEl = document.getElementById("orderDetailsShipping");
-    const totalEl = document.getElementById("orderDetailsTotal");
-    const itemsEl = document.getElementById("orderDetailsItems");
-    const msgEl = document.getElementById("orderDetailsMsg");
-    const statusSelect = document.getElementById("orderDetailsStatusSelect");
+  activeOrderDetailsId = Number(orderId);
+  const modal = document.getElementById("orderDetailsModal");
+  const titleEl = document.getElementById("orderDetailsTitle");
+  const customerEl = document.getElementById("orderDetailsCustomer");
+  const emailEl = document.getElementById("orderDetailsEmail");
+  const contactEl = document.getElementById("orderDetailsContact");
+  const statusEl = document.getElementById("orderDetailsStatus");
+  const paymentEl = document.getElementById("orderDetailsPayment");
+  const dateEl = document.getElementById("orderDetailsDate");
+  const subtotalEl = document.getElementById("orderDetailsSubtotal");
+  const shippingEl = document.getElementById("orderDetailsShipping");
+  const totalEl = document.getElementById("orderDetailsTotal");
+  const itemsEl = document.getElementById("orderDetailsItems");
+  const msgEl = document.getElementById("orderDetailsMsg");
+  const statusSelect = document.getElementById("orderDetailsStatusSelect");
 
-    titleEl.textContent = "Loading order details...";
-    customerEl.textContent = "—";
-    statusEl.textContent = "—";
-    paymentEl.textContent = "—";
-    dateEl.textContent = "—";
-    subtotalEl.textContent = "₱0";
-    shippingEl.textContent = "₱0";
-    totalEl.textContent = "₱0";
-    itemsEl.innerHTML = "";
-    statusSelect.disabled = true;
-    document.getElementById("updateOrderDetailsStatus").disabled = true;
-    msgEl.classList.add("d-none");
-    msgEl.textContent = "";
-    modal.classList.remove("d-none");
+  titleEl.textContent = "Loading order details...";
+  customerEl.textContent = "—";
+  emailEl.textContent = "—";
+  contactEl.textContent = "—";
+  statusEl.textContent = "—";
+  paymentEl.textContent = "—";
+  dateEl.textContent = "—";
+  subtotalEl.textContent = "₱0";
+  shippingEl.textContent = "₱0";
+  totalEl.textContent = "₱0";
+  itemsEl.innerHTML = "";
+  statusSelect.disabled = true;
+  document.getElementById("updateOrderDetailsStatus").disabled = true;
+  msgEl.classList.add("d-none");
+  msgEl.textContent = "";
+  modal.classList.remove("d-none");
 
-    try {
-        const response = await fetch(`api/get_order_items.php?order_id=${encodeURIComponent(orderId)}`);
-        const result = await response.json();
+  try {
+    const response = await fetch(
+      `api/get_order_items.php?order_id=${encodeURIComponent(orderId)}`,
+    );
+    const result = await response.json();
 
-        if (!result.success) {
-            throw new Error(result.message || "Could not load order details.");
-        }
+    if (!result.success) {
+      throw new Error(result.message || "Could not load order details.");
+    }
 
-        const order = result.order || {};
-        titleEl.textContent = `Order Details #${order.order_id || orderId}`;
-        customerEl.textContent = order.customer_name || "Unknown customer";
-        statusEl.className = "modal-status-badge";
+    const order = result.order || {};
+    titleEl.textContent = `Order Details #${order.order_id || orderId}`;
+    customerEl.textContent = order.customer_name || "Unknown customer";
+    emailEl.textContent = order.customer_email || "—";
+    contactEl.textContent = order.customer_phone || "—";
+    statusEl.className = "modal-status-badge";
 
-        if (order.status) {
-            statusEl.classList.add(getStatusClass(order.status));
-            statusEl.textContent = order.status;
-            statusSelect.value = order.status;
-            const isFinalStatus = ["Delivered", "Cancelled"].includes(order.status);
-            statusSelect.disabled = isFinalStatus;
-            document.getElementById("updateOrderDetailsStatus").disabled = isFinalStatus;
-        } else {
-            statusEl.textContent = "—";
-        }
+    if (order.status) {
+      statusEl.classList.add(getStatusClass(order.status));
+      statusEl.textContent = order.status;
+      statusSelect.value = order.status;
+      const isFinalStatus = ["Delivered", "Cancelled"].includes(order.status);
+      statusSelect.disabled = isFinalStatus;
+      document.getElementById("updateOrderDetailsStatus").disabled =
+        isFinalStatus;
+    } else {
+      statusEl.textContent = "—";
+    }
 
-        paymentEl.textContent = (order.payment_method || "cod").toUpperCase();
-        dateEl.textContent = order.order_date || "—";
-        subtotalEl.textContent = formatCurrency(order.subtotal_amount || 0);
-        shippingEl.textContent = formatCurrency(order.shipping_fee || 0);
-        totalEl.textContent = formatCurrency(order.total_amount || 0);
+    paymentEl.textContent = (order.payment_method || "cod").toUpperCase();
+    dateEl.textContent = order.order_date || "—";
+    subtotalEl.textContent = formatCurrency(order.subtotal_amount || 0);
+    shippingEl.textContent = formatCurrency(order.shipping_fee || 0);
+    totalEl.textContent = formatCurrency(order.total_amount || 0);
 
-        if (!order.items || order.items.length === 0) {
-            itemsEl.innerHTML = `
+    if (!order.items || order.items.length === 0) {
+      itemsEl.innerHTML = `
                 <tr>
                     <td colspan="3" class="modal-empty-msg">No items found for this order.</td>
                 </tr>
             `;
-            return;
-        }
+      return;
+    }
 
-        itemsEl.innerHTML = order.items.map((item) => `
+    itemsEl.innerHTML = order.items
+      .map(
+        (item) => `
             <tr>
                 <td>
                     <div class="order-item-cell">
@@ -507,57 +610,58 @@ async function openOrderDetailsModal(orderId) {
                 <td class="order-item-qty">${Number(item.quantity || 0)}x</td>
                 <td class="order-item-subtotal">${formatCurrency(item.subtotal || 0)}</td>
             </tr>
-        `).join("");
-    } catch (error) {
-        console.error(error);
-        msgEl.classList.remove("d-none");
-        msgEl.classList.add("error");
-        msgEl.textContent = error.message || "Could not load order details.";
-    }
+        `,
+      )
+      .join("");
+  } catch (error) {
+    console.error(error);
+    msgEl.classList.remove("d-none");
+    msgEl.classList.add("error");
+    msgEl.textContent = error.message || "Could not load order details.";
+  }
 }
 
 function closeOrderDetailsModal() {
-    activeOrderDetailsId = null;
-    document.getElementById("orderDetailsModal").classList.add("d-none");
+  activeOrderDetailsId = null;
+  document.getElementById("orderDetailsModal").classList.add("d-none");
 }
 
 async function updateStatus(orderId, status) {
-    try {
-        const response = await fetch("api/update_order_status.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                order_id: orderId,
-                status: status
-            })
-        });
+  try {
+    const response = await fetch("api/update_order_status.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_id: orderId,
+        status: status,
+      }),
+    });
 
-        const result = await response.json();
+    const result = await response.json();
 
-        if (result.success) {
-            const order = allOrders.find(o => o.order_id == orderId);
+    if (result.success) {
+      const order = allOrders.find((o) => o.order_id == orderId);
 
-            if (order) {
-                order.status = status;
-            }
+      if (order) {
+        order.status = status;
+      }
 
-            updateCards(allOrders, allCancelRequests);
-            filterOrders();
-            return true;
-        } else {
-            const message = document.getElementById("orderDetailsMsg");
-            message.className = "modal-msg error";
-            message.textContent = result.message || "Could not update order status.";
-            return false;
-        }
-
-    } catch (error) {
-        console.error(error);
-        const message = document.getElementById("orderDetailsMsg");
-        message.className = "modal-msg error";
-        message.textContent = "Could not update order status.";
-        return false;
+      updateCards(allOrders, allCancelRequests);
+      filterOrders();
+      return true;
+    } else {
+      const message = document.getElementById("orderDetailsMsg");
+      message.className = "modal-msg error";
+      message.textContent = result.message || "Could not update order status.";
+      return false;
     }
+  } catch (error) {
+    console.error(error);
+    const message = document.getElementById("orderDetailsMsg");
+    message.className = "modal-msg error";
+    message.textContent = "Could not update order status.";
+    return false;
+  }
 }

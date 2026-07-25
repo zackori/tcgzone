@@ -5,23 +5,38 @@ require_once __DIR__ . "/../../../config/db_connect.php";
 $data = json_decode(file_get_contents("php://input"), true) ?: [];
 $supplierId = isset($data["supplier_id"]) ? (int) $data["supplier_id"] : 0;
 $items = $data["items"] ?? [];
-if ($supplierId <= 0 || !is_array($items) || count($items) === 0) { http_response_code(422); echo json_encode(["success" => false, "message" => "Choose a supplier and at least one card to resupply."]); exit; }
+if ($supplierId <= 0 || !is_array($items) || count($items) === 0) {
+    http_response_code(422);
+    echo json_encode(["success" => false, "message" => "Choose a supplier and at least one card to resupply."]);
+    exit;
+}
 
 mysqli_begin_transaction($conn);
 try {
     $supplierStmt = mysqli_prepare($conn, "SELECT supplier_id FROM suppliers WHERE supplier_id = ?");
     mysqli_stmt_bind_param($supplierStmt, "i", $supplierId);
     mysqli_stmt_execute($supplierStmt);
-    if (!mysqli_fetch_assoc(mysqli_stmt_get_result($supplierStmt))) throw new Exception("Selected supplier was not found.");
+    if (!mysqli_fetch_assoc(mysqli_stmt_get_result($supplierStmt)))
+        throw new Exception("Selected supplier was not found.");
     mysqli_stmt_close($supplierStmt);
 
     $requested = [];
     foreach ($items as $item) {
         $productId = isset($item["product_id"]) ? (int) $item["product_id"] : 0;
         $quantity = isset($item["quantity"]) ? (int) $item["quantity"] : 0;
-        if ($productId > 0 && $quantity > 0) $requested[$productId] = $quantity;
+        if ($productId > 0 && $quantity > 0)
+            $requested[$productId] = $quantity;
     }
-    if (!$requested) throw new Exception("Choose at least one valid resupply quantity.");
+    if (!$requested)
+        throw new Exception("Choose at least one valid resupply quantity.");
+
+    $supplierNameStmt = mysqli_prepare($conn, "SELECT supplier_name FROM suppliers WHERE supplier_id = ?");
+    mysqli_stmt_bind_param($supplierNameStmt, "i", $supplierId);
+    mysqli_stmt_execute($supplierNameStmt);
+    $supplierNameRow = mysqli_fetch_assoc(mysqli_stmt_get_result($supplierNameStmt));
+    mysqli_stmt_close($supplierNameStmt);
+    $supplierName = $supplierNameRow["supplier_name"] ?? "";
+    $shippingFee = strtolower(trim($supplierName)) === "tcgzone" ? 0.0 : 200.0;
 
     $productStmt = mysqli_prepare($conn, "SELECT product_id, market_price FROM products WHERE product_id = ? AND stock_quantity <= 3 FOR UPDATE");
     $lineItems = [];
@@ -30,7 +45,8 @@ try {
         mysqli_stmt_bind_param($productStmt, "i", $productId);
         mysqli_stmt_execute($productStmt);
         $product = mysqli_fetch_assoc(mysqli_stmt_get_result($productStmt));
-        if (!$product) throw new Exception("A selected product is no longer low in stock.");
+        if (!$product)
+            throw new Exception("A selected product is no longer low in stock.");
         $unitCost = (float) ($product["market_price"] ?? 0);
         $subtotal = $unitCost * $quantity;
         $lineItems[] = [$productId, $quantity, $unitCost, $subtotal];
@@ -38,6 +54,7 @@ try {
     }
     mysqli_stmt_close($productStmt);
 
+    $total += $shippingFee;
     $orderStmt = mysqli_prepare($conn, "INSERT INTO procurement_orders (supplier_id, total_amount) VALUES (?, ?)");
     mysqli_stmt_bind_param($orderStmt, "id", $supplierId, $total);
     mysqli_stmt_execute($orderStmt);

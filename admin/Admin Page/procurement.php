@@ -76,9 +76,11 @@ session_start();
                     <tbody id="procurementTable"></tbody>
                 </table>
                 <div class="pagination" aria-label="Procurement pagination">
-                    <button type="button" id="previousProcurementPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="previousProcurementPage" aria-label="Previous page"><i
+                            class="fa-solid fa-angle-left"></i></button>
                     <button type="button" id="procurementPage" class="active" aria-current="page">1</button>
-                    <button type="button" id="nextProcurementPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                    <button type="button" id="nextProcurementPage" aria-label="Next page"><i
+                            class="fa-solid fa-angle-right"></i></button>
                 </div>
             </section>
 
@@ -181,6 +183,10 @@ session_start();
                             </table>
                         </div>
                         <div class="order-details-summary">
+                            <div class="order-summary-row"><span>Items Total</span><strong
+                                    id="procurementItemsTotal">₱0.00</strong></div>
+                            <div class="order-summary-row"><span>Shipping Fee</span><strong
+                                    id="procurementShippingFee">₱0.00</strong></div>
                             <div class="order-summary-row"><span>Total</span><strong
                                     id="procurementTotal">₱0.00</strong></div>
                         </div>

@@ -20,22 +20,23 @@ if (!$isLoggedIn) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="/tcgzone/bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
-<link rel="stylesheet" href="sell.css">
-<link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
+    <link rel="stylesheet" href="/tcgzone/bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
+    <link rel="stylesheet" href="sell.css">
+    <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 
-<title>TCGZONE | Sell</title>
+    <title>TCGZONE | Sell</title>
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
+
 <body>
 
     <!-- NAVIGATION BAR-->
@@ -86,126 +87,157 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
     </nav>
 
-<main class="page-content">
-    <div class="container mt-5 mb-5">
+    <main class="page-content">
+        <div class="container mt-5 mb-1">
 
-    <h1>Sell Your Cards</h1>
+            <h1>Sell Your Cards</h1>
+            <div class="d-flex justify-content-end mb-5">
+                <button type="button" class="btn btn-buy-now" id="openSellHistoryBtn">View Sell Request History</button>
+            </div>
 
-    <div class="review-box">
+            <div class="review-box">
 
-        <h2>Sell Request Form</h2>
-        <p>Submit the card details you want to sell, and our admins will review your request.</p>
+                <h2>Sell Request Form</h2>
+                <p>Submit the card details you want to sell, and our admins will review your request.</p>
 
-        <!-- Sell request form -->
-        <form id="sellRequestForm" enctype="multipart/form-data" style="font-family: 'Figtree', san-serif;">
-            <h3>Card Details</h3>
-            <div class="row gy-4">
-                <div class="col-12 col-md-6">
-                    <label for="cardName">Card Name</label>
-                    <input type="text" id="cardName" name="card_name" placeholder="Enter the card name" required>
+                <!-- Sell request form -->
+                <form id="sellRequestForm" enctype="multipart/form-data" style="font-family: 'Figtree', san-serif;">
+                    <h3>Card Details</h3>
+                    <div class="row gy-4">
+                        <div class="col-12 col-md-6">
+                            <label for="cardName">Card Name</label>
+                            <input type="text" id="cardName" name="card_name" placeholder="Enter the card name"
+                                required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="setName">Set Name</label>
+                            <input type="text" id="setName" name="set_name" placeholder="Enter the card set" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="category">Category</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select category</option>
+                                <option value="Pokémon">Pokémon</option>
+                                <option value="Magic: The Gathering">Magic: The Gathering</option>
+                                <option value="One Piece">One Piece</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="productType">Product Type</label>
+                            <select id="productType" name="product_type" required>
+                                <option value="">Select product type</option>
+                                <option value="Cards">Cards</option>
+                                <option value="Sealed">Sealed</option>
+                                <option value="Collections">Collections</option>
+                                <option value="Character">Character</option>
+                                <option value="Leader">Leader</option>
+                                <option value="Artifact">Artifact</option>
+                                <option value="Legendary Creature">Legendary Creature</option>
+                                <option value="Legendary Artifact">Legendary Artifact</option>
+                                <option value="Enchantment">Enchantment</option>
+                                <option value="Instant">Instant</option>
+                                <option value="Creature">Creature</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="rarity">Rarity</label>
+                            <select id="rarity" name="rarity" required>
+                                <option value="">Select rarity</option>
+                                <option value="Common">Common</option>
+                                <option value="Uncommon">Uncommon</option>
+                                <option value="Rare">Rare</option>
+                                <option value="Ultra Rare">Ultra Rare</option>
+                                <option value="Secret Rare">Secret Rare</option>
+                                <option value="C">C</option>
+                                <option value="UC">UC</option>
+                                <option value="R">R</option>
+                                <option value="SR">SR</option>
+                                <option value="SEC">SEC</option>
+                                <option value="L">L</option>
+                                <option value="P">P</option>
+                                <option value="SP">SP</option>
+                                <option value="AA">AA</option>
+                                <option value="TR">TR</option>
+                                <option value="MR">MR</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="U">U</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="condition">Condition</label>
+                            <select id="condition" name="condition" required>
+                                <option value="">Select condition</option>
+                                <option value="Mint">Mint</option>
+                                <option value="Near Mint">Near Mint</option>
+                                <option value="Lightly Played">Lightly Played</option>
+                                <option value="Damaged">Damaged</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="sellingPrice">Selling Price</label>
+                            <input type="number" id="sellingPrice" name="selling_price"
+                                placeholder="Enter selling price" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" min="1"
+                                required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="cardImage">Card Image</label>
+                            <input type="file" id="cardImage" name="image" accept="image/*" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" name="notes"
+                                placeholder="Add any additional notes or card details"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-buy-now">Submit Request</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+    </main>
+
+    <div class="modal fade" id="sellHistoryModal" tabindex="-1" aria-labelledby="sellHistoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content sell-history-modal-content">
+                <div class="modal-header sell-history-modal-header">
+                    <div>
+                        <h5 class="modal-title" id="sellHistoryModalLabel">Sell Request History</h5>
+                        <p class="sell-history-subtitle">Track the status of every card you submitted to sell.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="setName">Set Name</label>
-                    <input type="text" id="setName" name="set_name" placeholder="Enter the card set" required>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" required>
-                        <option value="">Select category</option>
-                        <option value="Pokémon">Pokémon</option>
-                        <option value="Magic: The Gathering">Magic: The Gathering</option>
-                        <option value="One Piece">One Piece</option>
-                    </select>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="productType">Product Type</label>
-                    <select id="productType" name="product_type" required>
-                        <option value="">Select product type</option>
-                        <option value="Cards">Cards</option>
-                        <option value="Sealed">Sealed</option>
-                        <option value="Collections">Collections</option>
-                        <option value="Character">Character</option>
-                        <option value="Leader">Leader</option>
-                        <option value="Artifact">Artifact</option>
-                        <option value="Legendary Creature">Legendary Creature</option>
-                        <option value="Legendary Artifact">Legendary Artifact</option>
-                        <option value="Enchantment">Enchantment</option>
-                        <option value="Instant">Instant</option>
-                        <option value="Creature">Creature</option>
-                    </select>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="rarity">Rarity</label>
-                    <select id="rarity" name="rarity" required>
-                        <option value="">Select rarity</option>
-                        <option value="Common">Common</option>
-                        <option value="Uncommon">Uncommon</option>
-                        <option value="Rare">Rare</option>
-                        <option value="Ultra Rare">Ultra Rare</option>
-                        <option value="Secret Rare">Secret Rare</option>
-                        <option value="C">C</option>
-                        <option value="UC">UC</option>
-                        <option value="R">R</option>
-                        <option value="SR">SR</option>
-                        <option value="SEC">SEC</option>
-                        <option value="L">L</option>
-                        <option value="P">P</option>
-                        <option value="SP">SP</option>
-                        <option value="AA">AA</option>
-                        <option value="TR">TR</option>
-                        <option value="MR">MR</option>
-                        <option value="M">M</option>
-                        <option value="S">S</option>
-                        <option value="U">U</option>
-                    </select>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="condition">Condition</label>
-                    <select id="condition" name="condition" required>
-                        <option value="">Select condition</option>
-                        <option value="Mint">Mint</option>
-                        <option value="Near Mint">Near Mint</option>
-                        <option value="Lightly Played">Lightly Played</option>
-                        <option value="Damaged">Damaged</option>
-                    </select>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="sellingPrice">Selling Price</label>
-                    <input type="number" id="sellingPrice" name="selling_price" placeholder="Enter selling price" step="0.01" min="0" required>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" min="1" required>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <label for="cardImage">Card Image</label>
-                    <input type="file" id="cardImage" name="image" accept="image/*" required>
-                </div>
-
-                <div class="col-12">
-                    <label for="notes">Additional Notes</label>
-                    <textarea id="notes" name="notes" placeholder="Add any additional notes or card details"></textarea>
-                </div>
-
-                <div class="col-12">
-                    <button type="submit" class="btn btn-buy-now">Submit Request</button>
+                <div class="modal-body sell-history-modal-body">
+                    <div id="sellHistoryLoading" class="text-center py-4 text-white">Loading your sell requests...</div>
+                    <div id="sellHistoryEmpty" class="text-center py-4 d-none text-white">You have no sell requests yet.
+                    </div>
+                    <div class="d-none" id="sellHistoryTableWrap">
+                        <div id="sellHistoryList" class="sell-history-list"></div>
+                    </div>
                 </div>
             </div>
-        </form>
-
+        </div>
     </div>
 
-</main>
-
-  <!--FOOTER-->
+    <!--FOOTER-->
     <footer class="site-footer">
         <div class="footer-main">
             <div class="footer-col footer-brand">
@@ -266,13 +298,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
     </footer>
 
-<!-- JavaScript -->
-<script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
-<script src="/tcgzone/assets/js/shared/shared.js"></script>
-<script>
-    const isLoggedIn = <?= $isLoggedIn ? 'true' : 'false' ?>;
-</script>
-<script src="sell.js"></script>
+    <!-- JavaScript -->
+    <script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
+    <script>
+        const isLoggedIn = <?= $isLoggedIn ? 'true' : 'false' ?>;
+    </script>
+    <script src="../../bootstrap/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sell.js"></script>
 
 </body>
+
 </html>
