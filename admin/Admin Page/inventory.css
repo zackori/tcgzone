@@ -46,6 +46,9 @@ body {
     gap: 10px
 }
 
+.confirm-actions{
+    justify-content: center;
+}
 
 
 .panel-toolbar {
