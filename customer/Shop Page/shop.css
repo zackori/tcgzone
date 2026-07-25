@@ -258,6 +258,41 @@ body {
   transform: scale(1.25);
 }
 
+/* Make the shop pagination visually match the admin inventory pagination
+   without changing the existing sizes or layout. */
+.pagination-row {
+  gap: 0.5rem; /* tighten spacing like admin */
+}
+
+.pagination-arrow {
+  background: #111; /* dark background */
+  color: #bbb; /* muted foreground */
+  border: 0;
+  border-radius: 8px; /* rectangle with slight rounding */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  padding: 0.35rem; /* keep visual size similar to previous circular look */
+}
+
+.pagination-arrow:hover:not(:disabled) {
+  background: var(--accent-teal);
+  color: #001b1b;
+}
+
+.pagination-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-dots .page-dot {
+  background-color: #222;
+}
+
+.pagination-dots .page-dot.active {
+  background-color: var(--accent-teal);
+}
 /* ---------------- PRODUCT MODAL ---------------- */
 .product-modal .modal-dialog {
     max-width: 1100px; /* 👈 Default modal-lg is 800px. Try 1000px, 1100px, or 1200px! */
