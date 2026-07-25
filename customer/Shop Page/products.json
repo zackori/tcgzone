@@ -1620,7 +1620,7 @@
     {
         "id": "prod-44",
         "title": "Espeon GX Premium Collection",
-        "subtitle": "SM - Guardians Rising",
+        "subtitle": "SM   Guardians Rising",
         "description": "",
         "image": "/tcgzone/assets/images/landing page/image 21.png",
         "price": 75650.8,
@@ -1910,14 +1910,14 @@
     {
         "id": "prod-52",
         "title": "Loki",
-        "subtitle": "lokiloki",
-        "description": "0",
+        "subtitle": "Lord of Misrule",
+        "description": "",
         "image": "/tcgzone/assets/images/sell/sell_6a63c3ec8e6182.34021904_697204_in_1000x1000.jpg",
         "price": 6700,
         "marketPrice": 6500,
         "cardType": "Legendary Creature",
-        "rarity": "mr",
-        "condition": "mint",
+        "rarity": "MR",
+        "condition": "Mint",
         "stock": "1",
         "category": "Magic: The Gathering",
         "requirements": []

@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     $productId = (int) str_replace('prod-', '', $_GET['id']);
 
     $stmt = $conn->prepare(
-        "SELECT product_id, card_name, category, product_type, rarity, `condition`, selling_price, stock_quantity, is_archived, image
+        "SELECT product_id, card_name, set_name, category, product_type, rarity, `condition`, selling_price, stock_quantity, is_archived, image
          FROM products WHERE product_id = ? AND is_archived = 0"
     );
     $stmt->bind_param("i", $productId);
@@ -79,7 +79,7 @@ $total = (int)$countStmt->get_result()->fetch_assoc()['total'];
 $totalPages = max(1, (int)ceil($total / $pageSize));
 
 // ---- Page of results ----
-$listSql = "SELECT product_id, card_name, category, product_type, rarity, `condition`, selling_price, stock_quantity, is_archived, image
+$listSql = "SELECT product_id, card_name, set_name, category, product_type, rarity, `condition`, selling_price, stock_quantity, is_archived, image
             FROM products $whereSql
             ORDER BY product_id $sort
             LIMIT ? OFFSET ?";
@@ -110,6 +110,7 @@ function formatProduct($row) {
         'id'            => 'prod-' . $row['product_id'],
         'productId'     => (int)$row['product_id'],
         'cardName'      => $row['card_name'],
+        'setName'       => $row['set_name'],
         'category'      => $row['category'],
         'productType'   => $row['product_type'],
         'rarity'        => $row['rarity'],

@@ -21,6 +21,7 @@ require 'image_upload_helper.php'; // shared handleImageUpload() — see note be
 
 $productId    = (int) str_replace('prod-', '', $_POST['productId'] ?? '');
 $cardName     = trim($_POST['cardName'] ?? '');
+$setName      = trim($_POST['setName'] ?? '');
 $category     = trim($_POST['category'] ?? '');
 $productType  = trim($_POST['productType'] ?? '');
 $rarity       = trim($_POST['rarity'] ?? '');
@@ -29,9 +30,9 @@ $price        = (float)($_POST['price'] ?? 0);
 $stock        = (int)($_POST['stockQuantity'] ?? 0);
 $imageRemoved = ($_POST['imageRemoved'] ?? '0') === '1';
 
-if ($productId <= 0 || $cardName === '' || $category === '' || $productType === '' || $rarity === '' || $condition === '' || $price <= 0) {
+if ($productId <= 0 || $cardName === '' || $category === '' || $productType === '' || $price <= 0) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Please fill in card name, category, product type, rarity, condition, and a valid price.']);
+    echo json_encode(['success' => false, 'message' => 'Please fill in card name, category, product type, and a valid price.']);
     exit;
 }
 
@@ -69,10 +70,10 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
 $stmt = $conn->prepare(
     "UPDATE products
-     SET category = ?, card_name = ?, product_type = ?, rarity = ?, `condition` = ?, selling_price = ?, stock_quantity = ?, image = ?
+     SET category = ?, card_name = ?, set_name = ?, product_type = ?, rarity = ?, `condition` = ?, selling_price = ?, stock_quantity = ?, image = ?
      WHERE product_id = ?"
 );
-$stmt->bind_param("sssssdisi", $category, $cardName, $productType, $rarity, $condition, $price, $stock, $imagePath, $productId);
+$stmt->bind_param("ssssssdisi", $category, $cardName, $setName, $productType, $rarity, $condition, $price, $stock, $imagePath, $productId);
 $stmt->execute();
 
 echo json_encode(['success' => true]);

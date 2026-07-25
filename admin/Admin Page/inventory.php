@@ -83,6 +83,7 @@ session_start();
         <form id="cardForm">
           <input type="hidden" id="productId">
           <label class="form-label" for="cardName">Card Name:</label><input class="form-control" id="cardName" required>
+          <label class="form-label" for="cardSetName">Set Name:</label><input class="form-control" id="cardSetName" placeholder="e.g. Scarlet & Violet — 151">
           <label class="form-label" for="cardCategory">Category:</label><select class="form-select" id="cardCategory"
             required>
             <option value="Pokémon">Pokémon</option>
@@ -102,7 +103,7 @@ session_start();
             <option value="Instant">Instant</option>
             <option value="Creature">Creature</option>
           </select>
-          <label class="form-label" for="cardRarity">Rarity:</label><select class="form-select" id="cardRarity" required>
+          <label class="form-label" for="cardRarity">Rarity:</label><select class="form-select" id="cardRarity">
             <option value="">Select rarity</option>
             <option value="Common">Common</option>
             <option value="Uncommon">Uncommon</option>
@@ -124,7 +125,7 @@ session_start();
             <option value="S">S</option>
             <option value="U">U</option>
           </select>
-          <label class="form-label" for="cardCondition">Condition:</label><select class="form-select" id="cardCondition" required>
+          <label class="form-label" for="cardCondition">Condition:</label><select class="form-select" id="cardCondition">
             <option value="">Select condition</option>
             <option value="Mint">Mint</option>
             <option value="Near Mint">Near Mint</option>

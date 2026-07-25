@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
       : { description: "", requirements: [] };
     document.getElementById("productId").value = product ? product.id : "";
     document.getElementById("cardName").value = product ? product.cardName : "";
+    document.getElementById("cardSetName").value = product ? product.setName || "" : "";
     document.getElementById("cardCategory").value = product
       ? product.category
       : "Pokémon";
@@ -312,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isEdit = !!id,
       fd = new FormData(),
       name = document.getElementById("cardName").value.trim(),
+      setName = document.getElementById("cardSetName").value.trim(),
       category = document.getElementById("cardCategory").value,
       productType = document.getElementById("cardProductType").value,
       rarity = document.getElementById("cardRarity").value,
@@ -320,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
       stock = document.getElementById("cardStock").value;
     fd.append("productId", id);
     fd.append("cardName", name);
+    fd.append("setName", setName);
     fd.append("category", category);
     fd.append("productType", productType);
     fd.append("rarity", rarity);
@@ -353,6 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
             requirements: requirementsFromForm(),
             product: {
               title: name,
+              subtitle: setName,
               category: category,
               productType: productType,
               rarity: rarity,

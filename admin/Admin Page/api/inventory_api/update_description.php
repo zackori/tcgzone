@@ -46,6 +46,9 @@ try {
             && ($expectedTitle === '' || ($product['title'] ?? '') === $expectedTitle)) {
             $product['description'] = $description;
             $product['requirements'] = $requirements;
+            if (array_key_exists('subtitle', $productMeta)) {
+                $product['subtitle'] = trim($productMeta['subtitle']);
+            }
             $product['cardType'] = trim($productMeta['productType'] ?? $product['cardType'] ?? 'Cards');
             $product['rarity'] = trim($productMeta['rarity'] ?? $product['rarity'] ?? '');
             $product['condition'] = trim($productMeta['condition'] ?? $product['condition'] ?? '');
