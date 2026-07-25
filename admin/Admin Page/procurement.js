@@ -2,6 +2,8 @@ let procurementOrders = [];
 let lowStockProducts = [];
 let activeProcurementOrder = null;
 let purchasedCardCount = 0;
+let procurementPage = 1;
+const PROCUREMENT_PER_PAGE = 10;
 
 const currency = (value) => `₱${Number(value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const escapeHtml = (value = "") => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -9,8 +11,14 @@ const statusClass = (status) => ({ "Pending": "pending", "Processing": "processi
 
 function renderOrders(orders) {
     const table = document.getElementById("procurementTable");
+    const totalPages = Math.max(1, Math.ceil(orders.length / PROCUREMENT_PER_PAGE));
+    procurementPage = Math.min(procurementPage, totalPages);
+    const pageOrders = orders.slice((procurementPage - 1) * PROCUREMENT_PER_PAGE, procurementPage * PROCUREMENT_PER_PAGE);
+    document.getElementById("procurementPage").textContent = procurementPage;
+    document.getElementById("previousProcurementPage").disabled = procurementPage === 1;
+    document.getElementById("nextProcurementPage").disabled = procurementPage === totalPages;
     if (!orders.length) { table.innerHTML = '<tr><td colspan="5" class="text-center">No procurement receipts found.</td></tr>'; return; }
-    table.innerHTML = orders.map((order) => `
+    table.innerHTML = pageOrders.map((order) => `
         <tr class="order-row-clickable" data-order-id="${Number(order.procurement_order_id)}">
             <td>${Number(order.procurement_order_id)}</td><td>${escapeHtml(order.supplier_name)}</td><td>${currency(order.total_amount)}</td>
             <td><span class="modal-status-badge ${statusClass(order.order_status)}">${escapeHtml(order.order_status)}</span></td><td>${escapeHtml(order.order_date)}</td>
@@ -18,6 +26,11 @@ function renderOrders(orders) {
 }
 
 function filterOrders() {
+    procurementPage = 1;
+    renderFilteredOrders();
+}
+
+function renderFilteredOrders() {
     const keyword = document.getElementById("searchProcurement").value.trim().toLowerCase();
     const status = document.getElementById("procurementStatusFilter").value;
     renderOrders(procurementOrders.filter((order) =>
@@ -242,6 +255,8 @@ document.getElementById("procurementTable").addEventListener("click", (event) =>
 document.getElementById("closeProcurementDetailsModal").addEventListener("click", () => document.getElementById("procurementDetailsModal").classList.add("d-none"));
 document.getElementById("procurementDetailsModal").addEventListener("click", (event) => { if (event.target.id === "procurementDetailsModal") event.currentTarget.classList.add("d-none"); });
 document.getElementById("updateProcurementStatus").addEventListener("click", updateProcurementStatus);
+document.getElementById("previousProcurementPage").addEventListener("click", () => { if (procurementPage > 1) { procurementPage -= 1; renderFilteredOrders(); } });
+document.getElementById("nextProcurementPage").addEventListener("click", () => { procurementPage += 1; renderFilteredOrders(); });
 
 loadProcurement();
 loadLowStock(new URLSearchParams(window.location.search).get("low_stock") === "1");

@@ -67,6 +67,11 @@ session_start();
                     </thead>
                     <tbody id="sellRequestsTable"></tbody>
                 </table>
+                <div class="pagination" aria-label="Sell request pagination">
+                    <button type="button" id="previousSellRequestPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="sellRequestPage" class="active" aria-current="page">1</button>
+                    <button type="button" id="nextSellRequestPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
             </div>
 
             <div class="admin-modal-overlay d-none" id="sellRequestDetailsModal" role="dialog" aria-modal="true" aria-labelledby="sellRequestDetailsTitle">
@@ -126,6 +131,6 @@ session_start();
             </div>
         </main>
     </div>
-    <script src="sell-request.js?v=2"></script>
+    <script src="sell-request.js?v=<?= filemtime(__DIR__ . '/sell-request.js') ?>"></script>
 </body>
 </html>

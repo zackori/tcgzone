@@ -75,6 +75,11 @@ session_start();
                     </thead>
                     <tbody id="procurementTable"></tbody>
                 </table>
+                <div class="pagination" aria-label="Procurement pagination">
+                    <button type="button" id="previousProcurementPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="procurementPage" class="active" aria-current="page">1</button>
+                    <button type="button" id="nextProcurementPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
             </section>
 
             <div class="admin-modal-overlay d-none" id="purchasedCardsModal" role="dialog" aria-modal="true"
@@ -194,7 +199,7 @@ session_start();
             </div>
         </main>
     </div>
-    <script src="procurement.js?v=7"></script>
+    <script src="procurement.js?v=<?= filemtime(__DIR__ . '/procurement.js') ?>"></script>
 </body>
 
 </html>

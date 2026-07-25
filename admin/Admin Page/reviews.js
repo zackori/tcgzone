@@ -10,6 +10,8 @@ let currentSearch = "";
 let searchDebounce;
 let lastReviews = [];
 let reviewToDelete = null;
+let reviewPage = 1;
+const REVIEWS_PER_PAGE = 10;
 
 // =========================================
 // Load Reviews + Stats
@@ -97,6 +99,12 @@ function renderReviewsTable(reviews) {
 
     const tbody = document.getElementById("reviewsTable");
     tbody.innerHTML = "";
+    const totalPages = Math.max(1, Math.ceil(reviews.length / REVIEWS_PER_PAGE));
+    reviewPage = Math.min(reviewPage, totalPages);
+    const pageReviews = reviews.slice((reviewPage - 1) * REVIEWS_PER_PAGE, reviewPage * REVIEWS_PER_PAGE);
+    document.getElementById("reviewPage").textContent = reviewPage;
+    document.getElementById("previousReviewPage").disabled = reviewPage === 1;
+    document.getElementById("nextReviewPage").disabled = reviewPage === totalPages;
 
     if (reviews.length === 0) {
         tbody.innerHTML =
@@ -104,7 +112,7 @@ function renderReviewsTable(reviews) {
         return;
     }
 
-    reviews.forEach(review => {
+    pageReviews.forEach(review => {
 
         const row = document.createElement("tr");
         row.style.cursor = "pointer";
@@ -121,7 +129,9 @@ function renderReviewsTable(reviews) {
             <td>${date}</td>
             <td>
                 <button class="delete-btn" onclick="event.stopPropagation(); openDeleteReviewModal(${review.id})">
+                    <div class="btn-delete">
                     <i class="fa-solid fa-trash"></i>
+                    </div>
                 </button>
             </td>
         `;
@@ -282,6 +292,7 @@ function escapeHtml(text) {
 
 document.getElementById("ratingFilter").addEventListener("change", (e) => {
     currentRatingFilter = e.target.value;
+    reviewPage = 1;
     loadReviews();
 });
 
@@ -289,8 +300,17 @@ document.getElementById("searchReview").addEventListener("input", (e) => {
     clearTimeout(searchDebounce);
     searchDebounce = setTimeout(() => {
         currentSearch = e.target.value;
+        reviewPage = 1;
         loadReviews();
     }, 300);
+});
+
+document.getElementById("previousReviewPage").addEventListener("click", () => {
+    if (reviewPage > 1) { reviewPage -= 1; renderReviewsTable(lastReviews); }
+});
+document.getElementById("nextReviewPage").addEventListener("click", () => {
+    reviewPage += 1;
+    renderReviewsTable(lastReviews);
 });
 
 // =========================================

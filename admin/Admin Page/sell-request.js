@@ -1,5 +1,7 @@
 let allSellRequests = [];
 let activeSellRequest = null;
+let sellRequestPage = 1;
+const SELL_REQUESTS_PER_PAGE = 10;
 
 function escapeHtml(value = "") {
     return String(value)
@@ -24,12 +26,18 @@ function getStatusClass(status) {
 function displaySellRequests(requests) {
     const tbody = document.getElementById("sellRequestsTable");
 
+    const totalPages = Math.max(1, Math.ceil(requests.length / SELL_REQUESTS_PER_PAGE));
+    sellRequestPage = Math.min(sellRequestPage, totalPages);
+    const start = (sellRequestPage - 1) * SELL_REQUESTS_PER_PAGE;
+    const pageRequests = requests.slice(start, start + SELL_REQUESTS_PER_PAGE);
+    updateSellRequestPagination(totalPages);
+
     if (requests.length === 0) {
         tbody.innerHTML = '<tr><td colspan="7" class="text-center">No sell requests found.</td></tr>';
         return;
     }
 
-    tbody.innerHTML = requests.map((request) => `
+    tbody.innerHTML = pageRequests.map((request) => `
         <tr class="order-row-clickable" data-request-id="${Number(request.request_id)}">
             <td>${Number(request.request_id)}</td>
             <td>${escapeHtml(request.username || "Unknown user")}</td>
@@ -42,6 +50,12 @@ function displaySellRequests(requests) {
     `).join("");
 }
 
+function updateSellRequestPagination(totalPages) {
+    document.getElementById("sellRequestPage").textContent = sellRequestPage;
+    document.getElementById("previousSellRequestPage").disabled = sellRequestPage === 1;
+    document.getElementById("nextSellRequestPage").disabled = sellRequestPage === totalPages;
+}
+
 function filterSellRequests() {
     const keyword = document.getElementById("searchSellRequest").value.trim().toLowerCase();
     const status = document.getElementById("sellRequestStatusFilter").value;
@@ -52,7 +66,12 @@ function filterSellRequests() {
         return matchesSearch && (status === "all" || request.status === status);
     });
 
-    displaySellRequests(filtered);
+    sellRequestPage = 1;
+    renderFilteredSellRequests(filtered);
+}
+
+function renderFilteredSellRequests(requests) {
+    displaySellRequests(requests);
 }
 
 function setStatusFilter(status) {
@@ -232,5 +251,21 @@ document.getElementById("approveSellRequestModal").addEventListener("click", (ev
     if (event.target.id === "approveSellRequestModal") closeApproveSellRequestModal();
 });
 document.getElementById("approveSellRequestForm").addEventListener("submit", submitApprovedSellRequest);
+document.getElementById("previousSellRequestPage").addEventListener("click", () => {
+    if (sellRequestPage > 1) { sellRequestPage -= 1; renderCurrentSellRequestPage(); }
+});
+document.getElementById("nextSellRequestPage").addEventListener("click", () => {
+    sellRequestPage += 1;
+    renderCurrentSellRequestPage();
+});
+
+function renderCurrentSellRequestPage() {
+    const keyword = document.getElementById("searchSellRequest").value.trim().toLowerCase();
+    const status = document.getElementById("sellRequestStatusFilter").value;
+    renderFilteredSellRequests(allSellRequests.filter((request) => {
+        const searchable = [request.request_id, request.username, request.card_name, request.set_name, request.category, request.product_type];
+        return searchable.some((value) => String(value || "").toLowerCase().includes(keyword)) && (status === "all" || request.status === status);
+    }));
+}
 
 loadSellRequests();

@@ -256,15 +256,15 @@ session_start();
 
                 </table>
 
-                <div class="pagination">
+                <div class="pagination" aria-label="Order pagination">
 
-                    <button>
+                    <button type="button" id="previousOrderPage" aria-label="Previous page">
                         <i class="fa-solid fa-angle-left"></i>
                     </button>
 
-                    <button class="active">1</button>
+                    <button type="button" id="orderPage" class="active" aria-current="page">1</button>
 
-                    <button>
+                    <button type="button" id="nextOrderPage" aria-label="Next page">
                         <i class="fa-solid fa-angle-right"></i>
                     </button>
 
@@ -277,7 +277,7 @@ session_start();
 
     </div>
 
-    <script src="orders.js?v=2"></script>
+    <script src="orders.js?v=<?= filemtime(__DIR__ . '/orders.js') ?>"></script>
 
 </body>
 

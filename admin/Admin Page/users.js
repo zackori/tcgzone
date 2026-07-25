@@ -1,6 +1,8 @@
 let allUsers = [];
 let showingPendingOrderUsers = false;
 let userToDelete = null;
+let userPage = 1;
+const USERS_PER_PAGE = 10;
 
 function escapeHtml(value = "") {
     return String(value)
@@ -13,6 +15,12 @@ function escapeHtml(value = "") {
 
 function displayUsers(users) {
     const tbody = document.getElementById("usersTable");
+    const totalPages = Math.max(1, Math.ceil(users.length / USERS_PER_PAGE));
+    userPage = Math.min(userPage, totalPages);
+    const pageUsers = users.slice((userPage - 1) * USERS_PER_PAGE, userPage * USERS_PER_PAGE);
+    document.getElementById("userPage").textContent = userPage;
+    document.getElementById("previousUserPage").disabled = userPage === 1;
+    document.getElementById("nextUserPage").disabled = userPage === totalPages;
 
     if (users.length === 0) {
         tbody.innerHTML = `
@@ -23,7 +31,7 @@ function displayUsers(users) {
         return;
     }
 
-    tbody.innerHTML = users.map((user) => `
+    tbody.innerHTML = pageUsers.map((user) => `
         <tr>
             <td>${escapeHtml(user.username)}</td>
             <td>${escapeHtml(user.name)}</td>
@@ -93,6 +101,11 @@ async function deleteUser() {
 }
 
 function filterUsers() {
+    userPage = 1;
+    renderFilteredUsers();
+}
+
+function renderFilteredUsers() {
     const keyword = document.getElementById("searchUser").value.trim().toLowerCase();
 
     const filteredUsers = allUsers.filter((user) => {
@@ -171,5 +184,7 @@ document.getElementById("confirmDeleteUser").addEventListener("click", deleteUse
 document.getElementById("deleteUserModal").addEventListener("click", (event) => {
     if (event.target.id === "deleteUserModal") closeDeleteUserModal();
 });
+document.getElementById("previousUserPage").addEventListener("click", () => { if (userPage > 1) { userPage -= 1; renderFilteredUsers(); } });
+document.getElementById("nextUserPage").addEventListener("click", () => { userPage += 1; renderFilteredUsers(); });
 setupOverviewCards();
 loadUsers();

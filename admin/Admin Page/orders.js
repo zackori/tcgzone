@@ -49,6 +49,8 @@ let allOrders = [];
 let allCancelRequests = [];
 let activeCancelRequest = null;
 let activeOrderDetailsId = null;
+let orderPage = 1;
+const ORDERS_PER_PAGE = 10;
 
 const formatCurrency = (amount) => `₱${Number(amount).toLocaleString(undefined, {
     minimumFractionDigits: 2,
@@ -265,6 +267,13 @@ function displayOrders(orders) {
     const tbody = document.getElementById("ordersTable");
     tbody.innerHTML = "";
 
+    const totalPages = Math.max(1, Math.ceil(orders.length / ORDERS_PER_PAGE));
+    orderPage = Math.min(orderPage, totalPages);
+    const pageOrders = orders.slice((orderPage - 1) * ORDERS_PER_PAGE, orderPage * ORDERS_PER_PAGE);
+    document.getElementById("orderPage").textContent = orderPage;
+    document.getElementById("previousOrderPage").disabled = orderPage === 1;
+    document.getElementById("nextOrderPage").disabled = orderPage === totalPages;
+
     if (orders.length === 0) {
         tbody.innerHTML = `
             <tr>
@@ -276,7 +285,7 @@ function displayOrders(orders) {
         return;
     }
 
-    orders.forEach(order => {
+    pageOrders.forEach(order => {
         const badgeClass = getStatusClass(order.status);
 
         tbody.innerHTML += `
@@ -297,10 +306,15 @@ document.getElementById("searchOrder").addEventListener("keyup", filterOrders);
 document.getElementById("statusFilter").addEventListener("change", filterOrders);
 
 function filterOrders() {
+    orderPage = 1;
+    displayOrders(getFilteredOrders());
+}
+
+function getFilteredOrders() {
     const keyword = document.getElementById("searchOrder").value.toLowerCase();
     const status = document.getElementById("statusFilter").value;
 
-    const filtered = allOrders.filter(order => {
+    return allOrders.filter(order => {
         const matchesSearch =
             (order.customer_name && order.customer_name.toLowerCase().includes(keyword)) ||
             (order.address1 && order.address1.toLowerCase().includes(keyword)) ||
@@ -320,7 +334,6 @@ function filterOrders() {
         return matchesSearch && matchesStatus;
     });
 
-    displayOrders(filtered);
 }
 
 function applyUrlStatusFilter() {
@@ -402,6 +415,14 @@ document.getElementById("ordersTable").addEventListener("click", (event) => {
     if (!Number.isNaN(orderId)) {
         openOrderDetailsModal(orderId);
     }
+});
+
+document.getElementById("previousOrderPage").addEventListener("click", () => {
+    if (orderPage > 1) { orderPage -= 1; displayOrders(getFilteredOrders()); }
+});
+document.getElementById("nextOrderPage").addEventListener("click", () => {
+    orderPage += 1;
+    displayOrders(getFilteredOrders());
 });
 
 loadOrders();

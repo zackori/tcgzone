@@ -93,6 +93,11 @@ session_start();
                     </tbody>
 
                 </table>
+                <div class="pagination" aria-label="User pagination">
+                    <button type="button" id="previousUserPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="userPage" class="active" aria-current="page">1</button>
+                    <button type="button" id="nextUserPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
 
             </div>
 
@@ -117,8 +122,8 @@ session_start();
         </main>
 
     </div>
-    <script src="admin-shared.js"></script>
-    <script src="users.js"></script>
+    <script src="admin-shared.js?v=<?= filemtime(__DIR__ . '/admin-shared.js') ?>"></script>
+    <script src="users.js?v=<?= filemtime(__DIR__ . '/users.js') ?>"></script>
 </body>
 
 </html>

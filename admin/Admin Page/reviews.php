@@ -113,15 +113,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     </table>
 
-    <div class="pagination">
+    <div class="pagination" aria-label="Review pagination">
 
-        <button>
+        <button type="button" id="previousReviewPage" aria-label="Previous page">
             <i class="fa-solid fa-angle-left"></i>
         </button>
 
-        <button class="active">1</button>
+        <button type="button" id="reviewPage" class="active" aria-current="page">1</button>
 
-        <button>
+        <button type="button" id="nextReviewPage" aria-label="Next page">
             <i class="fa-solid fa-angle-right"></i>
         </button>
 
