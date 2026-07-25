@@ -21,7 +21,7 @@ require 'image_upload_helper.php'; // shared handleImageUpload() — see note be
 
 $productId    = (int) str_replace('prod-', '', $_POST['productId'] ?? '');
 $cardName     = trim($_POST['cardName'] ?? '');
-$setName      = trim($_POST['setName'] ?? '');
+ $setName      = trim($_POST['setName'] ?? '');
 $category     = trim($_POST['category'] ?? '');
 $productType  = trim($_POST['productType'] ?? '');
 $rarity       = trim($_POST['rarity'] ?? '');

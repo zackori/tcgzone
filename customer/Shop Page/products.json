@@ -1945,7 +1945,7 @@
     {
         "id": "prod-53",
         "title": "Mjolnir",
-        "subtitle": "",
+        "subtitle": "Hammer of Thor",
         "description": "asdasdasd",
         "image": "",
         "price": 780,
@@ -1953,6 +1953,41 @@
         "cardType": "Legendary Artifact",
         "rarity": "M",
         "condition": "Mint",
+        "stock": "1",
+        "category": "Magic: The Gathering",
+        "requirements": [
+            {
+                "label": "Legendar Artifact – Equipment",
+                "value": "When Mjolnir enters, it deals 444 damage to up to one target creature <br>\nDouble all damage equipped creature would deal"
+            }
+        ]
+    },
+    {
+        "id": "prod-55",
+        "title": "Mjolnir",
+        "subtitle": "Hammer of Thor",
+        "description": "",
+        "image": "",
+        "price": 123,
+        "marketPrice": 0,
+        "cardType": "Legendary Artifact",
+        "rarity": "M",
+        "condition": "Damaged",
+        "stock": "1",
+        "category": "Magic: The Gathering",
+        "requirements": []
+    },
+    {
+        "id": "prod-56",
+        "title": "Loki",
+        "subtitle": "Lord of Misrule",
+        "description": "0",
+        "image": "/tcgzone/assets/images/sell/sell_6a64abc91a1ee0.48840190_697204_in_1000x1000.jpg",
+        "price": 6700,
+        "marketPrice": 6500,
+        "cardType": "Legendary Creature",
+        "rarity": "MR",
+        "condition": "Near Mint",
         "stock": "1",
         "category": "Magic: The Gathering",
         "requirements": []

@@ -22,6 +22,8 @@ $uploadedFiles = [];
 mysqli_begin_transaction($conn);
 try {
     $insertStmt = mysqli_prepare($conn, "INSERT INTO products (category, card_name, product_type, set_name, rarity, `condition`, selling_price, product_cost, market_price, stock_quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $lookupStmt = mysqli_prepare($conn, "SELECT product_id, image, stock_quantity FROM products WHERE category = ? AND card_name = ? AND product_type = ? AND set_name = ? AND rarity = ? AND `condition` = ? LIMIT 1");
+    $restockStmt = mysqli_prepare($conn, "UPDATE products SET stock_quantity = stock_quantity + ?, selling_price = ?, product_cost = ?, market_price = ?, image = ? WHERE product_id = ?");
     $createdIds = [];
     $receiptItems = [];
     $totalAmount = 0.0;
@@ -42,31 +44,60 @@ try {
             throw new RuntimeException("Card " . ($index + 1) . " has incomplete or invalid information.");
         }
 
+        // Check whether this exact card already exists in the catalog.
+        mysqli_stmt_bind_param($lookupStmt, "ssssss", $category, $cardName, $productType, $setName, $rarity, $condition);
+        mysqli_stmt_execute($lookupStmt);
+        $lookupResult = mysqli_stmt_get_result($lookupStmt);
+        $existingProduct = mysqli_fetch_assoc($lookupResult);
+
         $fileKey = "image_" . $index;
-        if (!isset($_FILES[$fileKey]) || $_FILES[$fileKey]["error"] !== UPLOAD_ERR_OK) {
+        $hasUploadedImage = isset($_FILES[$fileKey]) && $_FILES[$fileKey]["error"] === UPLOAD_ERR_OK;
+
+        if (!$existingProduct && !$hasUploadedImage) {
             throw new RuntimeException("Add an image for card " . ($index + 1) . ".");
         }
-        $image = $_FILES[$fileKey];
-        $mimeType = mime_content_type($image["tmp_name"]);
-        $extensions = ["image/jpeg" => "jpg", "image/png" => "png", "image/gif" => "gif", "image/webp" => "webp"];
-        if (!isset($extensions[$mimeType])) throw new RuntimeException("Card " . ($index + 1) . " must use a JPG, PNG, GIF, or WEBP image.");
-        if ($image["size"] > 5 * 1024 * 1024) throw new RuntimeException("Card " . ($index + 1) . " image must be 5 MB or smaller.");
 
-        $filename = "purchased_" . uniqid("", true) . "." . $extensions[$mimeType];
-        $diskPath = $uploadDirectory . "/" . $filename;
-        if (!move_uploaded_file($image["tmp_name"], $diskPath)) throw new RuntimeException("Could not save the image for card " . ($index + 1) . ".");
-        $uploadedFiles[] = $diskPath;
-        $imagePath = "/tcgzone/assets/images/products/" . $filename;
+        $imagePath = $existingProduct["image"] ?? null;
+        if ($hasUploadedImage) {
+            $image = $_FILES[$fileKey];
+            $mimeType = mime_content_type($image["tmp_name"]);
+            $extensions = ["image/jpeg" => "jpg", "image/png" => "png", "image/gif" => "gif", "image/webp" => "webp"];
+            if (!isset($extensions[$mimeType])) throw new RuntimeException("Card " . ($index + 1) . " must use a JPG, PNG, GIF, or WEBP image.");
+            if ($image["size"] > 5 * 1024 * 1024) throw new RuntimeException("Card " . ($index + 1) . " image must be 5 MB or smaller.");
 
-        mysqli_stmt_bind_param($insertStmt, "ssssssdddis", $category, $cardName, $productType, $setName, $rarity, $condition, $sellingPrice, $productCost, $marketPrice, $quantity, $imagePath);
-        mysqli_stmt_execute($insertStmt);
-        $productId = mysqli_insert_id($conn);
+            $filename = "purchased_" . uniqid("", true) . "." . $extensions[$mimeType];
+            $diskPath = $uploadDirectory . "/" . $filename;
+            if (!move_uploaded_file($image["tmp_name"], $diskPath)) throw new RuntimeException("Could not save the image for card " . ($index + 1) . ".");
+            $uploadedFiles[] = $diskPath;
+            $imagePath = "/tcgzone/assets/images/products/" . $filename;
+        }
+
+        if ($existingProduct) {
+            // Card already exists: add to its current stock instead of creating a duplicate row.
+            $productId = (int) $existingProduct["product_id"];
+            $oldImagePath = $existingProduct["image"];
+            mysqli_stmt_bind_param($restockStmt, "idddsi", $quantity, $sellingPrice, $productCost, $marketPrice, $imagePath, $productId);
+            mysqli_stmt_execute($restockStmt);
+
+            // If we uploaded a replacement image, remove the old one from disk.
+            if ($hasUploadedImage && $oldImagePath) {
+                $oldDiskPath = dirname(__DIR__, 3) . str_replace("/tcgzone", "", $oldImagePath);
+                if (is_file($oldDiskPath)) unlink($oldDiskPath);
+            }
+        } else {
+            mysqli_stmt_bind_param($insertStmt, "ssssssdddis", $category, $cardName, $productType, $setName, $rarity, $condition, $sellingPrice, $productCost, $marketPrice, $quantity, $imagePath);
+            mysqli_stmt_execute($insertStmt);
+            $productId = mysqli_insert_id($conn);
+        }
+
         $createdIds[] = $productId;
         $subtotal = $productCost * $quantity;
         $receiptItems[] = [$productId, $quantity, $productCost, $subtotal];
         $totalAmount += $subtotal;
     }
     mysqli_stmt_close($insertStmt);
+    mysqli_stmt_close($lookupStmt);
+    mysqli_stmt_close($restockStmt);
 
     // Direct purchases are immediately owned by TCGZONE and already in stock,
     // so their receipt starts as Delivered and won't trigger resupply twice.

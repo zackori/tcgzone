@@ -18,7 +18,7 @@ session_start();
 
 <title>Admin | <?= htmlspecialchars($pageTitle) ?></title>
 
-<link rel="stylesheet" href="admin-shared.css">
+<link rel="stylesheet" href="admin-shared.css?v=<?= filemtime(__DIR__ . '/admin-shared.css') ?>">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -134,12 +134,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </div>
 
-<div class="review-modal" id="reviewModal" aria-hidden="true">
-    <div class="review-modal-backdrop" data-close-modal></div>
-    <div class="review-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
-        <button class="review-modal-close" type="button" aria-label="Close review" data-close-modal>&times;</button>
-        <div class="review-modal-content">
-            <h3 id="reviewModalTitle" class="review-modal-title"></h3>
+<div class="admin-modal-overlay d-none" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="admin-modal review-detail-modal">
+        <div class="admin-modal-header">
+            <h3 id="reviewModalTitle"></h3>
+            <button type="button" class="admin-modal-close" data-close-modal aria-label="Close">&times;</button>
+        </div>
+        <div class="admin-modal-body">
             <div id="reviewModalStars" class="review-modal-stars"></div>
             <p id="reviewModalText" class="review-modal-text"></p>
             <p id="reviewModalDate" class="review-modal-date"></p>
@@ -147,7 +148,24 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     </div>
 </div>
 
-<script src="reviews.js?v=2"></script>
+<div class="admin-modal-overlay d-none" id="deleteReviewModal" role="dialog" aria-modal="true" aria-labelledby="deleteReviewTitle">
+    <div class="admin-modal">
+        <div class="admin-modal-header">
+            <h3 id="deleteReviewTitle">Delete Review</h3>
+            <button type="button" class="admin-modal-close" id="closeDeleteReviewModal" aria-label="Close">&times;</button>
+        </div>
+        <div class="admin-modal-body">
+            <p id="deleteReviewMessage">Delete this review? This can't be undone.</p>
+            <p class="modal-msg d-none" id="deleteReviewModalMessage"></p>
+            <div class="modal-actions">
+                <button type="button" class="modal-btn reject" id="cancelDeleteReview">No</button>
+                <button type="button" class="modal-btn accept" id="confirmDeleteReview">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="reviews.js?v=<?= filemtime(__DIR__ . '/reviews.js') ?>"></script>
 
 </body>
 </html>

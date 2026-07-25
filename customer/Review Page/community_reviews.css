@@ -276,9 +276,15 @@
 }
 
 .community-reviews-page .review-modal-stars {
-    color: #FFD700;
-    font-size: 1rem;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.community-reviews-page .review-modal-stars .review-rating-icon {
+    width: 22px;
+    height: 22px;
 }
 
 .community-reviews-page .review-modal-text {

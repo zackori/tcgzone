@@ -26,7 +26,7 @@ if (!$isLoggedIn) {
 
 <link rel="stylesheet" href="/tcgzone/bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
-<link rel="stylesheet" href="review.css">
+<link rel="stylesheet" href="review.css?v=<?= filemtime(__DIR__ . '/review.css') ?>">
 <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -229,7 +229,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <script>
     const isLoggedIn = <?= $isLoggedIn ? 'true' : 'false' ?>;
 </script>
-<script src="review.js"></script>
+<script src="review.js?v=<?= filemtime(__DIR__ . '/review.js') ?>"></script>
 
 </body>
 </html>

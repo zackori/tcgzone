@@ -243,15 +243,20 @@ function renderReviewRatings(int $rating): string {
         const reviewModalText = document.getElementById('reviewModalText');
         const reviewModalDate = document.getElementById('reviewModalDate');
 
-        function renderStars(rating) {
-            const safeRating = Math.max(1, Math.min(5, Number(rating) || 0));
-            return '★'.repeat(safeRating) + '☆'.repeat(5 - safeRating);
+        function renderPokeballs(rating) {
+            const safeRating = Math.max(0, Math.min(5, Number(rating) || 0));
+            let icons = '';
+            for (let i = 0; i < 5; i++) {
+                const icon = i < safeRating ? 'poke-open.svg' : 'poke-close.svg';
+                icons += `<img src="/tcgzone/assets/logos/review/${icon}" alt="Pokeball" class="review-rating-icon">`;
+            }
+            return icons;
         }
 
         function openReviewModal(card) {
             if (!reviewModal) return;
             reviewModalTitle.textContent = card.dataset.name || 'Anonymous';
-            reviewModalStars.textContent = renderStars(card.dataset.rating || 0);
+            reviewModalStars.innerHTML = renderPokeballs(card.dataset.rating || 0);
             reviewModalText.textContent = card.dataset.text || '';
             reviewModalDate.textContent = card.dataset.date || '';
             reviewModal.classList.add('open');

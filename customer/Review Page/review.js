@@ -10,6 +10,29 @@ const reviewsContainer = document.getElementById("reviewsContainer");
 
 let selectedRating = 0;
 
+function showNotification(message) {
+    let notification = document.querySelector(".notification");
+
+    if (!notification) {
+        notification = document.createElement("div");
+        notification.className = "notification";
+        notification.setAttribute("role", "status");
+        notification.setAttribute("aria-live", "polite");
+        document.body.appendChild(notification);
+    }
+
+    notification.innerHTML = '<span class="notification-icon" aria-hidden="true">&#10003;</span>';
+    const messageElement = document.createElement("span");
+    messageElement.textContent = message;
+    notification.appendChild(messageElement);
+
+    requestAnimationFrame(() => notification.classList.add("show"));
+    clearTimeout(notification.hideTimer);
+    notification.hideTimer = setTimeout(() => {
+        notification.classList.remove("show");
+    }, 2800);
+}
+
 
 // star selection
 // stars.forEach((star) => {
@@ -133,13 +156,13 @@ form.addEventListener("submit", async function (e) {
 
     // Reset form
     form.reset();
+    stars.forEach((star) => {
+        star.checked = false;
+    });
     selectedRating = 0;
     ratingText.textContent = "No rating selected";
 
-    // Show success message
-    alert("Review added successfully!");
-
-    // Redirect to homepage
-    window.location.href = "/tcgzone/customer/Landing Page/index.php";
+    // Keep the user on this page so the success toast remains visible.
+    showNotification("Review added successfully!");
 
 });

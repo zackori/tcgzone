@@ -9,6 +9,7 @@ let currentRatingFilter = "all";
 let currentSearch = "";
 let searchDebounce;
 let lastReviews = [];
+let reviewToDelete = null;
 
 // =========================================
 // Load Reviews + Stats
@@ -47,8 +48,9 @@ function renderStats(stats) {
     document.getElementById("averageRating").innerHTML =
         Number(stats.average).toFixed(1);
 
-    // The API already returns the average on the same 1-5 scale as ratings.
-    const rawAverage = stats.total > 0 ? Number(stats.average) : 0;
+    // Approximate star/pokeball fill from the raw 1-5 average
+    // (stats.average is on a 0-10 scale, so convert back to 1-5 to pick fill count)
+    const rawAverage = stats.total > 0 ? (stats.average / 10) * 5 : 0;
     document.getElementById("scorePokeballs").innerHTML =
         renderPokeballs(Math.round(rawAverage));
 
@@ -118,7 +120,7 @@ function renderReviewsTable(reviews) {
             <td>${escapeHtml(truncateText(review.review_text, 60))}</td>
             <td>${date}</td>
             <td>
-                <button class="delete-btn" onclick="event.stopPropagation(); deleteReview(${review.id})">
+                <button class="delete-btn" onclick="event.stopPropagation(); openDeleteReviewModal(${review.id})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </td>
@@ -156,9 +158,7 @@ function openReviewModal(id) {
     reviewModalText.textContent = review.review_text;
     reviewModalDate.textContent = date;
 
-    reviewModal.classList.add("open");
-    reviewModal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
+    reviewModal.classList.remove("d-none");
 
 }
 
@@ -166,9 +166,7 @@ function closeReviewModal() {
 
     if (!reviewModal) return;
 
-    reviewModal.classList.remove("open");
-    reviewModal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
+    reviewModal.classList.add("d-none");
 
 }
 
@@ -176,39 +174,75 @@ document.querySelectorAll("[data-close-modal]").forEach(el => {
     el.addEventListener("click", closeReviewModal);
 });
 
+reviewModal.addEventListener("click", (event) => {
+    if (event.target.id === "reviewModal") closeReviewModal();
+});
+
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeReviewModal();
+    if (e.key === "Escape") {
+        closeReviewModal();
+        closeDeleteReviewModal();
+    }
 });
 
 // =========================================
 // Delete Review
 // =========================================
 
-async function deleteReview(id) {
+function openDeleteReviewModal(id) {
+    reviewToDelete = id;
+    document.getElementById("deleteReviewModalMessage").classList.add("d-none");
+    document.getElementById("deleteReviewModal").classList.remove("d-none");
+}
 
-    if (!confirm("Delete this review? This can't be undone.")) return;
+function closeDeleteReviewModal() {
+    reviewToDelete = null;
+    document.getElementById("deleteReviewModal").classList.add("d-none");
+}
+
+async function deleteReview() {
+
+    if (!reviewToDelete) return;
+
+    const confirmButton = document.getElementById("confirmDeleteReview");
+    const message = document.getElementById("deleteReviewModalMessage");
+    confirmButton.disabled = true;
+    message.className = "modal-msg";
+    message.textContent = "Deleting review...";
 
     try {
 
         const response = await fetch("api/reviews.php", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id })
+            body: JSON.stringify({ id: reviewToDelete })
         });
 
         const data = await response.json();
 
         if (data.success) {
+            closeDeleteReviewModal();
             loadReviews();
         } else {
-            alert(data.error || "Failed to delete review.");
+            throw new Error(data.error || "Failed to delete review.");
         }
 
     } catch (error) {
         console.error("Delete Error:", error);
+        message.className = "modal-msg error";
+        message.textContent = error.message || "Failed to delete review.";
+    } finally {
+        confirmButton.disabled = false;
     }
 
 }
+
+document.getElementById("closeDeleteReviewModal").addEventListener("click", closeDeleteReviewModal);
+document.getElementById("cancelDeleteReview").addEventListener("click", closeDeleteReviewModal);
+document.getElementById("confirmDeleteReview").addEventListener("click", deleteReview);
+document.getElementById("deleteReviewModal").addEventListener("click", (event) => {
+    if (event.target.id === "deleteReviewModal") closeDeleteReviewModal();
+});
 
 // =========================================
 // Helpers
