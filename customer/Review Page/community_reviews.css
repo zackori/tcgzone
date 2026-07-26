@@ -92,17 +92,22 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.7rem 1.3rem;
-    border-radius: 999px;
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    background-color: #000;
     background: #000;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid #373737;
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 600; 
+    transition: all .2s ease;
 }
 
+
+
 .community-reviews-page .btn-review:hover {
-    background: var(--accent-light-gray);
+    background-color: var(--accent-light-gray); 
+    border-color: var(--accent-light-gray);
     color: #000;
 }
 
@@ -113,18 +118,21 @@
 }
 
 .community-reviews-page .review-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 22px;
-    padding: 1.1rem 0.95rem;
+    background-color: var(--bg-black-alt);
+    background-clip: border-box;
+     border: 1px solid var(--card-border);
+    border-radius: 25px;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     min-height: 320px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    box-shadow: 0px -1px 0px var(--accent-gray), 0px 1px 0px var(--accent-gray);
     cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease;
+
 }
 
 .community-reviews-page .review-card:hover {
@@ -168,6 +176,7 @@
 }
 
 .community-reviews-page .review-text {
+    font-family: 'Figtree', sans-serif;
     color: #d8d8d8;
     font-size: 0.9rem;
     line-height: 1.6;
@@ -288,6 +297,7 @@
 }
 
 .community-reviews-page .review-modal-text {
+    font-family: 'Figtree', sans-serif;
     color: #e2e2e2;
     line-height: 1.7;
     font-size: 0.95rem;
