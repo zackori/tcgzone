@@ -95,7 +95,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="slider-wrapper position-relative">
                 <button class="slider-arrow slider-arrow-left" type="button" data-slider="featured-track" data-dir="-1"
                     aria-label="Scroll left">
-                    <img src="/tcgzone/assets/logos/feaatured packs/play_arrow_filled-1.svg" alt="Button Left">
+                    <img src="/tcgzone/assets/logos/upcoming packs/caret-left.svg" alt="Button Left">
                 </button>
 
                 <div class="slider-track" id="featured-track">
@@ -224,7 +224,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
                 <button class="slider-arrow slider-arrow-right" type="button" data-slider="featured-track" data-dir="1"
                     aria-label="Scroll right">
-                    <img src="/tcgzone/assets/logos/feaatured packs/play_arrow_filled.svg" alt="Button Right">
+                    <img src="/tcgzone/assets/logos/upcoming packs/caret-right.svg" alt="Button Right">
                 </button>
             </div>
         </div>
