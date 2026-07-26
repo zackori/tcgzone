@@ -314,7 +314,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 </button>
             </div>
 
-            <div class="text-center mt-2">
+            <div class="text-center mt-5">
                 <!-- <button class="btn btn-buy-now">See All Collections</button> -->
                 <a href="/tcgzone/customer/Shop Page/shop.php?category=Pokémon&cardType=Collections"
                     class="btn btn-buy-now">See All Collections!</a>
@@ -389,7 +389,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
             </div>
 
-            <div class="text-center mt-5">
+            <div class="text-center mt-5 ">
                 <a href="/tcgzone/customer/Review Page/community_reviews.php" class="btn btn-buy-now">See all
                     reviews!</a>
             </div>

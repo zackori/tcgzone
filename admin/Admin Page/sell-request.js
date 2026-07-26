@@ -104,6 +104,36 @@ function renderFilteredSellRequests(requests) {
   displaySellRequests(requests);
 }
 
+function updateSellRequestStats() {
+  document.getElementById("approvedRequests").textContent =
+    allSellRequests.filter((item) => item.status === "Approved").length;
+  document.getElementById("pendingRequests").textContent =
+    allSellRequests.filter((item) => item.status === "Pending").length;
+}
+
+function applySellRequestStatusUpdate(requestId, newStatus) {
+  const target = allSellRequests.find(
+    (item) => Number(item.request_id) === Number(requestId),
+  );
+
+  if (!target) {
+    return false;
+  }
+
+  target.status = newStatus;
+
+  if (
+    activeSellRequest &&
+    Number(activeSellRequest.request_id) === Number(requestId)
+  ) {
+    activeSellRequest = { ...activeSellRequest, status: newStatus };
+  }
+
+  updateSellRequestStats();
+  filterSellRequests(false);
+  return true;
+}
+
 function setStatusFilter(status) {
   document.getElementById("sellRequestStatusFilter").value = status;
   document
@@ -233,6 +263,12 @@ async function rejectSellRequest() {
   rejectButton.disabled = true;
   showDetailsMessage("Rejecting sell request...", "");
 
+  const previousStatus = activeSellRequest?.status;
+  const optimisticUpdated = applySellRequestStatusUpdate(
+    activeSellRequest.request_id,
+    "Rejected",
+  );
+
   try {
     const response = await fetch("api/review-sell-request.php", {
       method: "POST",
@@ -249,6 +285,13 @@ async function rejectSellRequest() {
     await loadSellRequests();
     closeSellRequestDetails();
   } catch (error) {
+    if (optimisticUpdated) {
+      applySellRequestStatusUpdate(
+        activeSellRequest.request_id,
+        previousStatus,
+      );
+      openSellRequestDetails(activeSellRequest.request_id);
+    }
     showDetailsMessage(error.message || "Could not reject sell request.");
   } finally {
     rejectButton.disabled = false;
@@ -289,6 +332,12 @@ async function submitApprovedSellRequest(event) {
   messageEl.className = "modal-msg";
   messageEl.textContent = "Adding product...";
 
+  const previousStatus = activeSellRequest?.status;
+  const optimisticUpdated = applySellRequestStatusUpdate(
+    activeSellRequest.request_id,
+    "Approved",
+  );
+
   try {
     const response = await fetch("api/review-sell-request.php", {
       method: "POST",
@@ -309,6 +358,13 @@ async function submitApprovedSellRequest(event) {
     closeApproveSellRequestModal();
     closeSellRequestDetails();
   } catch (error) {
+    if (optimisticUpdated) {
+      applySellRequestStatusUpdate(
+        activeSellRequest.request_id,
+        previousStatus,
+      );
+      openSellRequestDetails(activeSellRequest.request_id);
+    }
     messageEl.className = "modal-msg error";
     messageEl.textContent = error.message || "Could not approve sell request.";
   } finally {

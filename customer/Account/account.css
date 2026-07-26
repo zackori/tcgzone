@@ -1,3 +1,72 @@
 body {
-    background:linear-gradient(90deg,#050505,#222);
+    background: linear-gradient(90deg, #050505, #222);
+}
+
+.app-toast-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.6rem;
+    pointer-events: none;
+}
+
+.app-toast {
+    min-width: 260px;
+    max-width: 340px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    background: #1a1a1a;
+    border: 1px solid #373737;
+    border-left: 4px solid #5fd6cf;
+    border-radius: 10px;
+    color: #f5f5f5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: toast-in .25s ease forwards;
+}
+
+.app-toast.error {
+    border-left-color: #ff6b6b;
+}
+
+.toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+@keyframes toast-in {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.app-toast.toast-out {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+
+.address-fields p {
+    font-family: "Figtree", sans-serif;
+    font-size: 0.7rem;
+    color: #a5a5a5;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 10px;
 }

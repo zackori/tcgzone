@@ -43,31 +43,48 @@ $addressDisplay = $addressParts ? implode(", ", $addressParts) : "No address on 
 $nameParts = array_filter([$profile['first_name'], $profile['last_name']]);
 $nameDisplay = $nameParts ? implode(" ", $nameParts) : "No name on file";
 
-function resolveReturnUrl($fallback = '/tcgzone/customer/Landing Page/index.php')
+function resolveReturnUrl($fallback = '/tcgzone/customer/Account/account.php')
 {
     $returnTo = $_GET['return_to'] ?? '';
 
-    if ($returnTo === '' && !empty($_SERVER['HTTP_REFERER'])) {
+    if (empty($returnTo) && !empty($_SERVER['HTTP_REFERER'])) {
         $returnTo = $_SERVER['HTTP_REFERER'];
     }
 
-    if ($returnTo !== '') {
-        $parsed = parse_url($returnTo);
-        $host = $parsed['host'] ?? '';
-        $path = $parsed['path'] ?? '';
+    if (empty($returnTo)) {
+        return $fallback;
+    }
 
-        if ($host === '' || $host === ($_SERVER['HTTP_HOST'] ?? '')) {
-            if ($path !== '' && strpos($path, '/tcgzone') === 0) {
-                $redirectPath = $path;
-                if (!empty($parsed['query'])) {
-                    $redirectPath .= '?' . $parsed['query'];
-                }
-                return $redirectPath;
-            }
+    $parsed = parse_url($returnTo);
+    $host = $parsed['host'] ?? '';
+    $path = $parsed['path'] ?? '';
+    $query = $parsed['query'] ?? '';
+
+    if (!empty($parsed['scheme']) || !empty($parsed['host'])) {
+        if ($host !== ($_SERVER['HTTP_HOST'] ?? '')) {
+            return $fallback;
         }
     }
 
-    return $fallback;
+    if ($path === '' || $path[0] !== '/') {
+        return $fallback;
+    }
+
+    if (strpos($path, '/tcgzone') !== 0) {
+        return $fallback;
+    }
+
+    if ($path === '/tcgzone/customer/Account/account.php') {
+        return $fallback;
+    }
+
+    if ($query !== '') {
+        parse_str($query, $queryParams);
+        unset($queryParams['error'], $queryParams['return_to']);
+        $query = http_build_query($queryParams);
+    }
+
+    return $path . ($query !== '' ? '?' . $query : '');
 }
 
 $returnTo = resolveReturnUrl();
@@ -137,7 +154,8 @@ $returnTo = resolveReturnUrl();
                         <label>Phone Number</label>
                         <div class="editable-field" data-field="phone">
                             <span class="static-value" data-static="phone"><?= esc($profile['phone']) ?></span>
-                            <input type="text" name="phone" class="text-input hidden-input" data-input="phone"
+                            <input type="text" name="phone" minlength="11 " maxlength="11"
+                                class="text-input hidden-input" data-input="phone"
                                 value="<?= esc($profile['phone']) ?>">
                             <a href="#" class="change-link" data-target="phone">Change</a>
                             <a href="#" class="cancel-link" data-target="phone">Cancel</a>
@@ -186,6 +204,9 @@ $returnTo = resolveReturnUrl();
                             <span class="static-value" data-static="password">********</span>
 
                             <div class="address-fields">
+                                <input type="password" name="current_password" class="text-input address-input"
+                                    data-input="currentPassword" placeholder="Current Password" value="">
+                                <p>Passwords must be at least 8 characters.</p>
                                 <input type="password" name="new_password" class="text-input address-input"
                                     data-input="newPassword" placeholder="New Password" value="">
                                 <input type="password" name="confirm_password" class="text-input address-input"
@@ -225,24 +246,58 @@ $returnTo = resolveReturnUrl();
     </div>
 
     <script>
-        document.querySelectorAll(".change-link").forEach((link) => {
-            link.addEventListener("click", (e) => {
+        function showToast(message, type = 'error') {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                container.className = 'app-toast-container';
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'app-toast ' + type;
+            toast.innerHTML = '<span class="toast-icon">' + (type === 'success' ? '✓' : '!') + '</span><span>' + message + '</span>';
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('toast-out');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get('error');
+        if (error === 'wrong_current_password') {
+            showToast('Wrong current password.', 'error');
+        } else if (error === 'password_invalid') {
+            showToast('New passwords do not match or are too short.', 'error');
+        }
+
+        if (error !== null) {
+            params.delete('error');
+            const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+            window.history.replaceState({}, '', newUrl);
+        }
+
+        document.querySelectorAll('.change-link').forEach((link) => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const wrapper = link.closest(".editable-field");
-                const inputs = wrapper.querySelectorAll("[data-input]");
+                const wrapper = link.closest('.editable-field');
+                const inputs = wrapper.querySelectorAll('[data-input]');
                 const revertData = {};
                 inputs.forEach((input) => revertData[input.dataset.input] = input.value);
                 wrapper.dataset.revert = JSON.stringify(revertData);
-                wrapper.classList.add("editing");
+                wrapper.classList.add('editing');
                 if (inputs[0]) inputs[0].focus();
             });
         });
 
 
-        document.querySelectorAll(".cancel-link").forEach((link) => {
-            link.addEventListener("click", (e) => {
+        document.querySelectorAll('.cancel-link').forEach((link) => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const wrapper = link.closest(".editable-field");
+                const wrapper = link.closest('.editable-field');
 
                 if (wrapper.dataset.revert) {
                     const revertData = JSON.parse(wrapper.dataset.revert);
@@ -253,11 +308,11 @@ $returnTo = resolveReturnUrl();
                 }
 
                 // 🌟 ADDITION: If canceling password editing, wipe values out completely
-                if (wrapper.dataset.field === "password") {
-                    wrapper.querySelectorAll("input").forEach(inp => inp.value = "");
+                if (wrapper.dataset.field === 'password') {
+                    wrapper.querySelectorAll('input').forEach(inp => inp.value = '');
                 }
 
-                wrapper.classList.remove("editing");
+                wrapper.classList.remove('editing');
             });
         });
     </script>

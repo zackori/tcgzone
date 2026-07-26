@@ -33,23 +33,27 @@
 
 .navbar {
     display: flex;
-    flex-direction: column; /* 👈 Forces Top Row and Bottom Row to stack vertically */
+    flex-direction: column;
+    /* 👈 Forces Top Row and Bottom Row to stack vertically */
     background-color: black;
     padding: 10px 0px;
     color: white;
-    overflow-x: hidden; /* Prevents horizontal scrollbars from appearing */
+    overflow-x: hidden;
+    /* Prevents horizontal scrollbars from appearing */
 }
 
 /* 2. Style the top row to spread elements evenly across the screen */
 .nav-top {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Spreads out logo, search, and profile tools */
+    justify-content: space-between;
+    /* Spreads out logo, search, and profile tools */
     width: 100%;
     padding: 10px clamp(1rem, 5vw, 4rem) 20px;
-    position: relative;     
+    position: relative;
     flex-wrap: nowrap;
-    gap:15px;       /* 👈 CRITICAL: The gradient line now anchors here */
+    gap: 15px;
+    /* 👈 CRITICAL: The gradient line now anchors here */
 }
 
 
@@ -62,13 +66,11 @@
     width: 70%;
     height: 3px;
     border-radius: 70%;
-    background: linear-gradient(
-        to right, 
-        black 0%,     
-        #464646 40%,             
-        #464646 60%,             
-        black 100%    
-    );
+    background: linear-gradient(to right,
+            black 0%,
+            #464646 40%,
+            #464646 60%,
+            black 100%);
 }
 
 .logo {
@@ -96,7 +98,7 @@
 
 /* Keep the search field centred in the full navigation bar on desktop. */
 @media (min-width: 901px) {
-    .nav-top > .search {
+    .nav-top>.search {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -146,18 +148,18 @@
 .nav-links a:hover,
 img:hover {
     color: #464646;
-} 
+}
 
 
 
-.btn-logo{
+.btn-logo {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 42px;
     height: 42px;
-    background-color:  white;       
-    border-radius: 50%;           
+    background-color: white;
+    border-radius: 50%;
     transition: all 0.3s ease;
 }
 
@@ -168,8 +170,8 @@ img:hover {
     color: black;
 }
 
-.btn-logo:hover{
-    background-color: #464646;     
+.btn-logo:hover {
+    background-color: #464646;
 }
 
 /*ACCOUNT TAB*/
@@ -183,14 +185,14 @@ img:hover {
 .profile-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(70,70,70, 0.15);
+    background-color: rgba(70, 70, 70, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    
+
 }
 
 .profile-panel {
@@ -204,7 +206,7 @@ img:hover {
     border: 1px solid #666666;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    
+
 }
 
 .profile-header {
@@ -212,7 +214,7 @@ img:hover {
     display: flex;
     padding: 2rem 2.5rem 1.5rem;
     color: #f2f2f2;
-    
+
 }
 
 .profile-header h2 {
@@ -236,7 +238,7 @@ img:hover {
     border-radius: 20px 20px 0 0;
     padding: 2.5rem;
     overflow-y: auto;
-    
+
 }
 
 .form-row {
@@ -245,7 +247,7 @@ img:hover {
     align-items: center;
     padding: 1rem 0;
     border-bottom: 1px solid #eee;
-    
+
 }
 
 .form-row:last-of-type {
@@ -429,6 +431,7 @@ img:hover {
         grid-template-columns: 1fr;
         gap: .4rem;
     }
+
     .profile-card {
         padding: 1.75rem;
     }
@@ -437,7 +440,7 @@ img:hover {
 
 .nav-bottom {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     width: 100%;
     padding: 15px clamp(1rem, 5vw, 4rem) 5px;
 }
@@ -447,9 +450,11 @@ img:hover {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 30px; 
+    gap: 30px;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0;
+    padding-left: 0;
 }
 
 .sub-links a {
@@ -459,8 +464,9 @@ img:hover {
     transition: color 0.3s ease;
 }
 
-.sub-links a:hover, .sub-links span:hover {
-    color: #464646; 
+.sub-links a:hover,
+.sub-links span:hover {
+    color: #464646;
 }
 
 .category {
@@ -507,16 +513,50 @@ img:hover {
 }
 
 @media (max-width: 480px) {
-    .navbar { padding-top: 4px; }
-    .nav-top { padding-inline: 1rem; gap: .75rem; }
-    .logo h1 { font-size: 1.55rem; margin: 0; }
-    .nav-links { gap: .45rem; }
-    .nav-links > li:first-child a { font-size: .82rem; }
-    .btn-logo { width: 36px; height: 36px; }
-    .nav-icon { width: 19px; height: 19px; }
-    .search { padding: 4px 10px; }
-    .sub-links { width: 100%; gap: .5rem 1rem; }
-    .sub-links a { font-size: .84rem; }
+    .navbar {
+        padding-top: 4px;
+    }
+
+    .nav-top {
+        padding-inline: 1rem;
+        gap: .75rem;
+    }
+
+    .logo h1 {
+        font-size: 1.55rem;
+        margin: 0;
+    }
+
+    .nav-links {
+        gap: .45rem;
+    }
+
+    .nav-links>li:first-child a {
+        font-size: .82rem;
+    }
+
+    .btn-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-icon {
+        width: 19px;
+        height: 19px;
+    }
+
+    .search {
+        padding: 4px 10px;
+    }
+
+    .sub-links {
+        width: 100%;
+        gap: .5rem 1rem;
+    }
+
+    .sub-links a {
+        font-size: .84rem;
+    }
 }
 
 /*FOOTER*/
@@ -600,28 +640,29 @@ img:hover {
     color: #464646
 }
 
-.footer-links a::after{
+.footer-links a::after {
 
 
 
-    position:absolute;
+    position: absolute;
 
-    left:0;
+    left: 0;
 
-    bottom:-5px;
+    bottom: -5px;
 
-    width:0;
+    width: 0;
 
-    height:2px;
+    height: 2px;
 
-    background:#464646;
+    background: #464646;
 
-    transition:.35s;
+    transition: .35s;
 
 }
-.footer-links a:hover::after{
 
-    width:100%;
+.footer-links a:hover::after {
+
+    width: 100%;
 
 }
 
@@ -632,62 +673,62 @@ img:hover {
 }
 
 
-.footer-socials a{
+.footer-socials a {
 
-    color:#b3b3b3;
+    color: #b3b3b3;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    font-size:22px;
+    font-size: 22px;
 
-    position:relative;
+    position: relative;
 
-    transition:.35s;
-
-}
-
-
-.social-icons{
-
-    display:flex;
-
-    gap:18px;
-
-    margin-top:20px;
+    transition: .35s;
 
 }
 
-.social-icons a{
 
-    width:58px;
+.social-icons {
 
-    height:58px;
+    display: flex;
 
-    border-radius:50%;
+    gap: 18px;
 
-    border:2px solid rgba(255,255,255,.15);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:26px;
-
-    transition:.35s;
+    margin-top: 20px;
 
 }
 
-.social-icons a:hover{
+.social-icons a {
 
-    background:#b6b6b6;
+    width: 58px;
 
-    border-color:#b3b3b3;
+    height: 58px;
 
-    color:white;
+    border-radius: 50%;
 
-    transform:translateY(-6px);
+    border: 2px solid rgba(255, 255, 255, .15);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 26px;
+
+    transition: .35s;
+
+}
+
+.social-icons a:hover {
+
+    background: #b6b6b6;
+
+    border-color: #b3b3b3;
+
+    color: white;
+
+    transform: translateY(-6px);
 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 
@@ -702,7 +743,7 @@ img:hover {
     color: white;
 }
 
-.footer-bottom p{
+.footer-bottom p {
     margin: 0;
     font-family: 'Figtree', sans-serif;
 }
@@ -731,7 +772,9 @@ img:hover {
         gap: 1.75rem;
     }
 
-    .footer-logo { font-size: 2.35rem; }
+    .footer-logo {
+        font-size: 2.35rem;
+    }
 
     .footer-links,
     .footer-socials {
@@ -740,6 +783,11 @@ img:hover {
         padding: 1.5rem 0 0;
     }
 
-    .social-icons { margin-top: .75rem; }
-    .footer-bottom { padding: 1rem; }
+    .social-icons {
+        margin-top: .75rem;
+    }
+
+    .footer-bottom {
+        padding: 1rem;
+    }
 }

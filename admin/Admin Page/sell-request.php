@@ -6,14 +6,16 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | <?= htmlspecialchars($pageTitle) ?></title>
-    <link rel="stylesheet" href="admin-shared.css">
+    <link rel="stylesheet" href="admin-shared.css?v=<?= filemtime(__DIR__ . '/admin-shared.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 </head>
+
 <body>
     <div class="container">
         <?php include 'includes/sidebar.php'; ?>
@@ -22,7 +24,8 @@ session_start();
             <?php include 'includes/header.php'; ?>
 
             <section class="users-cards">
-                <div class="card-success card-clickable" id="approvedRequestsCard" role="button" tabindex="0" aria-pressed="false">
+                <div class="card-success card-clickable" id="approvedRequestsCard" role="button" tabindex="0"
+                    aria-pressed="false">
                     <div class="card-info">
                         <p>Approved Sell Requests</p>
                         <h2 id="approvedRequests">0</h2>
@@ -30,7 +33,8 @@ session_start();
                     <div class="card-icon-success"><i class="fa-solid fa-square-check"></i></div>
                 </div>
 
-                <div class="card-pending card-clickable" id="pendingRequestsCard" role="button" tabindex="0" aria-pressed="false">
+                <div class="card-pending card-clickable" id="pendingRequestsCard" role="button" tabindex="0"
+                    aria-pressed="false">
                     <div class="card-info">
                         <p>Pending Sell Requests</p>
                         <h2 id="pendingRequests">0</h2>
@@ -68,34 +72,50 @@ session_start();
                     <tbody id="sellRequestsTable"></tbody>
                 </table>
                 <div class="pagination" aria-label="Sell request pagination">
-                    <button type="button" id="previousSellRequestPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="previousSellRequestPage" aria-label="Previous page"><i
+                            class="fa-solid fa-angle-left"></i></button>
                     <button type="button" id="sellRequestPage" class="active" aria-current="page">1</button>
-                    <button type="button" id="nextSellRequestPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                    <button type="button" id="nextSellRequestPage" aria-label="Next page"><i
+                            class="fa-solid fa-angle-right"></i></button>
                 </div>
             </div>
 
-            <div class="admin-modal-overlay d-none" id="sellRequestDetailsModal" role="dialog" aria-modal="true" aria-labelledby="sellRequestDetailsTitle">
+            <div class="admin-modal-overlay d-none" id="sellRequestDetailsModal" role="dialog" aria-modal="true"
+                aria-labelledby="sellRequestDetailsTitle">
                 <div class="admin-modal admin-modal-xl">
                     <div class="admin-modal-header">
                         <h3 id="sellRequestDetailsTitle">Sell Request Details</h3>
-                        <button type="button" class="admin-modal-close" id="closeSellRequestDetailsModal" aria-label="Close">&times;</button>
+                        <button type="button" class="admin-modal-close" id="closeSellRequestDetailsModal"
+                            aria-label="Close">&times;</button>
                     </div>
                     <div class="admin-modal-body">
                         <div class="sell-request-details">
                             <img id="sellRequestImage" class="sell-request-image" alt="Requested card image">
                             <div class="order-details-meta">
-                                <div class="modal-detail-row"><span>Username</span><strong id="sellRequestUsername">—</strong></div>
-                                <div class="modal-detail-row"><span>Product ID</span><strong id="sellRequestProductId">—</strong></div>
-                                <div class="modal-detail-row"><span>Card Name</span><strong id="sellRequestCardName">—</strong></div>
-                                <div class="modal-detail-row"><span>Set Name</span><strong id="sellRequestSetName">—</strong></div>
-                                <div class="modal-detail-row"><span>Category</span><strong id="sellRequestCategory">—</strong></div>
-                                <div class="modal-detail-row"><span>Product Type</span><strong id="sellRequestProductType">—</strong></div>
-                                <div class="modal-detail-row"><span>Rarity</span><strong id="sellRequestRarity">—</strong></div>
-                                <div class="modal-detail-row"><span>Condition</span><strong id="sellRequestCondition">—</strong></div>
-                                <div class="modal-detail-row"><span>Quantity</span><strong id="sellRequestQuantity">—</strong></div>
-                                <div class="modal-detail-row"><span>Product Cost</span><strong id="sellRequestPrice">—</strong></div>
-                                <div class="modal-detail-row"><span>Status</span><strong id="sellRequestStatus">—</strong></div>
-                                <div class="modal-detail-row"><span>Notes</span><strong id="sellRequestNotes">—</strong></div>
+                                <div class="modal-detail-row"><span>Username</span><strong
+                                        id="sellRequestUsername">—</strong></div>
+                                <div class="modal-detail-row"><span>Product ID</span><strong
+                                        id="sellRequestProductId">—</strong></div>
+                                <div class="modal-detail-row"><span>Card Name</span><strong
+                                        id="sellRequestCardName">—</strong></div>
+                                <div class="modal-detail-row"><span>Set Name</span><strong
+                                        id="sellRequestSetName">—</strong></div>
+                                <div class="modal-detail-row"><span>Category</span><strong
+                                        id="sellRequestCategory">—</strong></div>
+                                <div class="modal-detail-row"><span>Product Type</span><strong
+                                        id="sellRequestProductType">—</strong></div>
+                                <div class="modal-detail-row"><span>Rarity</span><strong
+                                        id="sellRequestRarity">—</strong></div>
+                                <div class="modal-detail-row"><span>Condition</span><strong
+                                        id="sellRequestCondition">—</strong></div>
+                                <div class="modal-detail-row"><span>Quantity</span><strong
+                                        id="sellRequestQuantity">—</strong></div>
+                                <div class="modal-detail-row"><span>Product Cost</span><strong
+                                        id="sellRequestPrice">—</strong></div>
+                                <div class="modal-detail-row"><span>Status</span><strong
+                                        id="sellRequestStatus">—</strong></div>
+                                <div class="modal-detail-row"><span>Notes</span><strong id="sellRequestNotes">—</strong>
+                                </div>
                             </div>
                         </div>
                         <p class="modal-msg d-none" id="sellRequestDetailsMsg"></p>
@@ -107,24 +127,30 @@ session_start();
                 </div>
             </div>
 
-            <div class="admin-modal-overlay d-none" id="approveSellRequestModal" role="dialog" aria-modal="true" aria-labelledby="approveSellRequestTitle">
+            <div class="admin-modal-overlay d-none" id="approveSellRequestModal" role="dialog" aria-modal="true"
+                aria-labelledby="approveSellRequestTitle">
                 <div class="admin-modal">
                     <div class="admin-modal-header">
                         <h3 id="approveSellRequestTitle">Approve Sell Request</h3>
-                        <button type="button" class="admin-modal-close" id="closeApproveSellRequestModal" aria-label="Close">&times;</button>
+                        <button type="button" class="admin-modal-close" id="closeApproveSellRequestModal"
+                            aria-label="Close">&times;</button>
                     </div>
                     <form class="admin-modal-body" id="approveSellRequestForm">
                         <p class="approval-product-summary" id="approvalProductSummary"></p>
                         <label class="sell-request-form-label" for="productCost">Product Cost</label>
-                        <input class="sell-request-price-input" id="productCost" name="product_cost" type="number" min="0" step="0.01" required>
+                        <input class="sell-request-price-input" id="productCost" name="product_cost" type="number"
+                            min="0" step="0.01" required>
                         <label class="sell-request-form-label" for="approvedSellingPrice">Selling Price</label>
-                        <input class="sell-request-price-input" id="approvedSellingPrice" name="selling_price" type="number" min="0" step="0.01" required>
+                        <input class="sell-request-price-input" id="approvedSellingPrice" name="selling_price"
+                            type="number" min="0" step="0.01" required>
                         <label class="sell-request-form-label" for="marketPrice">Market Price</label>
-                        <input class="sell-request-price-input" id="marketPrice" name="market_price" type="number" min="0" step="0.01" required>
+                        <input class="sell-request-price-input" id="marketPrice" name="market_price" type="number"
+                            min="0" step="0.01" required>
                         <p class="modal-msg d-none" id="approveSellRequestMsg"></p>
                         <div class="modal-actions">
                             <button type="button" class="modal-btn reject" id="cancelApproveSellRequest">Cancel</button>
-                            <button type="submit" class="modal-btn accept" id="submitApprovedSellRequest">Add Product &amp; Approve</button>
+                            <button type="submit" class="modal-btn accept" id="submitApprovedSellRequest">Add Product
+                                &amp; Approve</button>
                         </div>
                     </form>
                 </div>
@@ -133,4 +159,5 @@ session_start();
     </div>
     <script src="sell-request.js?v=<?= filemtime(__DIR__ . '/sell-request.js') ?>"></script>
 </body>
+
 </html>

@@ -192,6 +192,7 @@ body {
 }
 .btn-buy-now:hover { background-color: var(--accent-light-gray); border-color: var(--accent-light-gray); color: #000; }
 
+
 /*UPCOMING CARDS*/
 /* ---------------- UPCOMING PACKS ---------------- */
 .pack-slider { padding: 0 3rem; }

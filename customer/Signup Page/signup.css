@@ -2,7 +2,7 @@
    GOOGLE DEFAULTS
 ============================ */
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
    BODY
 ============================ */
 
-body{
+body {
     background: #000;
     font-family: "Figtree", sans-serif;
 }
@@ -21,28 +21,28 @@ body{
    MAIN CONTAINER
 ============================ */
 
-.container{
+.container {
     width: 100%;
     height: 100vh;
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
 
     padding: 30px;
     gap: 40px;
 
-    
+
 }
 
 /* ============================
    LEFT SIDE
 ============================ */
 
-.left-section{
+.left-section {
     flex: 1;
 
-    height: 100%;
+    min-height: 100%;
 
     background: #000;
 
@@ -51,41 +51,66 @@ body{
     display: flex;
     flex-direction: column;
 
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: stretch;
 
     padding: 40px;
-    
-    margin-top: -120px;
+
+    margin-top: 0;
 }
 
 /* ============================
    LOGO
 ============================ */
 
-.logo h1{
-    font-family: "Figtree", sans-serif;
+.logo {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    letter-spacing: 0;
+    font-size: 3rem;
+    margin: 0 0 20px;
+    color: white;
+}
+
+.logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.desktop-logo {
+    display: block;
+}
+
+.mobile-logo {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-logo {
+        display: none;
+    }
+
+    .mobile-logo {
+        display: block;
+    }
 }
 
 /* ============================
    FORM CONTAINER
 ============================ */
 
-.form-container{
+.form-container {
 
     max-width: 450px;
 
-    margin: auto;
-    padding-top: 61px;
-
-    width: 100%;
-
+    margin: 0 auto;
 }
 
 /* ============================
    RIGHT SIDE
 ============================ */
 
-.right-section{
+.right-section {
 
     flex: 1.2;
 
@@ -103,7 +128,7 @@ body{
    IMAGE
 ============================ */
 
-.right-section img{
+.right-section img {
 
     width: 100%;
 
@@ -117,35 +142,35 @@ body{
    FORM TITLE
 ============================ */
 
-.form-container{
+.form-container {
 
-    width:100%;
-    max-width:470px;
+    width: 100%;
+    max-width: 470px;
 
-    margin-top:30px;
+    margin-top: 30px;
 
 }
 
 
 
 .subtext,
-.register-link{
+.register-link {
     font-family: 'Figtree', sans-serif;
     font-size: 18px;
     color: #ffffff;
     line-height: 1.8;
 }
 
-.register-link a{
+.register-link a {
     color: #5fd6cf;
     font-size: 18px;
     text-decoration: none;
     font-weight: 600;
 }
 
-.register-link a:hover{
+.register-link a:hover {
     text-decoration: none;
-    color: #367c78; 
+    color: #367c78;
 
 }
 
@@ -153,7 +178,7 @@ body{
    LABELS
 ============================ */
 
-label{
+label {
     font-family: 'Figtree', sans-serif;
     font-weight: 500;
     display: block;
@@ -167,7 +192,7 @@ label{
    INPUT BOX
 ============================ */
 
-.input-box{
+.input-box {
 
     display: flex;
     align-items: center;
@@ -177,14 +202,14 @@ label{
     padding: 10px 0;
 }
 
-.input-box img{
+.input-box img {
 
     width: 20px;
     margin-right: 15px;
 
 }
 
-.input-box input{
+.input-box input {
 
     flex: 1;
 
@@ -200,6 +225,14 @@ label{
     padding-right: 2.2rem;
     font-family: "Figtree", sans-serif;
 
+}
+
+.characters-eight {
+    font-family: "Figtree", sans-serif;
+    font-size: 13px;
+    color: #b6b6b6;
+    margin-top: 5px;
+    display: block;
 }
 
 .input-error-icon {
@@ -218,13 +251,13 @@ label{
 }
 
 
-.input-box input::placeholder{
+.input-box input::placeholder {
 
-    color: rgba(255,255,255,.75);
+    color: rgba(255, 255, 255, .75);
 
 }
 
-.togglePassword{
+.togglePassword {
 
     color: white;
 
@@ -244,7 +277,7 @@ input[type="number"]::-webkit-inner-spin-button {
    OPTIONS
 ============================ */
 
-.options{
+.options {
 
     display: flex;
 
@@ -258,7 +291,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 }
 
-.options a{
+.options a {
 
     color: white;
 
@@ -266,13 +299,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 }
 
-.options a:hover{
+.options a:hover {
 
     text-decoration: underline;
 
 }
 
-.remember{
+.remember {
 
     display: flex;
 
@@ -289,14 +322,14 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 16px;
 }
 
-.remember a{
+.remember a {
     color: #5fd6cf;
     text-decoration: none;
 }
 
-.remember a:hover{
+.remember a:hover {
     text-decoration: none;
-    color: #367c78; 
+    color: #367c78;
 
 }
 
@@ -304,13 +337,13 @@ input[type="number"]::-webkit-inner-spin-button {
    LOGIN BUTTON
 ============================ */
 
-button{
+button {
 
     width: 100%;
 
     margin-top: 35px;
 
-    padding:22px;
+    padding: 22px;
 
     border: none;
 
@@ -332,7 +365,7 @@ button{
 
 }
 
-button:hover{
+button:hover {
 
     transform: translateY(-2px);
 
@@ -346,17 +379,17 @@ button:hover{
    IMAGE TEXT OVERLAY
 ============================ */
 
-.overlay-text{
+.overlay-text {
 
-    position:absolute;
+    position: absolute;
 
-    left:70px;
+    left: 70px;
 
-    bottom:40px;
+    bottom: 40px;
 
 }
 
-.overlay-text h1{
+.overlay-text h1 {
 
     font-family: "Poppins", sans-serif;
 
@@ -368,7 +401,7 @@ button:hover{
 
 }
 
-.overlay-text p{
+.overlay-text p {
 
     font-family: "Figtree", sans-serif;
 
@@ -382,12 +415,20 @@ button:hover{
    LOGO
 ============================ */
 
-.logo{
-    font-family:"Poppins",sans-serif;
-    font-weight:900;
-    letter-spacing:0;
+.logo {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    letter-spacing: 0;
     font-size: 3rem;
-    position: absolute ;
+    position: relative;
+    margin: 0 0 20px;
+    color: white;
+    z-index: 2;
+}
+
+.logo a {
+    color: inherit;
+    text-decoration: none;
 }
 
 
@@ -395,7 +436,7 @@ button:hover{
    SMALL HOVER EFFECTS
 ============================ */
 
-button:hover{
+button:hover {
 
     background: #f2f2f2;
 
@@ -403,13 +444,13 @@ button:hover{
 
 }
 
-.input-box{
+.input-box {
 
     transition: .3s;
 
 }
 
-.input-box:focus-within{
+.input-box:focus-within {
 
     border-bottom: 2px solid #ffffff;
 
@@ -419,14 +460,11 @@ button:hover{
    RESPONSIVE
 ============================ */
 
-@media(max-width:1200px){
-
-    .container{
-
+@media(max-width:1200px) {
+    .container {
         flex-direction: column;
-
         height: auto;
-
+        align-items: stretch;
     }
 
     .right-section {
@@ -434,32 +472,112 @@ button:hover{
     }
 
     .left-section,
-    .right-section{
-        margin-top:0px;
-        width:100%;
-
-
-
+    .right-section {
+        margin-top: 0;
+        width: 100%;
     }
 
-    .right-section{
-
-        height:600px;
-
-        
-
+    .left-section {
+        justify-content: flex-start !important;
+        min-height: auto !important;
+        margin-top: 0 !important;
     }
 
+    .form-container {
+        margin: 0 auto 0 !important;
+    }
+
+    .right-section {
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        min-height: 100vh;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .left-section {
+        position: relative !important;
+        padding: 25px;
+        margin-top: 0 !important;
+        min-height: auto !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+    }
+
+    .form-container {
+        padding-top: 30px;
+        margin: 0 auto 0 !important;
+    }
+
+    .left-section .logo {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        font-size: 2.5rem !important;
+        margin: 0 0 20px !important;
+        align-self: flex-start !important;
+    }
+
+    .subtext,
+    .register-link {
+        font-size: 16px;
+    }
+
+    .input-box {
+        padding: 10px 0;
+    }
+
+    .input-box img {
+        width: 18px;
+        margin-right: 10px;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .options a {
+        display: inline-block;
+        margin-top: 0;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 18px;
+    }
 }
 
 @media (max-width: 576px) {
+    .container {
+        padding: 16px;
+    }
+
+    .left-section {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 2.2rem;
+    }
+
+    .subtext,
+    .register-link {
+        font-size: 15px;
+    }
+
     .remember {
         font-size: 14px;
     }
 }
 
 
-.notification-container{
+.notification-container {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -473,7 +591,7 @@ button:hover{
     z-index: 9999;
 }
 
-.login-error{
+.login-error {
 
     display: none;
 
@@ -486,7 +604,7 @@ button:hover{
 
     border-radius: 10px;
 
-    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
 
     opacity: 0;
     transform: translateY(-15px);
@@ -494,11 +612,11 @@ button:hover{
     transition: opacity .4s ease, transform .4s ease;
 }
 
-.login-error i{
-    margin-right:8px;
+.login-error i {
+    margin-right: 8px;
 }
 
-.login-error.show{
+.login-error.show {
 
     display: block;
 
@@ -507,7 +625,7 @@ button:hover{
 
 }
 
-.login-error.hide{
+.login-error.hide {
 
     opacity: 0;
     transform: translateY(-15px);

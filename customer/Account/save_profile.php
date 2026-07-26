@@ -33,6 +33,7 @@ $returnTo = $_POST['return_to'] ?? '';
 
 $newPassword = $_POST['new_password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
+$currentPassword = $_POST['current_password'] ?? '';
 
 function sanitizeReturnTo($value, $fallback = '/tcgzone/customer/Landing Page/index.php')
 {
@@ -61,6 +62,12 @@ function sanitizeReturnTo($value, $fallback = '/tcgzone/customer/Landing Page/in
 
     if (strpos($path, '/tcgzone') !== 0) {
         return $fallback;
+    }
+
+    if ($query !== '') {
+        parse_str($query, $queryParams);
+        unset($queryParams['error'], $queryParams['return_to']);
+        $query = http_build_query($queryParams);
     }
 
     if ($query !== '') {
@@ -104,6 +111,22 @@ $stmt->execute();
 
 // 2. 🌟 PROCESS NEW PASSWORD IF USER SENT ONE
 if (!empty($newPassword)) {
+    if (empty($currentPassword)) {
+        header("Location: account.php?error=wrong_current_password&return_to=" . urlencode($returnTo));
+        exit;
+    }
+
+    $hashStmt = $conn->prepare("SELECT password_hash FROM users WHERE id = ?");
+    $hashStmt->bind_param("i", $userId);
+    $hashStmt->execute();
+    $hashResult = $hashStmt->get_result();
+    $hashRow = $hashResult->fetch_assoc();
+
+    if (!$hashRow || !password_verify($currentPassword, $hashRow['password_hash'])) {
+        header("Location: account.php?error=wrong_current_password&return_to=" . urlencode($returnTo));
+        exit;
+    }
+
     // Only update if passwords match and satisfy length requirements
     if ($newPassword === $confirmPassword && strlen($newPassword) >= 8) {
         $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -112,12 +135,10 @@ if (!empty($newPassword)) {
         $pwdStmt->bind_param("si", $passwordHash, $userId);
         $pwdStmt->execute();
     } else {
-        // Optional error fallback query string (e.g. passwords mismatched/too short)
-        header("Location: account.php?error=password_invalid");
+        header("Location: account.php?error=password_invalid&return_to=" . urlencode($returnTo));
         exit;
     }
 }
-
 
 header("Location: " . $redirectTo);
 exit;

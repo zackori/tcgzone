@@ -96,7 +96,7 @@
     border-radius: 10px;
     background-color: #000;
     background: #000;
-    border: 1px solid #373737;
+    border: 1px solid var(--accent-teal);
     color: #fff;
     text-decoration: none;
     font-weight: 600; 

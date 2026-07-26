@@ -6,6 +6,10 @@ const historyEmptyEl = document.getElementById("sellHistoryEmpty");
 const historyTableWrapEl = document.getElementById("sellHistoryTableWrap");
 const historyListEl = document.getElementById("sellHistoryList");
 let sellHistoryModal = null;
+let sellHistoryPollTimer = null;
+let isLoadingSellHistory = false;
+let sellHistoryRequests = [];
+const SELL_HISTORY_POLL_INTERVAL_MS = 3000;
 
 function showNotification(message, isError = false) {
   let notification = document.querySelector(".notification");
@@ -40,7 +44,61 @@ function getStatusBadgeClass(status) {
   return "sell-history-badge pending";
 }
 
-async function loadSellHistory() {
+function renderSellHistory(requests) {
+  sellHistoryRequests = requests || [];
+
+  if (!sellHistoryRequests.length) {
+    historyEmptyEl.classList.remove("d-none");
+    historyTableWrapEl.classList.add("d-none");
+    historyListEl.innerHTML = "";
+    return;
+  }
+
+  historyEmptyEl.classList.add("d-none");
+  historyListEl.innerHTML = sellHistoryRequests
+    .map(
+      (request) => `
+        <article class="sell-history-card">
+          <div class="sell-history-card-top">
+            <div>
+              <div class="sell-history-id">Request #${request.request_id}</div>
+              <div class="sell-history-card-name">${request.card_name || "—"}</div>
+            </div>
+            <span class="${getStatusBadgeClass(request.status)}">${request.status || "Pending"}</span>
+          </div>
+
+          <div class="sell-history-meta">
+            <div>
+              <span class="sell-history-label">Set</span>
+              <div>${request.set_name || "—"}</div>
+            </div>
+            <div>
+              <span class="sell-history-label">Quantity</span>
+              <div>${request.quantity || 0}</div>
+            </div>
+            <div>
+              <span class="sell-history-label">Price</span>
+              <div>${formatCurrency(request.selling_price)}</div>
+            </div>
+            <div>
+              <span class="sell-history-label">Submitted</span>
+              <div>${request.created_at ? new Date(request.created_at).toLocaleString() : "—"}</div>
+            </div>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+
+  historyTableWrapEl.classList.remove("d-none");
+}
+
+async function loadSellHistory(forceRefresh = false) {
+  if (isLoadingSellHistory && !forceRefresh) {
+    return;
+  }
+
+  isLoadingSellHistory = true;
   historyLoadingEl.classList.remove("d-none");
   historyEmptyEl.classList.add("d-none");
   historyTableWrapEl.classList.add("d-none");
@@ -56,54 +114,28 @@ async function loadSellHistory() {
       throw new Error(result.message || "Unable to load sell request history.");
     }
 
-    if (!result.requests || result.requests.length === 0) {
-      historyEmptyEl.classList.remove("d-none");
-      return;
-    }
-
-    historyListEl.innerHTML = result.requests
-      .map(
-        (request) => `
-          <article class="sell-history-card">
-            <div class="sell-history-card-top">
-              <div>
-                <div class="sell-history-id">Request #${request.request_id}</div>
-                <div class="sell-history-card-name">${request.card_name || "—"}</div>
-              </div>
-              <span class="${getStatusBadgeClass(request.status)}">${request.status || "Pending"}</span>
-            </div>
-
-            <div class="sell-history-meta">
-              <div>
-                <span class="sell-history-label">Set</span>
-                <div>${request.set_name || "—"}</div>
-              </div>
-              <div>
-                <span class="sell-history-label">Quantity</span>
-                <div>${request.quantity || 0}</div>
-              </div>
-              <div>
-                <span class="sell-history-label">Price</span>
-                <div>${formatCurrency(request.selling_price)}</div>
-              </div>
-              <div>
-                <span class="sell-history-label">Submitted</span>
-                <div>${request.created_at ? new Date(request.created_at).toLocaleString() : "—"}</div>
-              </div>
-            </div>
-          </article>
-        `,
-      )
-      .join("");
-
-    historyTableWrapEl.classList.remove("d-none");
+    renderSellHistory(result.requests || []);
   } catch (error) {
     console.error(error);
     historyEmptyEl.textContent = "Unable to load history right now.";
     historyEmptyEl.classList.remove("d-none");
   } finally {
     historyLoadingEl.classList.add("d-none");
+    isLoadingSellHistory = false;
   }
+}
+
+function startSellHistoryPolling() {
+  if (sellHistoryPollTimer) {
+    return;
+  }
+
+  sellHistoryPollTimer = window.setInterval(() => {
+    if (historyModalEl && !historyModalEl.classList.contains("show")) {
+      return;
+    }
+    loadSellHistory(true);
+  }, SELL_HISTORY_POLL_INTERVAL_MS);
 }
 
 if (historyBtn) {
@@ -112,9 +144,11 @@ if (historyBtn) {
       sellHistoryModal = new bootstrap.Modal(historyModalEl);
     }
     sellHistoryModal.show();
-    await loadSellHistory();
+    await loadSellHistory(true);
   });
 }
+
+startSellHistoryPolling();
 
 sellForm?.addEventListener("submit", async function (event) {
   event.preventDefault();

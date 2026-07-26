@@ -10,8 +10,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | <?= htmlspecialchars($pageTitle) ?></title>
-    <link rel="stylesheet" href="admin-shared.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="admin-shared.css?v=<?= filemtime(__DIR__ . '/admin-shared.css') ?>">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 </head>
 

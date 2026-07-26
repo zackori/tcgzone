@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setInterval(function () {
       refreshProducts();
-    }, 5000);
+    }, 1000);
   }
 
   /* HELPER FUNCTION: Format currency with commas and peso sign */

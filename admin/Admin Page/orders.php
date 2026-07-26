@@ -15,10 +15,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Admin | <?= htmlspecialchars($pageTitle) ?></title>
-
-    <link rel="stylesheet" href="admin-shared.css">
-
-
+    <link rel="stylesheet" href="tcgzone/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin-shared.css?v=<?= filemtime(__DIR__ . '/admin-shared.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 
@@ -36,7 +34,7 @@ session_start();
 
             <!-- Orders content goes here -->
 
-            <section class="orders-cards">
+            <section class="orders-cards col-12">
 
                 <div class="card-neutral card-clickable" id="totalOrdersCard" role="button" tabindex="0">
                     <div class="card-info">

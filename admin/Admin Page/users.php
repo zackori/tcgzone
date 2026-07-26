@@ -12,7 +12,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | <?= htmlspecialchars($pageTitle) ?></title>
-    <link rel="stylesheet" href="admin-shared.css">
+    <link rel="stylesheet" href="admin-shared.css?v=<?= filemtime(__DIR__ . '/admin-shared.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
 </head>
@@ -94,18 +94,22 @@ session_start();
 
                 </table>
                 <div class="pagination" aria-label="User pagination">
-                    <button type="button" id="previousUserPage" aria-label="Previous page"><i class="fa-solid fa-angle-left"></i></button>
+                    <button type="button" id="previousUserPage" aria-label="Previous page"><i
+                            class="fa-solid fa-angle-left"></i></button>
                     <button type="button" id="userPage" class="active" aria-current="page">1</button>
-                    <button type="button" id="nextUserPage" aria-label="Next page"><i class="fa-solid fa-angle-right"></i></button>
+                    <button type="button" id="nextUserPage" aria-label="Next page"><i
+                            class="fa-solid fa-angle-right"></i></button>
                 </div>
 
             </div>
 
-            <div class="admin-modal-overlay d-none" id="deleteUserModal" role="dialog" aria-modal="true" aria-labelledby="deleteUserTitle">
+            <div class="admin-modal-overlay d-none" id="deleteUserModal" role="dialog" aria-modal="true"
+                aria-labelledby="deleteUserTitle">
                 <div class="admin-modal">
                     <div class="admin-modal-header">
                         <h3 id="deleteUserTitle">Delete User</h3>
-                        <button type="button" class="admin-modal-close" id="closeDeleteUserModal" aria-label="Close">&times;</button>
+                        <button type="button" class="admin-modal-close" id="closeDeleteUserModal"
+                            aria-label="Close">&times;</button>
                     </div>
                     <div class="admin-modal-body">
                         <p id="deleteUserMessage">Are you sure you want to delete this user?</p>
