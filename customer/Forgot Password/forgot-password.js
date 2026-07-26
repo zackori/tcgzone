@@ -156,7 +156,7 @@ resetForm.addEventListener('submit', async function (event) {
 
     setTimeout(function () {
         window.location.href = '/tcgzone/customer/Login Page/login.html';
-    }, 2200);
+    }, 2000);
 });
 
 showStep('email');

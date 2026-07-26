@@ -234,7 +234,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <!-- ========================= UPCOMING PACKS ========================= -->
     <section class="section-block section-alt text-white">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Upcoming Packs</h2>
+            <h2 class="section-title text-center mb-5">Upcoming Products</h2>
 
             <div class="row g-4 align-items-stretch upcoming-packs-wrapper">
 
