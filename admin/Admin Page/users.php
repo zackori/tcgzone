@@ -107,16 +107,16 @@ session_start();
                 aria-labelledby="deleteUserTitle">
                 <div class="admin-modal">
                     <div class="admin-modal-header">
-                        <h3 id="deleteUserTitle">Delete User</h3>
+                        <h3 id="deleteUserTitle">Archive User</h3>
                         <button type="button" class="admin-modal-close" id="closeDeleteUserModal"
                             aria-label="Close">&times;</button>
                     </div>
                     <div class="admin-modal-body">
-                        <p id="deleteUserMessage">Are you sure you want to delete this user?</p>
+                        <p id="deleteUserMessage">Are you sure you want to archive this user?</p>
                         <p class="modal-msg d-none" id="deleteUserModalMessage"></p>
                         <div class="modal-actions">
-                            <button type="button" class="modal-btn reject" id="cancelDeleteUser">No</button>
-                            <button type="button" class="modal-btn accept" id="confirmDeleteUser">Yes, Delete</button>
+                            <button type="button" class="modal-btn users-reject" id="cancelDeleteUser">No</button>
+                            <button type="button" class="modal-btn users-accept" id="confirmDeleteUser">Yes, Archive</button>
                         </div>
                     </div>
                 </div>

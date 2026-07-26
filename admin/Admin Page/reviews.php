@@ -158,8 +158,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             <p id="deleteReviewMessage">Delete this review? This can't be undone.</p>
             <p class="modal-msg d-none" id="deleteReviewModalMessage"></p>
             <div class="modal-actions">
-                <button type="button" class="modal-btn reject" id="cancelDeleteReview">No</button>
-                <button type="button" class="modal-btn accept" id="confirmDeleteReview">Yes, Delete</button>
+                <button type="button" class="modal-btn reviews-reject" id="cancelDeleteReview">No</button>
+                <button type="button" class="modal-btn reviews-accept" id="confirmDeleteReview">Yes, Delete</button>
             </div>
         </div>
     </div>

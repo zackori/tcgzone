@@ -2006,5 +2006,20 @@
         "stock": "1",
         "category": "Magic: The Gathering",
         "requirements": []
+    },
+    {
+        "id": "prod-59",
+        "title": "Mjolnir",
+        "subtitle": "Hammer of Thor",
+        "description": "0",
+        "image": "/tcgzone/assets/images/sell/sell_6a6611d2196c76.90193077_696296_in_1000x1000.jpg",
+        "price": 55000,
+        "marketPrice": 5200,
+        "cardType": "Legendary Creature",
+        "rarity": "mr",
+        "condition": "mint",
+        "stock": "1",
+        "category": "Magic: The Gathering",
+        "requirements": []
     }
 ]

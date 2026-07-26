@@ -10,6 +10,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,14 +18,14 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 
     <title>TCGZONE | Contacts</title>
 </head>
+
 <body>
-        <!-- NAVIGATION BAR-->
+    <!-- NAVIGATION BAR-->
     <nav class="navbar">
         <div class="nav-top">
             <div class="logo col-auto">
@@ -72,72 +73,75 @@ $isLoggedIn = isset($_SESSION['user_id']);
         </div>
     </nav>
 
-        <main class="policy-page">
+    <main class="policy-page">
 
-    <div class="policy-container">
+        <div class="policy-container">
 
-        <h1 class="policy-title">Contact Us</h1>
+            <h1 class="policy-title">Contact Us</h1>
 
-        <div class="policy-content-contact">
+            <div class="policy-content-contact">
 
-            <div class="contact-grid">
+                <div class="contact-grid">
 
-                <div class="contact-card">
-                <h2><span>📞</span> Contact Number</h2>
-                <p>Have questions or need assistance? You may reach our customer support team through the contact number below.</p>
-                <p class="highlight">+63-99654281443</p>
-            </div>
+                    <div class="contact-card">
+                        <h2><span>📞</span> Contact Number</h2>
+                        <p>Have questions or need assistance? You may reach our customer support team through the
+                            contact number below.</p>
+                        <p class="highlight">+63-99654281443</p>
+                    </div>
 
-            <div class="contact-card">
-                <h2><span>📧</span> Email Address</h2>
-                <p>For general inquiries, customer support, business partnerships, or feedback, send us an email at:</p>
-                <p class="highlight">tcgzone2026@gmail.com</p>
-            </div>
+                    <div class="contact-card">
+                        <h2><span>📧</span> Email Address</h2>
+                        <p>For general inquiries, customer support, business partnerships, or feedback, send us an email
+                            at:</p>
+                        <p class="highlight">tcgzone2026@gmail.com</p>
+                    </div>
 
-            <div class="contact-card">
-                <h2><span>📍</span> Office Address</h2>
-                <p>Visit our office during business hours for assistance, inquiries, or official transactions.</p>
-                <div class="address-details">
-                    <strong>TCGZone Marketplace</strong><br>
-                    <strong>2nd Floor</strong><br>
-                    <strong>Trece Martires City</strong>
+                    <div class="contact-card">
+                        <h2><span>📍</span> Office Address</h2>
+                        <p>Visit our office during business hours for assistance, inquiries, or official transactions.
+                        </p>
+                        <div class="address-details">
+                            <strong>TCGZone Marketplace</strong><br>
+                            <strong>2nd Floor</strong><br>
+                            <strong>Trece Martires City</strong>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h2><span>🕒</span> Business Hours</h2>
+                        <p>Our support team is available during the following business hours:</p>
+                        <div class="schedule">
+                            <div class="schedule-group">
+                                <strong>Monday – Friday</strong>
+                                <span>9:00 AM – 6:00 PM</span>
+                            </div>
+                            <div class="schedule-group">
+                                <strong>Saturday</strong>
+                                <span>10:00 AM – 4:00 PM</span>
+                            </div>
+                            <div class="schedule-group">
+                                <strong>Sunday</strong>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-
-            <div class="contact-card">
-                <h2><span>🕒</span> Business Hours</h2>
-                <p>Our support team is available during the following business hours:</p>
-                <div class="schedule">
-                    <div class="schedule-group">
-                        <strong>Monday – Friday</strong>
-                        <span>9:00 AM – 6:00 PM</span>
-                    </div>
-                    <div class="schedule-group">
-                        <strong>Saturday</strong>
-                        <span>10:00 AM – 4:00 PM</span>
-                    </div>
-                    <div class="schedule-group">
-                        <strong>Sunday</strong>
-                        <span>Closed</span>
-                    </div>
-                </div>
-            </div>
 
             </div>
 
         </div>
 
-    </div>
-
-</main>
+    </main>
 
 
 
 
 
-        
-<!--FOOTER-->
-<footer class="site-footer">
+
+    <!--FOOTER-->
+    <footer class="site-footer">
         <div class="footer-main">
             <div class="footer-col footer-brand">
                 <h2 class="footer-logo"><a href="/tcgzone/customer/Landing Page/index.php">tcgzone</a></h2>
@@ -156,7 +160,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="footer-col footer-links">
                 <h3 class="footer-heading">Policy</h3>
                 <ul>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.php">Terms &amp; Conditions</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.php">Terms &amp;
+                            Conditions</a></li>
                     <li><a href="/tcgzone/customer/Footer Additional Page/privacy.php">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -194,8 +199,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <div class="footer-bottom">
             <p>&copy; 2026 tcgzone - All Rights Reserved</p>
         </div>
-</footer>
-    
-    
+    </footer>
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
+
 </body>
+
 </html>

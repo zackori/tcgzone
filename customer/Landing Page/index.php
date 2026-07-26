@@ -458,7 +458,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         </div>
     </footer>
     <script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
-    <!-- <script src="/tcgzone/assets/js/shared/shared.js"></script> -->
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
     <script src="landing-page.js?v=<?= filemtime(__DIR__ . '/landing-page.js') ?>"></script>
 </body>
 

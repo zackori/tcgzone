@@ -13,6 +13,7 @@ if (!$isLoggedIn) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +24,9 @@ if (!$isLoggedIn) {
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
     <title>My Orders — TCGZONE</title>
 </head>
+
 <body>
-        <!-- NAVIGATION BAR-->
+    <!-- NAVIGATION BAR-->
     <nav class="navbar">
         <div class="nav-top">
             <div class="logo col-auto">
@@ -73,50 +75,54 @@ if (!$isLoggedIn) {
     </nav>
 
 
-<main class="my-orders-page py-5">
-  <div class="container">
+    <main class="my-orders-page py-5">
+        <div class="container">
 
-    <h1 class="text-center text-white mb-4">My Orders</h1>
+            <h1 class="text-center text-white mb-4">My Orders</h1>
 
-    <div class="orders-panel">
+            <div class="orders-panel">
 
-      <div class="orders-tabs">
-        <button type="button" class="orders-tab active" id="ongoingTab">Ongoing</button>
-        <button type="button" class="orders-tab" id="completedTab">Completed</button>
-      </div>
+                <div class="orders-tabs">
+                    <button type="button" class="orders-tab active" id="ongoingTab">Ongoing</button>
+                    <button type="button" class="orders-tab" id="completedTab">Completed</button>
+                </div>
 
-      <div id="ordersList">
-        <!-- Order cards injected by my-orders.js -->
-      </div>
+                <div id="ordersList">
+                    <!-- Order cards injected by my-orders.js -->
+                </div>
 
-      <p class="no-orders-msg d-none" id="noOrdersMsg">No orders here yet.</p>
+                <p class="no-orders-msg d-none" id="noOrdersMsg">No orders here yet.</p>
 
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Cancel reason modal -->
+    <div class="cancel-modal-overlay d-none" id="cancelModal">
+        <div class="cancel-modal">
+            <h2>Request Cancellation</h2>
+            <p class="cancel-modal-sub">Select a reason for cancelling order <strong id="cancelModalOrderId"></strong>
+            </p>
+
+            <div class="cancel-reasons" id="cancelReasons">
+                <button type="button" class="cancel-reason-btn" data-reason="Better Price Elsewhere">Better Price
+                    Elsewhere</button>
+                <button type="button" class="cancel-reason-btn"
+                    data-reason="Unforeseen Financial Circumstances">Unforeseen Financial Circumstances</button>
+                <button type="button" class="cancel-reason-btn" data-reason="Emergency/Unexpected Changes">Emergency /
+                    Unexpected Changes</button>
+            </div>
+
+            <p class="cancel-modal-msg d-none" id="cancelModalMsg"></p>
+
+            <div class="cancel-modal-actions">
+                <button type="button" class="cancel-modal-close" id="cancelModalClose">Close</button>
+            </div>
+        </div>
     </div>
 
-  </div>
-</main>
-
-<!-- Cancel reason modal -->
-<div class="cancel-modal-overlay d-none" id="cancelModal">
-  <div class="cancel-modal">
-    <h2>Request Cancellation</h2>
-    <p class="cancel-modal-sub">Select a reason for cancelling order <strong id="cancelModalOrderId"></strong></p>
-
-    <div class="cancel-reasons" id="cancelReasons">
-      <button type="button" class="cancel-reason-btn" data-reason="Better Price Elsewhere">Better Price Elsewhere</button>
-      <button type="button" class="cancel-reason-btn" data-reason="Unforeseen Financial Circumstances">Unforeseen Financial Circumstances</button>
-      <button type="button" class="cancel-reason-btn" data-reason="Emergency/Unexpected Changes">Emergency / Unexpected Changes</button>
-    </div>
-
-    <p class="cancel-modal-msg d-none" id="cancelModalMsg"></p>
-
-    <div class="cancel-modal-actions">
-      <button type="button" class="cancel-modal-close" id="cancelModalClose">Close</button>
-    </div>
-  </div>
-</div>
-
- <!--FOOTER-->
+    <!--FOOTER-->
     <footer class="site-footer">
         <div class="footer-main">
             <div class="footer-col footer-brand">
@@ -177,9 +183,11 @@ if (!$isLoggedIn) {
         </div>
     </footer>
 
-<!-- JavaScript -->
-<script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
-<script src="my-orders.js"></script>
+    <!-- JavaScript -->
+    <script src="/tcgzone/bootstrap/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
+    <script src="my-orders.js"></script>
 
 </body>
+
 </html>

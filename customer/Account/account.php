@@ -316,6 +316,7 @@ $returnTo = resolveReturnUrl();
             });
         });
     </script>
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
 
 </body>
 

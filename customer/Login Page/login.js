@@ -3,34 +3,31 @@
 // =====================================
 const params = new URLSearchParams(window.location.search);
 
+if (params.get("error") === "invalid") {
+  document.getElementById("login-error").style.display = "block";
+  document.getElementById("login-error").innerHTML =
+    '<i class="fa-solid fa-circle-exclamation"></i> Incorrect email or password.';
+}
 
-
-if(params.get("error") === "invalid"){
-
-    document.getElementById("login-error").style.display = "block";
-
-};
-
+if (params.get("error") === "archived") {
+  document.getElementById("login-error").style.display = "block";
+  document.getElementById("login-error").innerHTML =
+    '<i class="fa-solid fa-circle-exclamation"></i> This account has been archived and cannot log in.';
+}
 
 const password = document.getElementById("password");
 const togglePassword = document.getElementById("togglePassword");
 
 togglePassword.addEventListener("click", function () {
-
-    if (password.type === "password") {
-
-        password.type = "text";
-        togglePassword.classList.remove("fa-eye");
-        togglePassword.classList.add("fa-eye-slash");
-
-    } else {
-
-        password.type = "password";
-        togglePassword.classList.remove("fa-eye-slash");
-        togglePassword.classList.add("fa-eye");
-
-    }
-
+  if (password.type === "password") {
+    password.type = "text";
+    togglePassword.classList.remove("fa-eye");
+    togglePassword.classList.add("fa-eye-slash");
+  } else {
+    password.type = "password";
+    togglePassword.classList.remove("fa-eye-slash");
+    togglePassword.classList.add("fa-eye");
+  }
 });
 
 // =====================================

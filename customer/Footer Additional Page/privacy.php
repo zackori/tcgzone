@@ -10,6 +10,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,14 +18,14 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="/tcgzone/assets/css/shared.css">
     <link rel="icon" type="image/svg" href="/tcgzone/assets/logos/logo/transparent-image.png">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 
     <title>TCGZONE | Privacy Policy</title>
 </head>
+
 <body>
-         <!-- NAVIGATION BAR-->
+    <!-- NAVIGATION BAR-->
     <nav class="navbar">
         <div class="nav-top">
             <div class="logo col-auto">
@@ -72,98 +73,98 @@ $isLoggedIn = isset($_SESSION['user_id']);
         </div>
     </nav>
 
-        <main class="policy-page">
+    <main class="policy-page">
 
-    <div class="policy-container">
+        <div class="policy-container">
 
-        <h1 class="policy-title">Privacy Policy</h1>
+            <h1 class="policy-title">Privacy Policy</h1>
 
-        <div class="policy-content">
+            <div class="policy-content">
 
-            <h3>&bull; Information We Collect</h3>
-            <p>
-                TCGZone collects personal information that you voluntarily
-                provide when creating an account, purchasing products,
-                selling trading cards, or contacting customer support.
-                This information may include your name, email address,
-                phone number, shipping address, and payment details.
-            </p>
+                <h3>&bull; Information We Collect</h3>
+                <p>
+                    TCGZone collects personal information that you voluntarily
+                    provide when creating an account, purchasing products,
+                    selling trading cards, or contacting customer support.
+                    This information may include your name, email address,
+                    phone number, shipping address, and payment details.
+                </p>
 
-            <h3>&bull; How We Use Your Information</h3>
-            <p>
-                We use your information to process orders, manage user
-                accounts, improve our services, respond to inquiries,
-                provide customer support, and send important updates
-                regarding your transactions.
-            </p>
+                <h3>&bull; How We Use Your Information</h3>
+                <p>
+                    We use your information to process orders, manage user
+                    accounts, improve our services, respond to inquiries,
+                    provide customer support, and send important updates
+                    regarding your transactions.
+                </p>
 
-            <h3>&bull; Protection of Personal Information</h3>
-            <p>
-                TCGZone takes appropriate security measures to protect your
-                personal information against unauthorized access,
-                disclosure, alteration, or destruction. While we strive
-                to maintain a secure platform, no online system is
-                completely risk-free.
-            </p>
+                <h3>&bull; Protection of Personal Information</h3>
+                <p>
+                    TCGZone takes appropriate security measures to protect your
+                    personal information against unauthorized access,
+                    disclosure, alteration, or destruction. While we strive
+                    to maintain a secure platform, no online system is
+                    completely risk-free.
+                </p>
 
-            <h3>&bull; Sharing of Information</h3>
-            <p>
-                We do not sell, rent, or trade your personal information.
-                Information may only be shared with trusted service
-                providers involved in payment processing, shipping
-                services, or when required by law.
-            </p>
+                <h3>&bull; Sharing of Information</h3>
+                <p>
+                    We do not sell, rent, or trade your personal information.
+                    Information may only be shared with trusted service
+                    providers involved in payment processing, shipping
+                    services, or when required by law.
+                </p>
 
-            <h3>&bull; Cookies</h3>
-            <p>
-                Our website uses cookies to improve browsing experience,
-                remember user preferences, and analyze website traffic.
-                You may disable cookies through your browser settings,
-                although some website features may not function properly.
-            </p>
+                <h3>&bull; Cookies</h3>
+                <p>
+                    Our website uses cookies to improve browsing experience,
+                    remember user preferences, and analyze website traffic.
+                    You may disable cookies through your browser settings,
+                    although some website features may not function properly.
+                </p>
 
-            <h3>&bull; Your Rights</h3>
-            <p>
-                Users have the right to review, update, or request the
-                deletion of their personal information, subject to
-                applicable laws and our operational requirements.
-            </p>
+                <h3>&bull; Your Rights</h3>
+                <p>
+                    Users have the right to review, update, or request the
+                    deletion of their personal information, subject to
+                    applicable laws and our operational requirements.
+                </p>
 
-            <h3>&bull; Third-Party Services</h3>
-            <p>
-                TCGZone may contain links to third-party websites or use
-                external services. We are not responsible for the privacy
-                practices or content of these third-party platforms.
-            </p>
+                <h3>&bull; Third-Party Services</h3>
+                <p>
+                    TCGZone may contain links to third-party websites or use
+                    external services. We are not responsible for the privacy
+                    practices or content of these third-party platforms.
+                </p>
 
-            <h3>&bull; Changes to This Policy</h3>
-            <p>
-                We reserve the right to update this Privacy Policy at any
-                time. Changes become effective immediately after being
-                posted on this page. Continued use of the website
-                indicates your acceptance of any revisions.
-            </p>
+                <h3>&bull; Changes to This Policy</h3>
+                <p>
+                    We reserve the right to update this Privacy Policy at any
+                    time. Changes become effective immediately after being
+                    posted on this page. Continued use of the website
+                    indicates your acceptance of any revisions.
+                </p>
 
-            <h3>&bull; Contact Us</h3>
-            <p>
-                If you have any questions regarding this Privacy Policy
-                or how your information is handled, please contact our
-                support team through the Contact Us page.
-            </p>
+                <h3>&bull; Contact Us</h3>
+                <p>
+                    If you have any questions regarding this Privacy Policy
+                    or how your information is handled, please contact our
+                    support team through the Contact Us page.
+                </p>
+
+            </div>
 
         </div>
 
-    </div>
-
-</main>
+    </main>
 
 
 
 
 
-        
-<!--FOOTER-->
-<footer class="site-footer">
+
+    <!--FOOTER-->
+    <footer class="site-footer">
         <div class="footer-main">
             <div class="footer-col footer-brand">
                 <h2 class="footer-logo"><a href="/tcgzone/customer/Landing Page/index.php">tcgzone</a></h2>
@@ -182,7 +183,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="footer-col footer-links">
                 <h3 class="footer-heading">Policy</h3>
                 <ul>
-                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.php">Terms &amp; Conditions</a></li>
+                    <li><a href="/tcgzone/customer/Footer Additional Page/terms_condition.php">Terms &amp;
+                            Conditions</a></li>
                     <li><a href="/tcgzone/customer/Footer Additional Page/privacy.php">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -220,7 +222,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <div class="footer-bottom">
             <p>&copy; 2026 tcgzone - All Rights Reserved</p>
         </div>
-</footer>
+    </footer>
+    <script src="/tcgzone/assets/js/shared/shared.js"></script>
 
 </body>
+
 </html>

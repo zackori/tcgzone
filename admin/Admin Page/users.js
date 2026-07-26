@@ -5,33 +5,38 @@ let userPage = 1;
 const USERS_PER_PAGE = 10;
 
 function escapeHtml(value = "") {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function displayUsers(users) {
-    const tbody = document.getElementById("usersTable");
-    const totalPages = Math.max(1, Math.ceil(users.length / USERS_PER_PAGE));
-    userPage = Math.min(userPage, totalPages);
-    const pageUsers = users.slice((userPage - 1) * USERS_PER_PAGE, userPage * USERS_PER_PAGE);
-    document.getElementById("userPage").textContent = userPage;
-    document.getElementById("previousUserPage").disabled = userPage === 1;
-    document.getElementById("nextUserPage").disabled = userPage === totalPages;
+  const tbody = document.getElementById("usersTable");
+  const totalPages = Math.max(1, Math.ceil(users.length / USERS_PER_PAGE));
+  userPage = Math.min(userPage, totalPages);
+  const pageUsers = users.slice(
+    (userPage - 1) * USERS_PER_PAGE,
+    userPage * USERS_PER_PAGE,
+  );
+  document.getElementById("userPage").textContent = userPage;
+  document.getElementById("previousUserPage").disabled = userPage === 1;
+  document.getElementById("nextUserPage").disabled = userPage === totalPages;
 
-    if (users.length === 0) {
-        tbody.innerHTML = `
+  if (users.length === 0) {
+    tbody.innerHTML = `
             <tr>
                 <td colspan="7" class="text-center">No users found.</td>
             </tr>
         `;
-        return;
-    }
+    return;
+  }
 
-    tbody.innerHTML = pageUsers.map((user) => `
+  tbody.innerHTML = pageUsers
+    .map(
+      (user) => `
         <tr>
             <td>${escapeHtml(user.username)}</td>
             <td>${escapeHtml(user.name)}</td>
@@ -40,151 +45,188 @@ function displayUsers(users) {
             <td>${escapeHtml(user.phone)}</td>
             <td>${escapeHtml(user.address)}</td>
             <td>
-                <button type="button" class="modal-btn reject delete-user-btn" data-user-id="${Number(user.id)}">
-                    Delete
+                <button type="button" class="modal-btn users-accept delete-user-btn" data-user-id="${Number(user.id)}">
+                    Archive
                 </button>
             </td>
         </tr>
-    `).join("");
+    `,
+    )
+    .join("");
 }
 
 function openDeleteUserModal(userId) {
-    const user = allUsers.find((item) => Number(item.id) === Number(userId));
-    if (!user) return;
+  const user = allUsers.find((item) => Number(item.id) === Number(userId));
+  if (!user) return;
 
-    userToDelete = user;
-    document.getElementById("deleteUserMessage").textContent =
-        `Delete ${user.username}? This will permanently remove their account, orders, and cart.`;
-    document.getElementById("deleteUserModalMessage").classList.add("d-none");
-    document.getElementById("deleteUserModal").classList.remove("d-none");
+  userToDelete = user;
+  document.getElementById("deleteUserMessage").textContent =
+    `Archive ${user.username}? Their account will be locked, but orders and sell requests will be kept for financial records.`;
+  document.getElementById("deleteUserModalMessage").classList.add("d-none");
+  document.getElementById("deleteUserModal").classList.remove("d-none");
 }
 
 function closeDeleteUserModal() {
-    userToDelete = null;
-    document.getElementById("deleteUserModal").classList.add("d-none");
+  userToDelete = null;
+  document.getElementById("deleteUserModal").classList.add("d-none");
 }
 
 async function deleteUser() {
-    if (!userToDelete) return;
+  if (!userToDelete) return;
 
-    const confirmButton = document.getElementById("confirmDeleteUser");
-    const message = document.getElementById("deleteUserModalMessage");
-    confirmButton.disabled = true;
-    message.className = "modal-msg";
-    message.textContent = "Deleting user...";
+  const confirmButton = document.getElementById("confirmDeleteUser");
+  const message = document.getElementById("deleteUserModalMessage");
+  confirmButton.disabled = true;
+  message.className = "modal-msg";
+  message.textContent = "Deleting user...";
 
-    try {
-        const response = await fetch("api/delete-user.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ user_id: userToDelete.id })
-        });
-        const result = await response.json();
+  try {
+    const response = await fetch("api/delete-user.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: userToDelete.id }),
+    });
+    const result = await response.json();
 
-        if (!response.ok || !result.success) {
-            throw new Error(result.message || "Could not delete user.");
-        }
-
-        allUsers = allUsers.filter((user) => Number(user.id) !== Number(userToDelete.id));
-        document.getElementById("totalUsers").textContent = allUsers.length;
-        document.getElementById("pendingUsers").textContent = allUsers.filter(
-            (user) => Number(user.has_pending_order) === 1
-        ).length;
-        closeDeleteUserModal();
-        filterUsers();
-    } catch (error) {
-        message.className = "modal-msg error";
-        message.textContent = error.message || "Could not delete user.";
-    } finally {
-        confirmButton.disabled = false;
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not delete user.");
     }
+
+    allUsers = allUsers.filter(
+      (user) => Number(user.id) !== Number(userToDelete.id),
+    );
+    document.getElementById("totalUsers").textContent = allUsers.length;
+    document.getElementById("pendingUsers").textContent = allUsers.filter(
+      (user) => Number(user.has_pending_order) === 1,
+    ).length;
+    closeDeleteUserModal();
+    filterUsers();
+  } catch (error) {
+    message.className = "modal-msg error";
+    message.textContent = error.message || "Could not delete user.";
+  } finally {
+    confirmButton.disabled = false;
+  }
 }
 
 function filterUsers() {
-    userPage = 1;
-    renderFilteredUsers();
+  userPage = 1;
+  renderFilteredUsers();
 }
 
 function renderFilteredUsers() {
-    const keyword = document.getElementById("searchUser").value.trim().toLowerCase();
+  const keyword = document
+    .getElementById("searchUser")
+    .value.trim()
+    .toLowerCase();
 
-    const filteredUsers = allUsers.filter((user) => {
-        const matchesPendingFilter = !showingPendingOrderUsers || Number(user.has_pending_order) === 1;
-        const searchableValues = [user.username, user.name, user.email, user.phone, user.address];
-        const matchesSearch = searchableValues.some((value) =>
-            String(value || "").toLowerCase().includes(keyword)
-        );
+  const filteredUsers = allUsers.filter((user) => {
+    const matchesPendingFilter =
+      !showingPendingOrderUsers || Number(user.has_pending_order) === 1;
+    const searchableValues = [
+      user.username,
+      user.name,
+      user.email,
+      user.phone,
+      user.address,
+    ];
+    const matchesSearch = searchableValues.some((value) =>
+      String(value || "")
+        .toLowerCase()
+        .includes(keyword),
+    );
 
-        return matchesPendingFilter && matchesSearch;
-    });
+    return matchesPendingFilter && matchesSearch;
+  });
 
-    displayUsers(filteredUsers);
+  displayUsers(filteredUsers);
 }
 
 function setPendingOrderFilter(enabled) {
-    showingPendingOrderUsers = enabled;
-    document.getElementById("pendingUsersCard").setAttribute("aria-pressed", String(enabled));
-    filterUsers();
+  showingPendingOrderUsers = enabled;
+  document
+    .getElementById("pendingUsersCard")
+    .setAttribute("aria-pressed", String(enabled));
+  filterUsers();
 }
 
 function setupOverviewCards() {
-    const totalUsersCard = document.getElementById("totalUsersCard");
-    const pendingUsersCard = document.getElementById("pendingUsersCard");
+  const totalUsersCard = document.getElementById("totalUsersCard");
+  const pendingUsersCard = document.getElementById("pendingUsersCard");
 
-    const showAllUsers = () => setPendingOrderFilter(false);
-    const showPendingOrderUsers = () => setPendingOrderFilter(true);
+  const showAllUsers = () => setPendingOrderFilter(false);
+  const showPendingOrderUsers = () => setPendingOrderFilter(true);
 
-    totalUsersCard.addEventListener("click", showAllUsers);
-    pendingUsersCard.addEventListener("click", showPendingOrderUsers);
+  totalUsersCard.addEventListener("click", showAllUsers);
+  pendingUsersCard.addEventListener("click", showPendingOrderUsers);
 
-    [[totalUsersCard, showAllUsers], [pendingUsersCard, showPendingOrderUsers]].forEach(([card, action]) => {
-        card.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                action();
-            }
-        });
+  [
+    [totalUsersCard, showAllUsers],
+    [pendingUsersCard, showPendingOrderUsers],
+  ].forEach(([card, action]) => {
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        action();
+      }
     });
+  });
 }
 
 async function loadUsers() {
-    try {
-        const response = await fetch("api/get-users.php");
+  try {
+    const response = await fetch("api/get-users.php");
 
-        if (!response.ok) {
-            throw new Error("Could not load users.");
-        }
+    if (!response.ok) {
+      throw new Error("Could not load users.");
+    }
 
-        allUsers = await response.json();
+    allUsers = await response.json();
 
-        document.getElementById("totalUsers").textContent = allUsers.length;
-        document.getElementById("pendingUsers").textContent = allUsers.filter(
-            (user) => Number(user.has_pending_order) === 1
-        ).length;
+    document.getElementById("totalUsers").textContent = allUsers.length;
+    document.getElementById("pendingUsers").textContent = allUsers.filter(
+      (user) => Number(user.has_pending_order) === 1,
+    ).length;
 
-        filterUsers();
-    } catch (error) {
-        console.error("Failed to load users:", error);
-        document.getElementById("usersTable").innerHTML = `
+    filterUsers();
+  } catch (error) {
+    console.error("Failed to load users:", error);
+    document.getElementById("usersTable").innerHTML = `
             <tr>
                 <td colspan="7" class="text-center">Could not load users. Please try again.</td>
             </tr>
         `;
-    }
+  }
 }
 
 document.getElementById("searchUser").addEventListener("input", filterUsers);
 document.getElementById("usersTable").addEventListener("click", (event) => {
-    const button = event.target.closest(".delete-user-btn");
-    if (button) openDeleteUserModal(button.dataset.userId);
+  const button = event.target.closest(".delete-user-btn");
+  if (button) openDeleteUserModal(button.dataset.userId);
 });
-document.getElementById("closeDeleteUserModal").addEventListener("click", closeDeleteUserModal);
-document.getElementById("cancelDeleteUser").addEventListener("click", closeDeleteUserModal);
-document.getElementById("confirmDeleteUser").addEventListener("click", deleteUser);
-document.getElementById("deleteUserModal").addEventListener("click", (event) => {
+document
+  .getElementById("closeDeleteUserModal")
+  .addEventListener("click", closeDeleteUserModal);
+document
+  .getElementById("cancelDeleteUser")
+  .addEventListener("click", closeDeleteUserModal);
+document
+  .getElementById("confirmDeleteUser")
+  .addEventListener("click", deleteUser);
+document
+  .getElementById("deleteUserModal")
+  .addEventListener("click", (event) => {
     if (event.target.id === "deleteUserModal") closeDeleteUserModal();
+  });
+document.getElementById("previousUserPage").addEventListener("click", () => {
+  if (userPage > 1) {
+    userPage -= 1;
+    renderFilteredUsers();
+  }
 });
-document.getElementById("previousUserPage").addEventListener("click", () => { if (userPage > 1) { userPage -= 1; renderFilteredUsers(); } });
-document.getElementById("nextUserPage").addEventListener("click", () => { userPage += 1; renderFilteredUsers(); });
+document.getElementById("nextUserPage").addEventListener("click", () => {
+  userPage += 1;
+  renderFilteredUsers();
+});
 setupOverviewCards();
 loadUsers();

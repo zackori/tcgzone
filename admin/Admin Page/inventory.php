@@ -152,8 +152,9 @@ session_start();
   <div class="admin-modal-backdrop" id="deleteModalBackdrop">
     <div class="admin-modal confirm-modal">
       <p class="confirm-text">Archive <strong id="deleteCardName"></strong>? It will be hidden from Inventory and the shop, while its receipt and order history stays preserved.</p>
-      <div class="confirm-actions"><button class="btn-yes" type="button" id="confirmDeleteBtn">Archive</button><button
-          class="btn-no" type="button" id="cancelDeleteBtn">No</button></div>
+      <div class="confirm-actions">
+      <button
+class="btn-no" type="button" id="cancelDeleteBtn">No</button><button class="btn-yes" type="button" id="confirmDeleteBtn">Archive</button></div>
     </div>
   </div>
   <div class="admin-modal-backdrop" id="successModalBackdrop">

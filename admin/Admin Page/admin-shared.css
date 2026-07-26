@@ -1402,13 +1402,9 @@ canvas {
     color: #2ecc71;
 }
 
-.modal-status-badge.cancelled {
-    color: #e74c3c;
-}
-
 .modal-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 10px;
     margin-top: 20px;
 }
@@ -1424,6 +1420,20 @@ canvas {
 
 .modal-btn.accept {
     background: #198754;
+    color: #fff;
+}
+
+.modal-btn.users-accept,
+.modal-btn.reviews-accept {
+    background: #fb4d4d;
+    color: #fff;
+
+}
+
+.modal-btn.users-reject,
+.modal-btn.reviews-reject {
+    border: 1px solid #444;
+    background: #101010;
     color: #fff;
 }
 
