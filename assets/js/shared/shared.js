@@ -38,3 +38,44 @@
     }
   });
 })();
+
+/* ------------------------------------------------------
+   CUSTOMER NAVBAR SEARCH
+   Kept here so every customer page that includes the shared
+   navbar gets the same search behaviour.
+------------------------------------------------------ */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".navbar .search").forEach(function (search) {
+    var searchInput = search.querySelector(".search-input");
+    var searchIcon = search.querySelector("img");
+
+    if (!searchInput) return;
+
+    function performSearch() {
+      var query = searchInput.value.trim();
+      window.location.href =
+        "/tcgzone/customer/Shop Page/shop.php?search=" +
+        encodeURIComponent(query);
+    }
+
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        performSearch();
+      }
+    });
+
+    if (searchIcon) {
+      searchIcon.addEventListener("click", performSearch);
+      searchIcon.setAttribute("role", "button");
+      searchIcon.setAttribute("tabindex", "0");
+      searchIcon.setAttribute("aria-label", "Search products");
+      searchIcon.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          performSearch();
+        }
+      });
+    }
+  });
+});

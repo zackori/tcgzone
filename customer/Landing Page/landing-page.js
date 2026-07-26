@@ -1,31 +1,3 @@
-/* ------------------------------------------------------
-    GLOBAL NAVBAR SEARCH HANDLER
------------------------------------------------------- */
-document.addEventListener('DOMContentLoaded', function () {
-    var searchInput = document.querySelector('.search-input');
-    var searchIcon = document.querySelector('.search img');
-
-    function performSearch() {
-        var query = searchInput.value.trim();
-        // Redirect to shop page with the search parameter
-        window.location.href = '/tcgzone/customer/Shop Page/shop.php?search=' + encodeURIComponent(query);
-    }
-
-    if (searchInput) {
-        // Trigger search on pressing 'Enter'
-        searchInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-
-    if (searchIcon) {
-        // Trigger search on clicking the search magnifying glass icon
-        searchIcon.addEventListener('click', performSearch);
-    }
-});   
-   
    /* ==========================================================
     tcg.name — custom JS
     Bootstrap's own bundle handles the navbar collapse toggler
